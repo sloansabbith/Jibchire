@@ -2,7 +2,7 @@ $(function(){
 	
     // 처음 글썼을 때 정보를 바탕으로, 선택했던 정보를 미리 selected, checked해놓았음
 	var house = $("#hidden_house").val(); 
-	$("#house").val(house).prop("selected",true);
+	$("input[name=post_house]").val(house).prop("checked",true);
 	
 	var rooms = $("#hidden_rooms").val(); //
 	$("#rooms").val(rooms).prop("selected",true);
@@ -19,12 +19,14 @@ $(function(){
 	var budget = $("#hidden_budget").val(); //
 	$("#rooms").val(rooms).prop("selected",true);
 	
-		var rooms = $("#hidden_rooms").val(); //
+	var rooms = $("#hidden_rooms").val(); //
 	$("#rooms").val(rooms).prop("selected",true);
 	
-		var rooms = $("#hidden_rooms").val(); //
-	$("#rooms").val(rooms).prop("selected",true);
+	var pet = $("#hidden_pet").val(); //반려동물
+	$("input[name=post_pet]").val(pet).prop("checked",true);
 	
+	var direc = $("#hidden_direc").val(); //집방향
+	$("input[name=post_direc]").val(direc).prop("checked",true);
 	
 	
 	// 방개수에 대한 select의 option 추가하기

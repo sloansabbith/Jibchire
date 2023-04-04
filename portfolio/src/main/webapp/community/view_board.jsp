@@ -82,41 +82,26 @@ CmtHousewarming sel = new CmtHousewarming();
 		    	</li>
 		    </ul>
 	    </div>
-		<div id="list">
+	    <div id="list">
 	    	<ul>
-	    		<li>ss</li>
-	    		<li>ss</li>
-	    		<li>ss</li>
+	    		<%  
+    			for(int i=0; i<alist.size(); i++){   //한 줄에 세 칸을 넣을	
+
+    			%>
+	    		<li><a href = "view_read.jsp?post_id=<%= alist.get(i).getPost_id() %>">
+	    			<div class="thumbnail"> <img src="postPics/sm_<%= alist.get(i).getPost_pics() %>"></div>
+	    			<div class="title"><%=alist.get(i).getPost_title() %>  </div>
+	    			<div class="writer"><%=alist.get(i).getCust_id() %> </div></a>
+	    			<div class="view">조회수 10 북마크 10</div>
+
+	    		</li>
+    			<%		
+    			
+    			}
+	    		%>
 	    	</ul>
 	    </div>
-	    <table>
-	    	<tbody> 
-	    	
-	    		<%  
-	    			for(int i=0; i<alist.size(); i+=3){   //한 줄에 세 칸을 넣을
-	    				out.println("<tr class='pic'>");
-	    				for(int j=i;j<i+3;j++){		
-	    		%>
-	    				<td>
-	    					<a href = "view_read.jsp?post_id=<%= alist.get(j).getPost_id() %>"> <!-- 해당페이지로 이동 -->
-	    					<div id="thumbnail"><img src="img/community/pics/111.jpg" width="380px" height="300px" ></div> 
-	    					<ul>
-		    					<li class="title"><%= alist.get(j).getPost_title() %> </li>
-		    					<li class="writer"><%= alist.get(j).getCust_id() %> </li>
-		    				</ul>
-	    					<input type ='hidden' value='"<%= alist.get(j).getPost_id() %>"' >
-	    					</a>
-	    				</td>
-	    		<%
-	    					if(i+3>alist.size()){//한줄에 세칸을 넣기 때문에 만약 값이 7,8이런식이면 오류남 브레이크를 걸어줘야함
-	    						break;
-	    					}
-	    				}
-	    				out.println("</tr>");
-	    			} 
-	    		%>
-	    	</tbody>
-	    </table>
+
 	</div>    
 	<!-- footer -->
 	<footer>

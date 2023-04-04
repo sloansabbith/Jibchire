@@ -52,11 +52,11 @@
 			<!-- 사진-->
 			<section >
 				<div id="mainpic">
-				<img src="img/community/pics/501.jpg" id="mainpicimg"></div>
+				<img src="postPics/<%=po.getPost_pics() %>" id="mainpicimg"></div>
 			</section>
 			<!-- 제목 -->
 		   	<div id="title"> 
-		   		<h1><%= po.getPost_title() %></h1>
+		   		<h1><%=po.getPost_title() %></h1>
 		   		<!-- //현재 session에서 저장된 ID값과 db에서 가져온 id 값이 일치한다면 버튼생성 -->
 		   		<%
 		   		//글의 데이터에서 작성자의 아이디와, 현제 로그인한 사람의 아이디가 동일하면 삭제, 수정버튼 생성
@@ -72,37 +72,37 @@
 		   	<div id="info">
 		   		<table>
 		   			<tr><td>주거형태</td>
-		   				<td>오피스텔</td>
+		   				<td><%=po.getPost_house()%> </td>
 		   				<td>방개수</td>
-		   				<td>2개</td>
+		   				<td><%=po.getPost_rooms()%>개</td>
 		   				<td>집 평수</td>
-		   				<td>9평</td>
+		   				<td><%=po.getPost_m2()%>평</td>
 		   			</tr><tr>	
 		   				<td>집 연식</td>
-		   				<td>15년이상</td>
+		   				<td><%=po.getPost_houseold()%>년 이상</td>
 		   				<td>스타일</td>
-		   				<td>미니멀</td>
+		   				<td><%=po.getPost_style()%></td>
 		   				<td>색상 톤</td>
-		   				<td>베이지, 다크그린</td>
+		   				<td><%=po.getPost_color()%></td>
 		   			</tr><tr>
 		   				<td>가족 인원</td>
-		   				<td>1명</td>
+		   				<td><%=po.getPost_fam()%>명</td>
 		   				<td>가족형태</td>
-		   				<td>1인가구</td>
+		   				<td><%=po.getPost_family()%></td>
 		   				<td>반려동물</td>
-		   				<td>없음</td>
+		   				<td><%=po.getPost_pet()%></td>
    					</tr><tr>
 		   				<td>지역</td>
-		   				<td>서울시 강남구</td>
+		   				<td><%=po.getPost_region()%></td>
 		   				<td>예산</td>
-		   				<td>80만원</td>
+		   				<td><%=po.getPost_budget()%>만원</td>
 		   				<td></td>
 		   				<td></td>
    					</tr><tr>
 		   				<td>공사시작일</td>
-		   				<td>2023-02-17</td>
+		   				<td><%=po.getPost_startdate()%></td>
 		   				<td>공사마감일</td>
-		   				<td>2023-03-03</td>
+		   				<td><%=po.getPost_enddate()%></td>
 		   				<td></td>
 		   				<td></td>
 		   			</tr>
