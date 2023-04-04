@@ -1,0 +1,27 @@
+/* reset css */ 
+* { margin : 0 ; padding : 0 ; } 
+li { list-style : none ;  display: inline-block;}
+a { text-decoration : none;}
+body{ font-family: 'NanumSquare'; }
+#wrap{width: 1280px; margin: 0 auto; } 
+
+/*게시판 첫번째 메뉴 및 select 스타일*/
+#menu ul{margin-left: 10px;}
+#menu{height:40px; padding:10px; margin-top:20px; border:2px solid gray; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);	}
+select{border: 2px solid #fff; height: 40px;}
+option{background: #ffffff;  color: #000;  padding: 3px 0; font-size:12pt;}
+
+/*new*/
+#list{}
+#list li{display: inline-block; width: 380px; height: 300px;  border: 1px solid black; margin: 25px; overflow: hidden;}
+
+/*테이블 구조로 나타나는 게시판 내용*/
+table {border-spacing :35px;  margin-top:20px; border:2px solid gray; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);} 
+#thumbnail{width:380px; height:300px; overflow:hidden;}
+#thumbnail img{object-fit:cover;}
+/*사진 아래 제목과 아이디*/
+.title{font-size:18pt; color: #000; font-weight: bold;}
+.writer{font-size:15pt; float: right;}
+input[type=button]{	border: solid 2px #E9E9E9; background-color: #E9E9E9; 
+	width: 100px;height: 40px; float:right;}
+

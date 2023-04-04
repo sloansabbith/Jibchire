@@ -1,0 +1,10 @@
+/*reset css*/
+* { margin : 0 ; padding : 0 ; } 
+a { text-decoration : none; }
+
+/*전체구조*/
+#wrap{width:1280px; margin:0 auto;}
+
+table{width: 100%;}
+.pics{height:400px ;border: 1px solid lightgray;}
+td{border: 1px solid lightgray;}
