@@ -13,7 +13,7 @@ option{background: #ffffff;  color: #000;  padding: 3px 0; font-size:12pt;}
 
 /*new*/
 #list{}
-#list li{display: inline-block; width: 380px; height: 300px;  border: 1px solid black; margin: 25px; overflow: hidden;}
+#list li{display: inline-block; width: 380px; height: 300px;  border: 1px solid black; margin: 25px; overflow: hidden; border:2px solid gray;}
 
 /*테이블 구조로 나타나는 게시판 내용*/
 table {border-spacing :35px;  margin-top:20px; border:2px solid gray; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);} 
