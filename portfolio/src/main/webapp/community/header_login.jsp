@@ -115,7 +115,7 @@
 		width: 94px;
 		height: 40px;
 		color: white;
-		background-color: #926b61;
+		background-color: #789849;
 		border-radius: 8px;
 		border: none;
 		cursor: pointer;
@@ -385,7 +385,7 @@
 					</div>
 			
 					<div class="items items2">
-						<a class="item_index" href="#커뮤니티">
+						<a class="item_index" href="view_write.jsp">
 							<div style="width:50px; height: 50px;">
 							<!-- 이미지영역 -->
 								<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -467,7 +467,7 @@
 								<div class="item_text_ex">고수의 의뢰를 마친 당신,후기 글을 작성하세요.</div>
 							</div>
 						</a>
-						<a class="item_index" href="#sns글쓰기">
+						<a class="item_index" href="../sns/snsWrite.jsp">
 							<div style="width:50px; height: 50px;">
 							<!-- 이미지영역 -->
 								<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -521,7 +521,7 @@
 		<nav>
 			<div id="cumu">	
 				<div class="index1"><li><a href="view_board.jsp">집들이</a></li></div>
-				<div class="index2"><li><a href="#">일상공유</a></li></div>
+				<div class="index2"><li><a href="../sns/snsListAction.bo">일상공유</a></li></div>
 				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
 				<div class="index3"><li><a href="#">좋아요</a></li></div>
 				<div class="index4"><li><a href="#">북마크</a></li></div>
