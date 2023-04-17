@@ -32,7 +32,7 @@
 	cust.setCust_room(room);
 	cust.setCust_m2(m2);
 	cust.setCust_fam(fam);
-	cust.setCust_household(houseold);
+	cust.setCust_houseold(houseold);
 	
 	cust.setCust_family(request.getParameter("post_house"));
 	cust.setCust_direc(request.getParameter("post_house"));

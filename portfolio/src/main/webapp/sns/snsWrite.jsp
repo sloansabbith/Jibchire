@@ -46,28 +46,34 @@
 <div id="wrap">
 	<!-- 사진올리고 글쓰는 공간 -->
 	<section>
-		<form action="snsWriteAction.bo" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="cust_id" value="<%=id%>"><!-- cust_id값에 로그인한 아이디 값넣기 -->
+		<form action="snsWriteAction.sns" method="post" enctype="multipart/form-data">
 			<table id="work">
 				<thead><tr><td colspan=2> <h2>일상공유 글쓰기</h2> </td></tr> </thead>
 				<tbody>
 					<tr>
 						<td> 
 							<div>
-								<div id="preview"><img id="previewImg" /></div>
-								<div id="inputfile"><input type="file" onchange="readImage(this);" name="feed_pics"> </div>
+								<div id="preview" contenteditable="true"><img id="previewImg" />
+									<div>썸네일 확인</div> </div>
+								<div id="files">
+									<input type="file" name="feed_pic1">
+									<input type="file" name="feed_pic2">
+									<input type="file" name="feed_pic3">
+								</div>
+								<div id="inputfile">썸네일로 고를 사진을 올려주세요 <br><input type="file" onchange="readImage(this);" name="feed_pics"></div>
 							</div>
 						</td>
 						<td>
 							<div>
 								<textarea placeholder="내용을 입력해주세요" name="feed_txt"></textarea>
-								<input type="text" placeholder="#ootd" name="feed_hashtag" id="hashtag">
+								<input type="text" placeholder="#ootd" name="feed_hashtag" id="hashtag"> 
 							</div>
 						</td>
 					</tr>
 				</tbody>
 				<tfoot> <tr><td colspan=2><input type="submit" value="제출"> </td></tr></tfoot>					
 			</table>
+			<input type="hidden" name="cust_id" value="<%=id%>"><!-- cust_id값에 로그인한 아이디 값넣기 -->
 		</form>
 	</section>
 </div>

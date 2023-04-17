@@ -15,7 +15,8 @@
 /*slider css*/                           					  /* 여기서부터 slider css*/
 #slider {  position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
 #slider ul {  position: relative;  margin: 0;  padding: 0;  list-style: none;}
-#slider ul li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  height: 480px;  text-align: center;  line-height: 300px;}
+#slider ul li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  
+	height: 480px;  text-align: center;  line-height: 300px;}
 a.control_prev, a.control_next {  position: absolute;top: 40%;  z-index: 999;  display: block;  padding: 4% 3%;
   color: #fff;  font-size: 30px;  opacity: 0.8;  cursor: pointer;}
 a.control_prev:hover, a.control_next:hover {  opacity: 1;  -webkit-transition: all 0.2s ease;}
@@ -168,7 +169,6 @@ align-items: center;
 }
 </style>
 <body>
-
 	<% 
 		request.setCharacterEncoding("utf-8"); 
 		String id = (String) session.getAttribute("ID");  //session값에서 아이디 가져올 때 null이면 일반헤더, 아니면 로그인헤더
@@ -177,6 +177,7 @@ align-items: center;
 		<jsp:include page="header.jsp" />
 	<%
 		}else{
+		request.setAttribute("cust_id", id);
 	%>
 		<jsp:include page="header_login.jsp" />
 	<%
@@ -204,7 +205,7 @@ align-items: center;
 				<div class="css-chire-imgline">
 					<div class="css-chire-img">
 						<img src="img/index/community.gif" class="img-pic"/>
-						<img src="img/index/bachi.gif" class="img-pic"/s>
+						<img src="img/index/bachi.gif" class="img-pic"/>
 					</div>
 				</div>
 			</article>

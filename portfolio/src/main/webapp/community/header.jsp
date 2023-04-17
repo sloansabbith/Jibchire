@@ -131,10 +131,10 @@
 		/*position: absolute;*/
 		/*top: 10%;
 		left: 61%;*/
-		box-shadow: 0px 0px .5px 1px #926b61;
+		box-shadow: 0px 0px .5px 1px #789849;
 		height: 30px;
 		background-color: #fff;
-		border: 1px solid #926b61;
+		border: 1px solid #789849;
 		border-radius: 30px;
 		transition: 0.4s;
 		width: 282px;
@@ -438,8 +438,8 @@
 		<div class="nav">
 		<nav>
 			<div id="cumu">	
-				<div class="index1"><li><a href="view_board.jsp">집들이</a></li></div>
-				<div class="index2"><li><a href="../sns/snsListAction.bo">일상공유</a></li></div> <!-- 이렇게 호출하는게 맞네 -->
+				<div class="index1"><li><a href="select_board.jsp">집들이</a></li></div>
+				<div class="index2"><li><a href="../sns/snsListAction.sns">일상공유</a></li></div> <!-- 이렇게 호출하는게 맞네 -->
 				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
 				<div class="index3"><li><a href="#">좋아요</a></li></div>
 				<div class="index4"><li><a href="#">북마크</a></li></div>

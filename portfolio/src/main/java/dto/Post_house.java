@@ -29,9 +29,14 @@ post_pet,post_startdate,post_enddate,post_pics,post_style,post_color
 	public String post_pet; // char y or n
 	public String post_startdate; //공사시작일
 	public String post_enddate; //공사마감일
-	public String post_pics; // 이미지 루트?
 	public String post_style; // 컬러풀,등등
 	public String post_color; // 색상 00,00,00,
+	public String post_pics; // 이미지 루트?
+	public String post_pic1;
+	public String post_pic2;
+	public String post_pic3;
+	public String post_writetime;
+	public String bookmark_time;
 	
 	public int getPost_id() {
 		return post_id;
@@ -147,6 +152,37 @@ post_pet,post_startdate,post_enddate,post_pics,post_style,post_color
 	public void setPost_color(String post_color) {
 		this.post_color = post_color;
 	}
+	public String getPost_pic1() {
+		return post_pic1;
+	}
+	public void setPost_pic1(String post_pic1) {
+		this.post_pic1 = post_pic1;
+	}
+	public String getPost_pic2() {
+		return post_pic2;
+	}
+	public void setPost_pic2(String post_pic2) {
+		this.post_pic2 = post_pic2;
+	}
+	public String getPost_pic3() {
+		return post_pic3;
+	}
+	public void setPost_pic3(String post_pic3) {
+		this.post_pic3 = post_pic3;
+	}
+	public String getPost_writetime() {
+		return post_writetime;
+	}
+	public void setPost_writetime(String post_writetime) {
+		this.post_writetime = post_writetime;
+	}
+	public String getBookmark_time() {
+		return bookmark_time;
+	}
+	public void setBookmark_time(String bookmark_time) {
+		this.bookmark_time = bookmark_time;
+	}
+
 	
 	
 

@@ -49,14 +49,32 @@
 					</td>
 				</tr>
 				<tr><td> 방 개수 </td> 
-					<td>  <select id="rooms" name="post_rooms" > </select> </td>
+					<td><select id="rooms" name="post_rooms" > 
+							<option value="1" >1개 </option>
+							<option value="2" >2개 </option>
+							<option value="3" >3개 </option>
+							<option value="4" >4개이상 </option>
+						</select></td>
 				</tr>
 				<tr><td> 집 평수 </td>
-					<td>  <select id="m2" name="post_m2" > </select> </td>
+					<td><select id="m2" name="post_m2" >
+							<option value="5">5평 이상</option>
+							<option value="10">10평 이상 </option>
+							<option value="15">15평 이상 </option>
+							<option value="20">20평 이상 </option>
+							<option value="25">25평 이상 </option>
+							<option value="30">30평 이상 </option>
+						</select> </td>
 				</tr>
 
 				<tr><td> 집 연식 </td>
-					<td> <select id=houseold name="post_houseold"></select> </td>
+					<td><select id=houseold name="post_houseold">
+							<option value="1">신축~5년 미만 </option>
+							<option value="5">5년 이상</option>
+							<option value="10">10년 이상 </option>
+							<option value="15">15년 이상 </option>
+							<option value="20">20년 이상 </option>
+						</select> </td>
 				</tr>
 				<tr><td> 집 방향 </td>
 					<td><input type="radio" name="post_direc" value="남향">남향
@@ -112,14 +130,20 @@
 			<thead><tr><td colspan=2><h4>가족구성원, 인테리어 정보를 입력해주세요</h4></td></tr></thead>
 			<tbody>
 			<tr><td> 가족 인원 </td>
-				<td> <select id="fam" name="post_fam"></select> </td>
+				<td> <select id="fam" name="post_fam">
+						<option value="1">1명 </option>
+						<option value="2">2명 </option>
+						<option value="3">3명 </option>
+						<option value="4">4명 </option>
+						<option value="5">5명이상 </option>
+					</select> </td>
 			</tr>
 			<tr><td> 가족형태 </td>
 				<td> <input type="checkbox" name="post_family" value="1인가구">1인가구
 					<input type="checkbox" name="post_family" value="신혼부부">신혼부부
-					<input type="checkbox" name="post_family" value="부모님과 함께사는">부모님과 함께
 					<input type="checkbox" name="post_family" value="룸메이트">룸메이트
-					<input type="checkbox" name="post_family" value="자녀와 함께">어린 자녀와 함께
+					<input type="checkbox" name="post_family" value="부모님과 함께사는">부모님과 함께
+					<input type="checkbox" name="post_family" value="어린 자녀와 함께">어린 자녀와 함께
 				</td>
 			</tr>
 			<tr><td> 반려동물<br>유무 </td>
@@ -174,7 +198,10 @@
 				<tr><td id="title"> <input type="text" name="post_title" placeholder="글제목"> </td></tr>
 				<tr><td><div id="preview"><img id="previewImg" ></div> </td></tr>
 				<tr><td><h5>가장 메인이 되는 사진을 올려주세요</h5> 
-						 <input type="file" onchange="readImage(this);" name="post_pic"> 
+						 <input type="file" onchange="readImage(this);" name="post_pics"> 
+						 <input type="file" name="post_pic1"> 
+						 <input type="file" name="post_pic2"> 
+						 <input type="file" name="post_pic3"> 
 					</td>
 				</tr>
 				<tr><td id="text"> <textarea name="post_txt" id="textarea" placeholder="글내용을 입력해주세요"></textarea> </td></tr>

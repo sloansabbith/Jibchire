@@ -17,6 +17,7 @@ public class SnsDeleteAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = null;
 		int feed_id=Integer.parseInt(request.getParameter("feed_id"));
+		System.out.println("deleteaction 도착 feed_id는? ==> "+feed_id);
 
 		SnsDeleteService snsDeleteService = new SnsDeleteService();
 			
@@ -39,7 +40,7 @@ public class SnsDeleteAction implements Action {
 			//PrintWriter out=response.getWriter();
 			//out.println("<script> alert('삭제가 완료되었습니다');  </script>");
 			//out.close(); // 닫아줘야 하는 걸 알게되었다
-			forward.setPath("snsListAction.bo");
+			forward.setPath("snsListAction.sns");
 		}
 			
 

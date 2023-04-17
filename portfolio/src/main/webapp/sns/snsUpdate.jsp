@@ -33,7 +33,7 @@
 <div id="wrap">
 	<!-- 사진올리고 글쓰는 공간 -->
 	<section>
-		<form action="snsWriteAction.bo" method="post" enctype="multipart/form-data">
+		<form action="snsWriteAction.sns" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="cust_id" value="<%=id%>"><!-- cust_id값에 로그인한 아이디 값넣기 -->
 			<table id="work">
 				<thead><tr><td colspan=2> <h2>일상공유 글쓰기</h2> </td></tr> </thead>

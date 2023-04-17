@@ -21,7 +21,7 @@
 	.head{width:1900px; margin-left: auto; margin-right: auto;}
 	.header .logo{
 		margin-top: 20px;
-		margin-left: 200px;
+		margin-left: 223px;/*header logo 중앙으로*/
 		width: 150px;
 		height: 50px;
 		background-image:url("img/logo/chiere.jpg");
@@ -131,10 +131,10 @@
 		/*position: absolute;*/
 		/*top: 10%;
 		left: 61%;*/
-		box-shadow: 0px 0px .5px 1px #926b61;
+		box-shadow: 0px 0px .5px 1px #789849;
 		height: 30px;
 		background-color: #fff;
-		border: 1px solid #926b61;
+		border: 1px solid #789849;
 		border-radius: 30px;
 		transition: 0.4s;
 		width: 282px;
@@ -299,7 +299,7 @@
 						<input type="button" class="gosuch" id="write" value="글쓰기">
 					</div>
 					<div class="items items2">
-						<a class="item_index" href="#커뮤니티">
+						<a class="item_index" href="login.jsp">
 							<div style="width:50px; height: 50px;">
 							<!-- 이미지영역 -->
 							<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -326,7 +326,7 @@
 								<div class="item_text_ex">글을 작성해 많은 사람들이 인테리어를 볼 수 있게 해보세요.</div>
 							</div>
 						</a>
-						<a class="item_index" href="store/used/board_index.jsp">
+						<a class="item_index" href="login.jsp">
 							<div style="width:50px; height: 50px;">
 							<!-- 이미지영역 -->
 							<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -353,7 +353,7 @@
 								<div class="item_text_ex">중고거래 글을 작성해 중고상품을 판매해보세요.</div>
 							</div>
 						</a>
-						<a class="item_index" href="#고수 후기글">
+						<a class="item_index" href="login.jsp">
 							<div style="width:50px; height: 50px;">
 								<!-- 이미지영역 -->
 								<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -381,7 +381,7 @@
 							</div>
 						</a>
 			
-						<a class="item_index" href="#sns글쓰기">
+						<a class="item_index" href="login.jsp">
 							<div style="width:50px; height: 50px;">
 								<!-- 이미지영역 -->
 								<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -438,12 +438,12 @@
 		<div class="nav">
 		<nav>
 			<div id="cumu">	
-				<div class="index1"><li><a href="../community/view_board.jsp">집들이</a></li></div>
-				<div class="index2"><li><a href="snsListAction.bo">일상공유</a></li></div>
-				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
-				<div class="index3"><li><a href="#">좋아요</a></li></div>
-				<div class="index4"><li><a href="#">북마크</a></li></div>
-				<div class="index5"><li><a href="#">팔로우</a></li></div>
+				<div class="index1"><li><a href="../community/select_board.jsp">집들이</a></li></div>
+				<div class="index2"><li><a href="snsListAction.sns">일상공유</a></li></div>
+				<div class="index2"><li><a href="login.jsp">나와 비슷한</a></li></div>
+				<div class="index3"><li><a href="login.jsp">좋아요</a></li></div>
+				<div class="index4"><li><a href="login.jsp">북마크</a></li></div>
+				<div class="index5"><li><a href="login.jsp">팔로우</a></li></div>
 			</div>
 		
 			<div id="shop">

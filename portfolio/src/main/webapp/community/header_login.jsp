@@ -125,10 +125,10 @@
 		/*position: absolute;*/
 		/*top: 10%;
 		left: 61%;*/
-		box-shadow: 0px 0px .5px 1px #926b61;
+		box-shadow: 0px 0px .5px 1px #789849;
 		height: 30px;
 		background-color: #fff;
-		border: 1px solid #926b61;
+		border: 1px solid #789849;
 		border-radius: 30px;
 		transition: 0.4s;
 		width: 282px;
@@ -363,10 +363,10 @@
 						<!-- 아이디 값 session에서 불러오기 -->
 						<div class="login_items login_items2">
 							<div class="login_item_index">
-								<div class="login_item_text"><%= id %>님 환영합니다.</div>
+								<div class="login_item_text"><%=id %>님 환영합니다.</div>
 							</div>
 							<div class="login_item_index2">
-								<div class="login_item_text2"><a href="#마이페이지">마이페이지</div>
+								<div class="login_item_text2"><a href="../sns/myPageWrite.jsp?cust_id=<%=id%>">마이페이지</div>
 							</div>
 							<div class="login_item_index2">
 								<div class="login_item_text2"><a href="#고수전환">고수전환</div>
@@ -499,7 +499,7 @@
 			</div>
 		</div>
 		<div class="header">
-			<div class="cumu"><li><a href ="../community.html"> 커뮤니티 </a></li></div>
+			<div class="cumu"><li><a href ="community.jsp"> 커뮤니티 </a></li></div>
 			<div class="store"><li><a href ="../shopping.html"> 스토어 </a></li></div>
 			<div class="gosu"><li><a href ="../gosumain.html"> 고수 </a></li></div>
 	
@@ -520,12 +520,12 @@
 	<div class="nav">
 		<nav>
 			<div id="cumu">	
-				<div class="index1"><li><a href="view_board.jsp">집들이</a></li></div>
-				<div class="index2"><li><a href="../sns/snsListAction.bo">일상공유</a></li></div>
+				<div class="index1"><li><a href="select_board.jsp?cust_id=<%=id%>">집들이</a></li></div>
+				<div class="index2"><li><a href="../sns/snsListAction.sns?cust_id=<%=id%>">일상공유</a></li></div>
 				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
-				<div class="index3"><li><a href="#">좋아요</a></li></div>
-				<div class="index4"><li><a href="#">북마크</a></li></div>
-				<div class="index5"><li><a href="#">팔로우</a></li></div>
+				<div class="index3"><li><a href="../sns/snsHeartLoginAction.sns?cust_id=<%=id%>">좋아요</a></li></div>
+				<div class="index4"><li><a href="select_bookmark_list.jsp?cust_id=<%=id%>">북마크</a></li></div>
+				<div class="index5"><li><a href="../sns/snsFollowLoginAction.sns?cust_id=<%=id%>">팔로우</a></li></div>
 			</div>
 			<div id="shop">
 				<div class="index1"><li><a href="../store/used_board/board_index.jsp">중고거래</a></li></div>

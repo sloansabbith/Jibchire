@@ -188,7 +188,7 @@ align-items: center;
 	  <a href="#" class="control_next">>></a>
 	  <a href="#" class="control_prev"><<</a>
 	  <ul>
-	    <li><img src="img/index/banner1.png" style="width: 1280px; height: 480px;"> </li>
+	    <li><img src="img/index/banner1.png" style="width: 1280px; height: 480px;"></li>
 	    <li><img src="img/index/banner2.png" style="width: 1280px; height: 480px;"></li>
 	    <li><img src="img/index/banner1.png" style="width: 1280px; height: 480px;"></li>
 	    <li><img src="img/index/banner2.png" style="width: 1280px; height: 480px;"></li>

@@ -10,15 +10,17 @@
 </head>
 
 <style>
+/*reset css*/
+* { margin : 0 ; padding : 0 ;  font-family: 'NanumSquare'; } 
+a { text-decoration : none; }
 	section {
-		width: 1690px;
 		margin: 0 auto;
 		padding-top: 60px;
     	padding-bottom: 60px;
 	}
 	#login{
 		width: 500px;
-		margin-left: 570px;
+		margin: 0 auto;
 		background-color: white;
 	}
 	#title {
@@ -94,7 +96,7 @@
 	    color:rgb(164, 164, 164);
 	}
 	#wrap{
-	width:1900px;
+	width:1280px;
 	margin:0 auto;
 	}
 .sns-login{
@@ -140,10 +142,10 @@
 </script>
 
 <body>
+<header>
+	<jsp:include page="header.jsp" />
+</header>
 	<div id="wrap">
-		<header>
-			<jsp:include page="header.jsp" />
-		</header>
 		<form method="post" action="loginSelect.jsp" onsubmit="return loginChk()">
 
 			<section>
@@ -180,12 +182,11 @@
 		            </div>
 		        </div>
 			</section>
-
-			<footer>
-				<jsp:include page="footer.jsp" />
-			</footer>
 		</form>
-</div>
+	</div>
+<footer>
+	<jsp:include page="footer.jsp" />
+</footer>
 </body>
 </html>
 

@@ -2,7 +2,7 @@
 
 * { margin : 0 ; padding : 0 ; } 
 header, section, footer { margin : 0 ; padding : 0 ;}
-body{  font-family: 'NEXON Lv1 Gothic OTF'; color: black;}
+body{ font-family: 'NanumSquare'; color: black;}
 li { list-style : none ;}
 a { text-decoration : none; color: black;}
 body nav ul li{	display: inline-block; }

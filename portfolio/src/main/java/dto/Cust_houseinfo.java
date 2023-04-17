@@ -6,15 +6,19 @@ public class Cust_houseinfo {
 	 * */
 
 	public String cust_id;
+	public String cust_pic;
+	public String cust_introduce;
 	public String cust_house;
 	public int cust_room;
 	public int cust_m2;
 	public int cust_fam;
 	public String cust_family;
 	public String cust_direc;
-	public int cust_household;
+	public int cust_houseold;
 	public String cust_pet;
 	public String cust_region;
+	public String cust_style;
+	public String cust_color;
 	
 	public String getCust_id() {
 		return cust_id;
@@ -58,11 +62,11 @@ public class Cust_houseinfo {
 	public void setCust_direc(String cust_direc) {
 		this.cust_direc = cust_direc;
 	}
-	public int getCust_household() {
-		return cust_household;
+	public int getCust_houseold() {
+		return cust_houseold;
 	}
-	public void setCust_household(int cust_household) {
-		this.cust_household = cust_household;
+	public void setCust_houseold(int cust_houseold) {
+		this.cust_houseold = cust_houseold;
 	}
 	public String getCust_pet() {
 		return cust_pet;
@@ -75,6 +79,30 @@ public class Cust_houseinfo {
 	}
 	public void setCust_region(String cust_region) {
 		this.cust_region = cust_region;
+	}
+	public String getCust_style() {
+		return cust_style;
+	}
+	public void setCust_style(String cust_style) {
+		this.cust_style = cust_style;
+	}
+	public String getCust_color() {
+		return cust_color;
+	}
+	public void setCust_color(String cust_color) {
+		this.cust_color = cust_color;
+	}
+	public String getCust_pic() {
+		return cust_pic;
+	}
+	public void setCust_pic(String cust_pic) {
+		this.cust_pic = cust_pic;
+	}
+	public String getCust_introduce() {
+		return cust_introduce;
+	}
+	public void setCust_introduce(String cust_introduce) {
+		this.cust_introduce = cust_introduce;
 	}
 	
 	

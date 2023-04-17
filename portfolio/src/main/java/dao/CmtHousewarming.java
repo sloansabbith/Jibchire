@@ -1,12 +1,17 @@
 package dao;
 
+import static db.JdbcUtil.close;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import dto.Cust_houseinfo;
+import dto.Feed_like;
+import dto.Post_bookmark;
 import dto.Post_house;
 
 public class CmtHousewarming {
@@ -62,9 +67,16 @@ public class CmtHousewarming {
 				po.setPost_pet(rs.getString("post_pet"));
 				po.setPost_startdate(rs.getString("post_startdate"));
 				po.setPost_enddate(rs.getString("post_enddate"));
-				po.setPost_pics(rs.getString("post_pics"));
+				//po.setPost_pics(rs.getString("post_pics"));
 				po.setPost_style(rs.getString("post_style"));
 				po.setPost_color(rs.getString("post_color"));
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
 			}
 			
 		}catch(Exception e) {
@@ -74,11 +86,13 @@ public class CmtHousewarming {
 		}
 		return po;
 	}
-	public ArrayList<Post_house> select_all() { // 게시글 메인화면
+	public ArrayList<Post_house> selectArticleList(int page,int limit) { // 게시글 메인화면
 		try {
 			conn();
 			stmt = conn.createStatement();
-			String select = "select*from post_house;";
+			int startrow=(page-1)*9; 
+			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
+			String select = "select*from post_house order by post_writetime desc limit "+startrow+",9;";
 			ResultSet rs = stmt.executeQuery(select);  
 			while(rs.next()) {
 				Post_house po = new Post_house();
@@ -101,18 +115,113 @@ public class CmtHousewarming {
 				po.setPost_pet(rs.getString("post_pet"));
 				po.setPost_startdate(rs.getString("post_startdate"));
 				po.setPost_enddate(rs.getString("post_enddate"));
-				// po.setPost_pics(rs.getString("post_pic"));
+				//po.setPost_pics(rs.getString("post_pics"));
 				po.setPost_style(rs.getString("post_style"));
 				po.setPost_color(rs.getString("post_color"));
 				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				System.out.println("feed_pics=>"+feed_pics);
+				/* 실험
+				System.out.println("filename[0] =>"+filename[0]);
+				System.out.println("filename[1] =>"+filename[1]);
+				System.out.println("filename[2] =>"+filename[2]);
+				System.out.println("filename[3] =>"+filename[3]);
+				*/
 				alist.add(po);
 			}
 		}catch(Exception e) {
-			System.out.println(e+"select_all() 메소드 오류");
+			System.out.println(e+"selectArticleList() 메소드 오류");
 		}finally {
 			disconn();
 		}
 		return alist;
+	}
+	public ArrayList<Post_house> selectLoginArticleList(int page,int limit,String cust_id) { // 로그인 후 북마크 정보까지 가지고 오기
+		try {
+			conn();
+			stmt = conn.createStatement();
+			int startrow=(page-1)*9; 
+			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
+			String select = "select * from post_house left outer join post_bookmark on post_house.post_id= post_bookmark.post_id and post_bookmark.cust_id='"+cust_id+"'"
+					+ " order by post_writetime  desc limit "+startrow+",9;";
+			ResultSet rs = stmt.executeQuery(select);  
+			while(rs.next()) {
+				Post_house po = new Post_house();
+				
+				po.setPost_id(rs.getInt("post_id"));
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				//po.setPost_pics(rs.getString("post_pics"));
+				po.setPost_style(rs.getString("post_style"));
+				po.setPost_color(rs.getString("post_color"));
+				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				po.setBookmark_time(rs.getString("bookmark_time"));
+				System.out.println("feed_pics=>"+feed_pics);
+				/* 실험
+				System.out.println("filename[0] =>"+filename[0]);
+				System.out.println("filename[1] =>"+filename[1]);
+				System.out.println("filename[2] =>"+filename[2]);
+				System.out.println("filename[3] =>"+filename[3]);
+				*/
+				alist.add(po);
+			}
+		}catch(Exception e) {
+			System.out.println(e+"selectArticleList() 메소드 오류");
+		}finally {
+			disconn();
+		}
+		return alist;
+	}
+	public int selectListCount() { //페이징을 위해 feed 테이블의 전체 행 수 구하기
+
+		int listCount= 0;
+		ResultSet rs = null;
+
+		try{
+			conn();
+			stmt = conn.createStatement();
+			String select =  "select count(*) from post_house;";
+			rs = stmt.executeQuery(select);
+
+			if(rs.next()){
+				listCount=rs.getInt(1); //첫번째 값을 listCount에 넣어라 (어차피 하나의 값 밖에 없지만)
+				System.out.println("listCount =>" +listCount);
+			}
+		}catch(Exception ex){
+
+		}finally{
+			disconn();
+		}
+
+		return listCount;
 	}
 	public void insert_board(Post_house po) { // 게시판에서 글 쓴 정보 넣기
 		try {
@@ -120,8 +229,8 @@ public class CmtHousewarming {
 			stmt = conn.createStatement();
 			String insert = String.format("insert into post_house (post_id,cust_id,post_title,post_txt,post_house,"
 					+ "post_rooms,post_m2,post_fam,post_houseold,post_budget,post_family,post_direc,post_region,"
-					+ "post_pet,post_startdate,post_enddate,post_pics,post_style,post_color"
-					+ ") values(%s,'%s','%s','%s','%s',%s,%s,%s,%s,%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s');", "default","123123",po.getPost_title(),po.getPost_txt(),po.getPost_house(),
+					+ "post_pet,post_startdate,post_enddate,post_pics,post_style,post_color,post_writetime"
+					+ ") values(%s,'%s','%s','%s','%s',%s,%s,%s,%s,%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s',now());", "default",po.getCust_id(),po.getPost_title(),po.getPost_txt(),po.getPost_house(),
 					po.getPost_rooms(),po.getPost_m2(),po.getPost_fam(),po.getPost_houseold(),po.getPost_budget(),
 					po.getPost_family(),po.getPost_direc(),po.getPost_region(),po.getPost_pet(),po.getPost_startdate(),
 					po.getPost_enddate(),po.getPost_pics(),po.getPost_style(),po.getPost_color());
@@ -159,7 +268,7 @@ public class CmtHousewarming {
 			String insert = String.format("insert into Cust_houseinfo (cust_id,cust_house,cust_room,cust_m2,"
 					+ "cust_fam,cust_household,cust_family,cust_direc,cust_pet,cust_region"
 					+ ") values('%s','%s',%s,%s,%s,%s,'%s','%s','%s','%s');", cust.getCust_id(),cust.getCust_house(),
-					cust.getCust_room(),cust.getCust_m2(),cust.getCust_fam(),cust.getCust_household(),
+					cust.getCust_room(),cust.getCust_m2(),cust.getCust_fam(),cust.getCust_houseold(),
 					cust.getCust_family(),cust.getCust_direc(),cust.getCust_pet(),cust.getCust_region() );
 			stmt.executeUpdate(insert);	
 		}catch(Exception e){
@@ -181,6 +290,240 @@ public class CmtHousewarming {
 		}finally {
 			disconn();
 		}	
+	}
+	public int insertBook(Post_bookmark book){   //북마크 버튼 누르면 insert하는 메소드
+		ResultSet rs = null;
+		int num =0;
+		String sql="";
+		int insertCount=0;
+
+		try{
+			conn();
+			stmt = conn.createStatement();
+			sql="insert into Post_bookmark (post_id,cust_id,bookmark_time) values("+book.getPost_id()+",'"+book.getCust_id()+"',now())";
+			System.out.println("insertHeart() 수행중"); 
+
+			insertCount=stmt.executeUpdate(sql); //수행하면 insertCount=1
+
+		}catch(Exception ex){
+			System.out.println(ex+"=> insertHeard에서 오류");
+		}finally{
+			disconn();
+		}
+
+		return insertCount;
+
+	}
+	public Boolean selectBook(Post_bookmark book){  // 북마크 버튼 눌렀을 때 이미 눌렀는지 확인하는 메소드
+
+		ResultSet rs = null;
+		Boolean isSelectExist = false;
+
+		try{
+			conn();
+			stmt = conn.createStatement();
+			String select = "select * from Post_bookmark where post_id ="+book.getPost_id()+" and cust_id ='"+book.getCust_id()+"';";
+			rs= stmt.executeQuery(select);
+
+			if(rs.next()){
+				System.out.println("북마크 결과있음=> 삭제해야함");
+				isSelectExist=true;
+			}
+		}catch(Exception ex){
+		}finally{
+			disconn();
+		}
+
+		return isSelectExist;
+
+	}
+	public int deleteBook(Post_bookmark book){  // 북마크 버튼 이미 눌렀다면 삭제하는 메소드
+
+		String delete_sql="delete from Post_bookmark where post_id ="+book.getPost_id()+" and cust_id ='"+book.getCust_id()+"';";
+		int deleteCount=0;
+
+		try{
+			conn();
+			stmt = conn.createStatement();
+			deleteCount=stmt.executeUpdate(delete_sql);
+		}catch(Exception ex){
+		}	finally{
+			disconn();
+		}
+
+		return deleteCount;
+	}
+	public ArrayList<Post_house> selectSearchList(int page,int limit,String field,String menuword) { // 검색결과화면 로그인 없는 버전
+		try {
+			conn();
+			stmt = conn.createStatement();
+			int startrow=(page-1)*9; 
+			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
+			String select = "select*from post_house where "+field+" like '%"+menuword+"%' order by post_writetime desc limit "+startrow+",9;";
+			ResultSet rs = stmt.executeQuery(select);  
+			while(rs.next()) {
+				Post_house po = new Post_house();
+				
+				po.setPost_id(rs.getInt("post_id")); 
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				//po.setPost_pics(rs.getString("post_pics"));
+				po.setPost_style(rs.getString("post_style"));
+				po.setPost_color(rs.getString("post_color"));
+				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				System.out.println("feed_pics=>"+feed_pics);
+				/* 실험
+				System.out.println("filename[0] =>"+filename[0]);
+				System.out.println("filename[1] =>"+filename[1]);
+				System.out.println("filename[2] =>"+filename[2]);
+				System.out.println("filename[3] =>"+filename[3]);
+				*/
+				alist.add(po);
+			}
+		}catch(Exception e) {
+			System.out.println(e+"selectArticleList() 메소드 오류");
+		}finally {
+			disconn();
+		}
+		return alist;
+	}
+	public ArrayList<Post_house> selectLoginSearchList(int page,int limit,String field, String menuword,String cust_id) { //검색결과 & 로그인 후 북마크 정보까지
+		try {
+			conn();
+			stmt = conn.createStatement();
+			int startrow=(page-1)*9; 
+			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
+			String select = "select * from post_house left outer join post_bookmark on post_house.post_id= post_bookmark.post_id and post_bookmark.cust_id='"+cust_id+"'"
+					+ "where "+field+" like '%"+menuword+"%' order by post_writetime  desc limit "+startrow+",9;";
+			ResultSet rs = stmt.executeQuery(select);  
+			while(rs.next()) {
+				Post_house po = new Post_house();
+				
+				po.setPost_id(rs.getInt("post_id"));
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				//po.setPost_pics(rs.getString("post_pics"));
+				po.setPost_style(rs.getString("post_style"));
+				po.setPost_color(rs.getString("post_color"));
+				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				po.setBookmark_time(rs.getString("bookmark_time"));
+				System.out.println("feed_pics=>"+feed_pics);
+				/* 실험
+				System.out.println("filename[0] =>"+filename[0]);
+				System.out.println("filename[1] =>"+filename[1]);
+				System.out.println("filename[2] =>"+filename[2]);
+				System.out.println("filename[3] =>"+filename[3]);
+				*/
+				alist.add(po);
+			}
+		}catch(Exception e) {
+			System.out.println(e+"selectArticleList() 메소드 오류");
+		}finally {
+			disconn();
+		}
+		return alist;
+	}
+	public ArrayList<Post_house> selectBookmarkList(int page,int limit,String cust_id) { // 북마크 페이지 모아보기
+		try {
+			conn();
+			stmt = conn.createStatement();
+			int startrow=(page-1)*9; 
+			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
+			String select = "select * from post_house left outer join post_bookmark on post_house.post_id= post_bookmark.post_id"
+			+" where post_bookmark.cust_id='"+cust_id+"' order by post_writetime  desc limit "+startrow+",9";
+			ResultSet rs = stmt.executeQuery(select);  
+			while(rs.next()) {
+				Post_house po = new Post_house();
+				
+				po.setPost_id(rs.getInt("post_id"));
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				//po.setPost_pics(rs.getString("post_pics"));
+				po.setPost_style(rs.getString("post_style"));
+				po.setPost_color(rs.getString("post_color"));
+				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				po.setBookmark_time(rs.getString("bookmark_time"));
+				System.out.println("feed_pics=>"+feed_pics);
+				/* 실험
+				System.out.println("filename[0] =>"+filename[0]);
+				System.out.println("filename[1] =>"+filename[1]);
+				System.out.println("filename[2] =>"+filename[2]);
+				System.out.println("filename[3] =>"+filename[3]);
+				*/
+				alist.add(po);
+			}
+		}catch(Exception e) {
+			System.out.println(e+"selectBookmarkList() 메소드 오류");
+		}finally {
+			disconn();
+		}
+		return alist;
 	}
 
 }

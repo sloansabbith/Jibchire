@@ -17,7 +17,6 @@
  request.setCharacterEncoding("utf-8");
 %>
 <%
- 	
 	CmtHousewarming sl = new CmtHousewarming();
 	int pid = Integer.parseInt(request.getParameter("post_id"));
 	Post_house po = sl.select_one(pid);
@@ -49,19 +48,32 @@
 			//out.println("<section id='mainpic'><img src='"+sFilePath+"'> </section>");
 			//out.println(sFilePath);
 			%>
-			<!-- 사진-->
+			<!-- 사진 슬라이더 -->
+			<div id="sliderwrap">
+				<div id="slider">
+					<a href="#" class="control_next">>></a>
+					<a href="#" class="control_prev"><<</a>
+					<ul>
+						<li><img src="postPics/<%=po.getPost_pics() %>" style="width: 860px; height: 500px;">></li>
+						<li><img src="postPics/<%=po.getPost_pic1() %>" style="width: 860px; height: 500px;"></li>
+						<li><img src="postPics/<%=po.getPost_pic2() %>" style="width: 860px; height: 500px;"></li>
+						<li><img src="postPics/<%=po.getPost_pic3() %>" style="width: 860px; height: 500px;"></li>
+					</ul>  
+				</div>
+			</div>
+			<!-- 사진
 			<section >
 				<div id="mainpic">
 				<img src="postPics/<%=po.getPost_pics() %>" id="mainpicimg"></div>
-			</section>
+			</section>-->
 			<!-- 제목 -->
 		   	<div id="title"> 
 		   		<h1><%=po.getPost_title() %></h1>
 		   		<!-- //현재 session에서 저장된 ID값과 db에서 가져온 id 값이 일치한다면 버튼생성 -->
 		   		<%
 		   		//글의 데이터에서 작성자의 아이디와, 현제 로그인한 사람의 아이디가 동일하면 삭제, 수정버튼 생성
-			   	String id2 = po.getCust_id(); 
-				if(id.equals(id2)){ 
+			   	String id2 = po.getCust_id();
+				if(!(id==null) && id.equals(id2)){ 
 					out.println("<input type='button' value='삭제' onclick="+"location.href='delete_write.jsp?post_id="+po.getPost_id()+"'>"); //삭제버튼 누르면 그 글을 바로 삭제
 					out.println("<input type='button' value='수정' onclick="+"location.href='view_update.jsp?post_id="+po.getPost_id()+"'>"); //수정버튼 누르면 그 글의 수정페이지로
 					out.println("<input type = 'hidden' name ='post_id' id='post_id' value = "+po.getPost_id()+">");
@@ -118,5 +130,52 @@
 	<footer>
 		<jsp:include page="footer.jsp" />
 	</footer>
+<script>
+$(function(){
+	/*slider 관련 기능*/
+	$("subnav").hide();
+	setInterval(function () {
+	    moveRight();
+	}, 3000);
+	
+	var slideCount = $('#slider ul li').length;
+	var slideWidth = $('#slider ul li').width();
+	var slideHeight = $('#slider ul li').height();
+	var sliderUlWidth = slideCount * slideWidth;
+	
+	$('#slider').css({ width: slideWidth, height: slideHeight });
+	
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+	
+	$('#slider ul li:last-child').prependTo('#slider ul');
+	
+	function moveLeft() {
+	    $('#slider ul').animate({
+	        left: + slideWidth
+	    }, 200, function () {
+	        $('#slider ul li:last-child').prependTo('#slider ul');
+	        $('#slider ul').css('left', '');
+	    });
+	};
+	
+	function moveRight() {
+	    $('#slider ul').animate({
+	        left: - slideWidth
+	    }, 200, function () {
+	        $('#slider ul li:first-child').appendTo('#slider ul');
+	        $('#slider ul').css('left', '');
+	    });
+	};
+	
+	$('a.control_prev').click(function () {
+	    moveLeft();
+	});
+	
+	$('a.control_next').click(function () {
+	    moveRight();
+	});
+	
+});
+</script>
 </body>
 </html>
