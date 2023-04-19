@@ -17,6 +17,7 @@ import action.SnsListAction;
 import action.SnsReadAction;
 import action.SnsSearchAction;
 import action.SnsUpdateAction;
+import action.SnsUpdateDataAction;
 import action.SnsWriteAction;
 import dto.ActionForward;
 
@@ -71,9 +72,17 @@ public class SnsController extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}
-		else if(command.equals("/sns/snsUpdateAction.sns")){  //글삭제
+		else if(command.equals("/sns/snsUpdateAction.sns")){  //글수정
 			System.out.println("글수정 컨트롤러 실행");
 			action = new SnsUpdateAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/snsUpdateDataAction.sns")){  //수정 데이터 겟
+			System.out.println("snsUpdateDataAction 컨트롤러 실행");
+			action = new SnsUpdateDataAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

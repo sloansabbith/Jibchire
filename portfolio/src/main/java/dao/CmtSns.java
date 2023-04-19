@@ -12,6 +12,7 @@ import dto.Cust_follow;
 import dto.Cust_houseinfo;
 import dto.Feed;
 import dto.Feed_like;
+import dto.Post_house;
 import dto.SearchSns;
 
 public class CmtSns {
@@ -75,6 +76,35 @@ public class CmtSns {
 		return insertCount;
 
 	}
+	
+	public int updateFeed(Feed feed){   //sns글쓰기 수정
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int num =0;
+		String sql="";
+		int updateCount=0;
+
+		try{
+			sql="update feed set feed_pics=?, feed_txt=?,feed_hashtag=? where feed_id=?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, feed.getFeed_pics());
+			pstmt.setString(2, feed.getFeed_txt());
+			pstmt.setString(3, feed.getFeed_hashtag());
+			pstmt.setInt(4, feed.getFeed_id());
+
+			updateCount=pstmt.executeUpdate(); //수행하면 insertCount=1
+
+		}catch(Exception ex){
+			System.out.println(ex+"=> updateFeed에서 오류");
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return updateCount;
+
+	}
+
 
 	public int selectListCount() { //페이징을 위해 feed 테이블의 전체 행 수 구하기
 
@@ -90,7 +120,7 @@ public class CmtSns {
 				listCount=rs.getInt(1); //첫번째 값을 listCount에 넣어라 (어차피 하나의 값 밖에 없지만)
 			}
 		}catch(Exception ex){
-
+			System.out.println(ex+"selectListCount 메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -105,7 +135,9 @@ public class CmtSns {
 		//PreparedStatement를 사용하면 sql문에서 변수값 대신 ? 를 사용할 수 있다 그리고 setString()이나 setInt로 비워둔 부분에 데이터를 넣어줌
 		//물음표가 여러개면 여러개 쓰고 key값에 들어가는 숫자는 물음표의 순번
 		ResultSet rs = null;
-		String board_list_sql="select * from Feed order by feed_date desc limit ?,8";
+		String board_list_sql="select * from Feed "
+				+" left outer join cust_houseinfo on Feed.cust_id=cust_houseinfo.cust_id "
+				+ "order by feed_date desc limit ?,8";
 						// 가장 최근에 작성한 순서대로 시작지점 부터 10개 셀렉 해오기
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		Feed feed = null;
@@ -114,7 +146,7 @@ public class CmtSns {
 
 		try{
 			pstmt = con.prepareStatement(board_list_sql);
-			pstmt.setInt(1, startrow);  // 첫번째 물음표에 넣을 값지정
+			pstmt.setInt(1, startrow);  
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -138,6 +170,7 @@ public class CmtSns {
 				feed.setUsed_id(rs.getInt("used_id"));
 				feed.setMarket_id(rs.getInt("market_id"));
 				feed.setFeed_read(rs.getInt("feed_read"));
+				feed.setCust_pic(rs.getString("cust_pic"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
 				/*확인용
@@ -153,6 +186,7 @@ public class CmtSns {
 			}
 
 		}catch(Exception ex){
+			System.out.println(ex+"selectArticleList 메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -184,6 +218,7 @@ public class CmtSns {
 			}
 
 		}catch(SQLException ex){
+			System.out.println(ex+"updateReadCount 메소드에서 오류");
 		}
 		finally{
 			close(pstmt);
@@ -240,6 +275,7 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectArticle 메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -273,7 +309,6 @@ public class CmtSns {
 				feed.setFeed_hashtag(rs.getString("feed_hashtag"));
 				feed.setLike_time(rs.getString("like_time")); //좋아요 한 피드 알기 위해서
 				feed.setFollow_time(rs.getString("follow_time")); // 팔로우 한 사용자 알기 위해서
-				System.out.println("잘 나왔?"+feed.getLike_time()+",    "+feed.getFollow_time());
 				feed.setPro_id(rs.getInt("pro_id"));
 				feed.setUsed_id(rs.getInt("used_id"));
 				feed.setMarket_id(rs.getInt("market_id"));
@@ -288,6 +323,7 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectHeartArticle메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -305,6 +341,7 @@ public class CmtSns {
 			pstmt.setInt(1, feed_id);
 			deleteCount=pstmt.executeUpdate();
 		}catch(Exception ex){
+			System.out.println(ex+"deleteArticle메소드에서 오류");
 		}	finally{
 			close(pstmt);
 		}
@@ -320,7 +357,6 @@ public class CmtSns {
 
 		try{
 			sql="insert into feed_like (feed_id,cust_id,like_time) values(?,?,now())";
-			System.out.println("insertHeart() 수행중");
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, heart.getFeed_id());
 			pstmt.setString(2, heart.getCust_id());  
@@ -354,6 +390,7 @@ public class CmtSns {
 				isSelectExist=true;
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectHeart메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -372,23 +409,26 @@ public class CmtSns {
 			pstmt.setString(2, heart.getCust_id());
 			deleteCount=pstmt.executeUpdate();
 		}catch(Exception ex){
+			System.out.println(ex+"deleteHeart 메소드에서 오류");
 		}	finally{
 			close(pstmt);
 		}
 
 		return deleteCount;
 	}
-	public ArrayList<Feed> selectHeartLogin(String cust_id){  // 로그인 한 개인의 좋아요 정보를 모두 불러오기
+	public ArrayList<Feed> selectHeartLogin(int page, int limit, String cust_id){  // 로그인 한 개인의 좋아요 정보를 모두 불러오기
 
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		Feed feed;
-		
+		int startrow=(page-1)*8; 
 		try{
 			pstmt = con.prepareStatement(
-					"select * from feed f,feed_like l where f.feed_id = l.feed_id and l.cust_id= ? order by feed_date desc");
+					"select * from feed f,feed_like l where f.feed_id = l.feed_id and l.cust_id= ? order by feed_date desc limit ?,8");
 			pstmt.setString(1, cust_id);
+			pstmt.setInt(2, startrow);
+			
 			rs= pstmt.executeQuery();
 
 			while(rs.next()){
@@ -405,18 +445,12 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				/*확인용
-				System.out.println("feed_pics=>"+feed_pics);
-				System.out.println("filename[0] =>"+filename[0]);
-				System.out.println("filename[1] =>"+filename[1]);
-				System.out.println("filename[2] =>"+filename[2]);
-				System.out.println("filename[3] =>"+filename[3]);
-				*/
 				feed.setFeed_pics(filename[0]);
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectHeartLogin메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -436,7 +470,6 @@ public class CmtSns {
 		Feed feed = null;
 		int startrow=(page-1)*8; 
 		//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
-	System.out.println(" select method 도착 => "+search.getSearchword());
 		try{
 			pstmt = con.prepareStatement(select_search);
 			//pstmt.setString(1,"%"+search.getSearchword()+"%");
@@ -457,19 +490,13 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				/*확인용
-				System.out.println("feed_pics=>"+feed_pics);
-				System.out.println("filename[0] =>"+filename[0]);
-				System.out.println("filename[1] =>"+filename[1]);
-				System.out.println("filename[2] =>"+filename[2]);
-				System.out.println("filename[3] =>"+filename[3]);
-				*/
 				feed.setFeed_pics(filename[0]);
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
 
 		}catch(Exception ex){
+			System.out.println(ex+"selectSearch메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -492,7 +519,7 @@ public class CmtSns {
 				listCount=rs.getInt(1); //첫번째 값을 listCount에 넣어라 (어차피 하나의 값 밖에 없지만)
 			}
 		}catch(Exception ex){
-
+			System.out.println(ex+"selectHeartCount메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -506,8 +533,10 @@ public class CmtSns {
 		//PreparedStatement를 사용하면 sql문에서 변수값 대신 ? 를 사용할 수 있다 그리고 setString()이나 setInt로 비워둔 부분에 데이터를 넣어줌
 		//물음표가 여러개면 여러개 쓰고 key값에 들어가는 숫자는 물음표의 순번
 		ResultSet rs = null;
-		String board_list_sql="select * from feed left outer join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id=?"
+		String board_list_sql="select * from feed "
+				+ "left outer join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id=?"
 				+ "left outer join cust_follow on feed.cust_id = cust_follow.cust_following and cust_follow.cust_id=? "
+				+ "left outer join cust_houseinfo on feed.cust_id = cust_houseinfo.cust_id and cust_houseinfo.cust_id=? "
 				+ "order by feed_date desc limit ?,8";
 				//전체 feed테이블과, 로그인한 아이디로 좋아요를 누른 feed_like 테이블의 정보를 합집합으로 가져옴
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
@@ -517,9 +546,10 @@ public class CmtSns {
 
 		try{
 			pstmt = con.prepareStatement(board_list_sql);
-			pstmt.setInt(3, startrow);  // 첫번째 물음표에 넣을 값지정
 			pstmt.setString(1, cust_id);
 			pstmt.setString(2, cust_id);
+			pstmt.setString(3, cust_id);
+			pstmt.setInt(4, startrow); 
 			rs = pstmt.executeQuery();
 
 			while(rs.next()){
@@ -536,21 +566,16 @@ public class CmtSns {
 				feed.setUsed_id(rs.getInt("used_id"));
 				feed.setMarket_id(rs.getInt("market_id"));
 				feed.setFeed_read(rs.getInt("feed_read"));
+				feed.setCust_pic(rs.getString("cust_pic"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				/*확인용
-				System.out.println("feed_pics=>"+feed_pics);
-				System.out.println("filename[0] =>"+filename[0]);
-				System.out.println("filename[1] =>"+filename[1]);
-				System.out.println("filename[2] =>"+filename[2]);
-				System.out.println("filename[3] =>"+filename[3]);
-				*/
 				feed.setFeed_pics(filename[0]);
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
 
 		}catch(Exception ex){
+			System.out.println(ex+"selectHeartArticleList메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -575,7 +600,7 @@ public class CmtSns {
 			insertCount=pstmt.executeUpdate(); //수행하면 insertCount=1
 
 		}catch(Exception ex){
-			System.out.println(ex+"=> insertHeard에서 오류");
+			System.out.println(ex+"=> insertFollow 에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -601,6 +626,7 @@ public class CmtSns {
 				isSelectExist=true;
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectFollow메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -619,6 +645,7 @@ public class CmtSns {
 			pstmt.setString(2, follow.getCust_id());
 			deleteCount=pstmt.executeUpdate();
 		}catch(Exception ex){
+			System.out.println(ex+"deleteFollow메소드에서 오류");
 		}	finally{
 			close(pstmt);
 		}
@@ -652,18 +679,12 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				/*확인용
-				System.out.println("feed_pics=>"+feed_pics);
-				System.out.println("filename[0] =>"+filename[0]);
-				System.out.println("filename[1] =>"+filename[1]);
-				System.out.println("filename[2] =>"+filename[2]);
-				System.out.println("filename[3] =>"+filename[3]);
-				*/
 				feed.setFeed_pics(filename[0]);
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectFollowLogin메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -684,7 +705,7 @@ public class CmtSns {
 				listCount=rs.getInt(1); //첫번째 값을 listCount에 넣어라 (어차피 하나의 값 밖에 없지만)
 			}
 		}catch(Exception ex){
-
+			System.out.println(ex+"selectFollowCount메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
@@ -733,157 +754,99 @@ public class CmtSns {
 		return insertCount;
 
 	}
-	/*
-	public int insertArticle(BoardBean article){
+	public Cust_houseinfo selectCustinfo(String cust_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		int num =0;
-		String sql="";
-		int insertCount=0;
-
+		Cust_houseinfo po = null;
+		
 		try{
-			pstmt=con.prepareStatement("select max(board_num) from board");
-			rs = pstmt.executeQuery();
+			pstmt = con.prepareStatement(
+					"select * from cust_houseinfo where cust_id=?;");
+			pstmt.setString(1, cust_id);
+			rs= pstmt.executeQuery();
 
-			if(rs.next())
-				num =rs.getInt(1)+1;
-			else
-				num=1;
-
-			sql="insert into board (BOARD_NUM,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,";
-			sql+="BOARD_CONTENT, BOARD_FILE, BOARD_RE_REF,"+
-					"BOARD_RE_LEV,BOARD_RE_SEQ,BOARD_READCOUNT,"+
-					"BOARD_DATE) values(?,?,?,?,?,?,?,?,?,?,now())";
-			System.out.println("dfsdf");
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setString(2, article.getBOARD_NAME());
-			pstmt.setString(3, article.getBOARD_PASS());
-			pstmt.setString(4, article.getBOARD_SUBJECT());
-			pstmt.setString(5, article.getBOARD_CONTENT());
-			pstmt.setString(6, article.getBOARD_FILE());
-			pstmt.setInt(7, num);
-			pstmt.setInt(8, 0);
-			pstmt.setInt(9, 0);
-			pstmt.setInt(10, 0);
-
-			insertCount=pstmt.executeUpdate();
-
+			while(rs.next()){
+				po = new Cust_houseinfo();
+				po.setCust_house(rs.getString("cust_house"));
+				po.setCust_room(rs.getInt("cust_rooms"));
+				po.setCust_m2(rs.getInt("cust_m2"));
+				po.setCust_fam(rs.getInt("cust_fam"));
+				po.setCust_houseold(rs.getInt("cust_houseold"));
+				po.setCust_family(rs.getString("cust_family"));
+				po.setCust_direc(rs.getString("cust_direc"));
+				po.setCust_region(rs.getString("cust_region"));
+				po.setCust_pet(rs.getString("cust_pet"));
+				po.setCust_style(rs.getString("cust_style"));
+				po.setCust_color(rs.getString("cust_color"));
+				
+				//String style =rs.getString("post_style");
+				//String color =rs.getString("post_color");
+				//String [] styles = style.split(",");
+				//String [] colors = color.split(",");
+				
+			}
 		}catch(Exception ex){
+			System.out.println(ex+"selectCustinfo메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
 		}
-
-		return insertCount;
-
+		return po;
 	}
-
-	public int insertReplyArticle(BoardBean article){
-
+	
+	public ArrayList<Post_house> selectHouseinfo(Cust_houseinfo houseinfo) {
+		ArrayList<Post_house> alist = new ArrayList<Post_house>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String board_max_sql="select max(board_num) from board";
-		String sql="";
-		int num=0;
-		int insertCount=0;
-		int re_ref=article.getBOARD_RE_REF();
-		int re_lev=article.getBOARD_RE_LEV();
-		int re_seq=article.getBOARD_RE_SEQ();
-
+		
 		try{
-			pstmt=con.prepareStatement(board_max_sql);
-			rs = pstmt.executeQuery();
-			if(rs.next())num =rs.getInt(1)+1;
-			else num=1;
-			sql="update board set BOARD_RE_SEQ=BOARD_RE_SEQ+1 where BOARD_RE_REF=? ";
-			sql+="and BOARD_RE_SEQ>?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1,re_ref);
-			pstmt.setInt(2,re_seq);
-			int updateCount=pstmt.executeUpdate();
+			pstmt = con.prepareStatement(
+					"select * from post_house where ?=? and ?=? and ?=?;");
+			//pstmt.setString(1, cust_id);
+			rs= pstmt.executeQuery();
 
-			if(updateCount > 0){
-				commit(con);
+			while(rs.next()){
+				Post_house po = new Post_house();
+				
+				po.setPost_id(rs.getInt("post_id"));
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				po.setPost_style(rs.getString("post_style"));
+				po.setPost_color(rs.getString("post_color"));
+				
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				po.setPost_pics(filename[0]);
+				po.setPost_pic1(filename[1]);
+				po.setPost_pic2(filename[2]);
+				po.setPost_pic3(filename[3]);
+				po.setPost_writetime(rs.getString("post_writetime"));
+				po.setBookmark_time(rs.getString("bookmark_time"));
+				alist.add(po);
+				
 			}
-
-			re_seq = re_seq + 1;
-			re_lev = re_lev+1;
-			sql="insert into board (BOARD_NUM,BOARD_NAME,BOARD_PASS,BOARD_SUBJECT,";
-			sql+="BOARD_CONTENT, BOARD_FILE,BOARD_RE_REF,BOARD_RE_LEV,BOARD_RE_SEQ,";
-			sql+="BOARD_READCOUNT,BOARD_DATE) values(?,?,?,?,?,?,?,?,?,?,now())";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, num);
-			pstmt.setString(2, article.getBOARD_NAME());
-			pstmt.setString(3, article.getBOARD_PASS());
-			pstmt.setString(4, article.getBOARD_SUBJECT());
-			pstmt.setString(5, article.getBOARD_CONTENT());
-			pstmt.setString(6, ""); //���忡�� ������ ���ε����� ����.
-			pstmt.setInt(7, re_ref);
-			pstmt.setInt(8, re_lev);
-			pstmt.setInt(9, re_seq);
-			pstmt.setInt(10, 0);
-			insertCount = pstmt.executeUpdate();
-		}catch(SQLException ex){
+		}catch(Exception ex){
+			System.out.println(ex+"selectHouseInfo메소드에서 오류");
 		}finally{
 			close(rs);
 			close(pstmt);
 		}
-
-		return insertCount;
-
+		return alist;
 	}
-
-	public int updateArticle(BoardBean article){
-
-		int updateCount = 0;
-		PreparedStatement pstmt = null;
-		String sql="update board set BOARD_SUBJECT=?,BOARD_CONTENT=? where BOARD_NUM=?";
-
-		try{
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, article.getBOARD_SUBJECT());
-			pstmt.setString(2, article.getBOARD_CONTENT());
-			pstmt.setInt(3, article.getBOARD_NUM());
-			updateCount = pstmt.executeUpdate();
-		}catch(Exception ex){
-		}finally{
-			close(pstmt);
-		}
-
-		return updateCount;
-
-	}
-
-
-
-
-
-	public boolean isArticleBoardWriter(int board_num,String pass){
-
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String board_sql="select * from board where BOARD_NUM=?";
-		boolean isWriter = false;
-
-		try{
-			pstmt=con.prepareStatement(board_sql);
-			pstmt.setInt(1, board_num);
-			rs=pstmt.executeQuery();
-			rs.next();
-
-			if(pass.equals(rs.getString("BOARD_PASS"))){
-				isWriter = true;
-			}
-		}catch(SQLException ex){
-		}
-		finally{
-			close(pstmt);
-		}
-
-		return isWriter;
-
-	}
-	*/
 
 }

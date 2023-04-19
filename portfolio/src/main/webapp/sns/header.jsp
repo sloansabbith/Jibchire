@@ -441,9 +441,6 @@
 				<div class="index1"><li><a href="../community/select_board.jsp">집들이</a></li></div>
 				<div class="index2"><li><a href="snsListAction.sns">일상공유</a></li></div>
 				<div class="index2"><li><a href="login.jsp">나와 비슷한</a></li></div>
-				<div class="index3"><li><a href="login.jsp">좋아요</a></li></div>
-				<div class="index4"><li><a href="login.jsp">북마크</a></li></div>
-				<div class="index5"><li><a href="login.jsp">팔로우</a></li></div>
 			</div>
 		
 			<div id="shop">

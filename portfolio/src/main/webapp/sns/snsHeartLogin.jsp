@@ -144,21 +144,21 @@
 			<%if(nowPage<=1){ %>
 				[이전]&nbsp;&nbsp;
 			<%}else{ %>
-				<a href="snsHeartLoginAction.sns?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+				<a href="snsHeartLoginAction.sns?page=<%=nowPage-1%>&cust_id=<%=id%>">[이전]</a>&nbsp;
 			<%} %>
 	
 			<%for(int a=startPage;a<=endPage;a++){
 					if(a==nowPage){%>
 				[<%=a%>]&nbsp;&nbsp;
 			<%}else{ %>
-				<a href="snsHeartLoginAction.sns?page=<%=a%>">[<%=a%>]
+				<a href="snsHeartLoginAction.sns?page=<%=a%>&cust_id=<%=id%>">[<%=a%>]
 				</a>&nbsp;
 			<%} %>
 			<%} %>
 			<%if(nowPage>=maxPage){ %>
 				[다음]
 			<%}else{ %>
-				<a href="snsHeartLoginAction.sns?page=<%=nowPage+1 %>">[다음]</a>
+				<a href="snsHeartLoginAction.sns?page=<%=nowPage+1%>&cust_id=<%=id%>">[다음]</a>
 			<%} %>
 		</section>
 			<%

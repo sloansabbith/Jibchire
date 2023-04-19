@@ -43,10 +43,6 @@ public class SnsWriteAction implements Action {
 		feed.setFeed_txt(multi.getParameter("feed_txt"));
 		feed.setFeed_hashtag(multi.getParameter("feed_hashtag"));
 		System.out.println("아이디는 = "+feed.getCust_id());
-		/* insert 화면에서 값을 주는 영역을 만들지 않았음*/
-		//feed.setPro_id(integermulti.getParameter("pro_id"));
-		//feed.setUsed_id(multi.getParameter("used_id"));
-		//feed.setMarket_id(multi.getParameter("market_id"));
 			
 			/*파일 저장하기*/
 			Enumeration files = multi.getFileNames();

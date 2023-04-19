@@ -4,7 +4,7 @@ import java.sql.Connection;
 import dao.CmtSns;
 import dto.Feed;
 import static db.JdbcUtil.*;
-public class SnswriteService {
+public class SnsWriteService {
 
 	public boolean registArticle(Feed feed) throws Exception{
 	System.out.println("1번안녕");	

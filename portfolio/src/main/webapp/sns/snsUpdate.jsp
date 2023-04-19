@@ -10,8 +10,6 @@
 </head>
 <%  //데이터 작업으로 얻은 객체 가져오기
 	Feed feed = (Feed)request.getAttribute("Feed");
-    String nowPage = (String)request.getAttribute("page");
-    //System.out.println(nowPage); 클래스를 컴파일 할 수 없다는 오류 떠서 잠시 주석처리. 어제처럼 jdk보다 eclipse보다 상위버전이라서 ? 
 %>
 <body>
 <!-- header -->
@@ -33,16 +31,23 @@
 <div id="wrap">
 	<!-- 사진올리고 글쓰는 공간 -->
 	<section>
-		<form action="snsWriteAction.sns" method="post" enctype="multipart/form-data">
+		<form action="snsUpdateAction.sns" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="cust_id" value="<%=id%>"><!-- cust_id값에 로그인한 아이디 값넣기 -->
+			<input type="hidden" name="feed_id" value="<%=feed.getFeed_id()%>">
 			<table id="work">
 				<thead><tr><td colspan=2> <h2>일상공유 글쓰기</h2> </td></tr> </thead>
 				<tbody>
 					<tr>
 						<td> 
 							<div>
-								<div id="preview"><img id="previewImg" /></div>
-								<div id="inputfile"><input type="file" onchange="readImage(this);" name="feed_pics"> </div>
+								<div id="preview" contenteditable="true"><img id="previewImg" />
+									<div>썸네일 확인</div> </div>
+								<div id="files">
+									<input type="file" name="feed_pic1">
+									<input type="file" name="feed_pic2">
+									<input type="file" name="feed_pic3">
+								</div>
+								<div id="inputfile">썸네일로 고를 사진을 올려주세요 <br><input type="file" onchange="readImage(this);" name="feed_pics"></div>
 							</div>
 						</td>
 						<td>

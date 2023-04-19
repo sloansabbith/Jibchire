@@ -68,7 +68,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"></div>
+								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>
@@ -113,11 +113,11 @@
 						     		</div>
 					     		</form>
 					     		<div id ="dungdung">
-						     		<a href="index.jsp" id="dung">#레시피</a>
-								    <a href="index.jsp" id="dung1">#인테리어</a>
-								    <a href="index.jsp" id="dung2">#바치후기</a>
-								    <a href="index.jsp" id="dung3">#일상</a>
-								    <a href="index.jsp" id="dung4">#DIY</a>
+						     		<a href="snsSearchAction.sns?snsSearchWord=레시피" id="dung">#레시피</a>
+								    <a href="snsSearchAction.sns?snsSearchWord=인테리어" id="dung1">#인테리어</a>
+								    <a href="snsSearchAction.sns?snsSearchWord=바치후기" id="dung2">#바치후기</a>
+								    <a href="snsSearchAction.sns?snsSearchWord=일상" id="dung3">#일상</a>
+								    <a href="snsSearchAction.sns?snsSearchWord=DIY" id="dung4">#DIY</a>
 							    </div>
 							</li> 
 							<%	
@@ -128,7 +128,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"></div>
+								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>	
@@ -165,7 +165,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"></div>
+								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"></div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>	
@@ -299,6 +299,15 @@ $(function(){
 			$(".buttonfollow[value="+cust_following+"]").attr("src","img/sns/user-unfollow-line.png");
 		}
 		}
+	});
+	
+	/*마우스 올렸을 때 이미지 살짝 커지게 하기*/
+	$("img").mouseenter(function(){
+		$(this).css("scale","1.05");
+		$(this).css("cursor","pointer");
+	});
+	$("img").mouseleave(function(){
+		$(this).css("scale","1.0");
 	});
 	
 

@@ -21,6 +21,7 @@ public class Feed {
 	public String follow_time; //feed와 feed_like, cust_follow를 함께 가져올 때 null과 값을 구분하기 위한 필드가 follow_time밖에 없음
 	public String writerpic;
 	public String writerintroduce;
+	public String cust_pic;
 	
 	public int getFeed_id() {
 		return feed_id;
@@ -141,6 +142,12 @@ public class Feed {
 	}
 	public void setWriterintroduce(String writerintroduce) {
 		this.writerintroduce = writerintroduce;
+	}
+	public String getCust_pic() {
+		return cust_pic;
+	}
+	public void setCust_pic(String cust_pic) {
+		this.cust_pic = cust_pic;
 	}
 	
 	

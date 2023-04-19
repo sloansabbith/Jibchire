@@ -369,18 +369,19 @@
 								<div class="login_item_text2"><a href="../sns/myPageWrite.jsp?cust_id=<%=id%>">마이페이지</div>
 							</div>
 							<div class="login_item_index2">
-								<div class="login_item_text2"><a href="#고수전환">고수전환</div>
+								<div class="login_item_text2"><a href="../sns/snsFollowLoginAction.sns?cust_id=<%=id%>">팔로우</div>
 							</div>
 							<div class="login_item_index2">
-								<div class="login_item_text2"><a href="#좋아요">좋아요</div>
+								<div class="login_item_text2"><a href="../sns/snsHeartLoginAction.sns?cust_id=<%=id%>">좋아요</div>
 							</div>
 							<div class="login_item_index2">
-								<div class="login_item_text2"><a href="#북마크">북마크</div>
+								<div class="login_item_text2"><a href="select_bookmark_list.jsp?cust_id=<%=id%>">북마크</div>
 							</div>
 							<div class="login_item_index2">
 								<div class="login_item_text2"><a href="logout.jsp">로그아웃</a></div>
 							</div>
 						</div>
+						
 						<input type="button" class="gosuch" id="write" value="글쓰기">
 					</div>
 			
@@ -523,9 +524,6 @@
 				<div class="index1"><li><a href="select_board.jsp?cust_id=<%=id%>">집들이</a></li></div>
 				<div class="index2"><li><a href="../sns/snsListAction.sns?cust_id=<%=id%>">일상공유</a></li></div>
 				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
-				<div class="index3"><li><a href="../sns/snsHeartLoginAction.sns?cust_id=<%=id%>">좋아요</a></li></div>
-				<div class="index4"><li><a href="select_bookmark_list.jsp?cust_id=<%=id%>">북마크</a></li></div>
-				<div class="index5"><li><a href="../sns/snsFollowLoginAction.sns?cust_id=<%=id%>">팔로우</a></li></div>
 			</div>
 			<div id="shop">
 				<div class="index1"><li><a href="../store/used_board/board_index.jsp">중고거래</a></li></div>

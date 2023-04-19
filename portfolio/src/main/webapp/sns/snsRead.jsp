@@ -180,7 +180,7 @@
 		var cnfm = confirm("수정 하시겠습니까?");
 
 		if(cnfm){
-			document.location.href = "snsUpdateAction.sns?feed_id="+fid;
+			document.location.href = "snsUpdateDataAction.sns?feed_id="+fid;
 		}else{
 			return false;
 		}
