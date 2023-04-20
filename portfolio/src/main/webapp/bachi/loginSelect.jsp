@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
-<%@ page import="java.sql.*" %>
+<%@ page language="java" contentType="text/html;charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title></title>
 </head>
 <body>
 	<%
@@ -43,11 +44,11 @@
 				out.println("document.location.href = 'index.jsp' </script>");
 			}else {
 		%>
-			<script type="text/javascript">
+	<script type="text/javascript">
 				alert("가입되지 않은 아이디이거나, 잘못된 비밀번호입니다.");
 				history.go(-1);
 			</script>
-		<%
+	<%
 			}
 		}catch(Exception e){
 			e.printStackTrace();

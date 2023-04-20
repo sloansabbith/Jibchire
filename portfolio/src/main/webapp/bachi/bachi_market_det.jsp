@@ -190,6 +190,7 @@ margin-bottom: 0;
 		if((id==null)){
 	%>
 		<jsp:include page="header.jsp" />
+		<!-- 구매하는 화면으로 강제로 넘겨주기 -->
 	<%
 		}else{
 	%>

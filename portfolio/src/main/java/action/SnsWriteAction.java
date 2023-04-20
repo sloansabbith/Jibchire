@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dto.ActionForward;
 import dto.Feed;
-import svc.SnsWriteService;
+import svc.SnswriteService;
 
 
 public class SnsWriteAction implements Action {
@@ -86,7 +86,7 @@ public class SnsWriteAction implements Action {
 			}
 			
 		/*service 부르기*/
-		SnsWriteService scv = new SnsWriteService();
+		SnswriteService scv = new SnswriteService();
 		boolean isWriteSuccess = scv.registArticle(feed);
 		System.out.println("insert 성공했나요? =>"+isWriteSuccess);
 		

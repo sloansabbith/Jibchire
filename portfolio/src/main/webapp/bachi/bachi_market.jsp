@@ -13,8 +13,8 @@
     <title>바치상점</title>
 </head>
 <%
-String cust_id = "test123"; //request.getParameter("cust_id");
-String cust_pw = "test1234"; //requset.getParameter("cust_pw");
+String cust_id = request.getParameter("cust_id"); //request.getParameter("cust_id");
+String cust_pw = request.getParameter("cust_pw");
 session.setAttribute("cust_id",cust_id);
 session.setAttribute("cust_pw",cust_pw);
 %>

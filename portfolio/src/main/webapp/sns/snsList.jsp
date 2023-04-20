@@ -68,7 +68,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='img/sns/901.png'"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>
@@ -123,12 +123,12 @@
 							<%	
 							}else if(i==3 || i==6){
 							%>
-							<!-- 2행2열, 3행3열 중앙에 위치 다름 -->
+							<!-- 2행2열, 3행2열 중앙에 위치 다름 -->
 							<li style="position: relative; top: -80px;">
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='img/sns/901.png'"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>	
@@ -165,7 +165,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img alt="feedPics/901.png" src="feedPics/<%=articleList.get(i).getCust_pic()%>"></div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='img/sns/901.png'"></div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'> </div>
 								</a>	

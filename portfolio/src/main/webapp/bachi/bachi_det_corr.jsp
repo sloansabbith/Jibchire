@@ -120,10 +120,16 @@ display: flex;
  	 <article>
 <!-- 상품수정페이지 -->
 <div class="section">
+
+
+
 <form action="bachi_mark_re_alt.jsp" method="post" enctype="multipart/form-data" >
 <!--  onsubmit="return false;" -->
 
 <input type="hidden" name="market_id" value=<%=market_id %>>
+
+<div class="css-lable"><h2>바치상점 수정</h2></div>
+
 
 <div class="lable-title">제목</div>
 <div class="css-market-title">

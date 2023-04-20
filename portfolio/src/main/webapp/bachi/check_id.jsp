@@ -1,16 +1,20 @@
-<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %> 
-<%@ page import = "java.sql.*" %>
+<%@ page language="java" contentType="text/html;charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
-<head> <!--문서정보-->
-	<meta charset="utf-8">
-	<title>  </title>
-</head> <!--문서내용-->
+<head>
+<!--문서정보-->
+<meta charset="utf-8">
+<title></title>
+</head>
+<!--문서내용-->
 <% 
 	request.setCharacterEncoding("utf-8"); 
 	String id =  request.getParameter("cust_id"); 
 %>
-<body> <!-- 회원가입페이지에서 입력한 아이디를 바탕으로 중복확인 하는 페이지-->
+<body>
+	<!-- 회원가입페이지에서 입력한 아이디를 바탕으로 중복확인 하는 페이지-->
 	<%
 		
 		Connection conn = null;

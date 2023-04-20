@@ -6,24 +6,25 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import dto.Gosu_info;
+import dto.Bachi_info;
+import dto.Bachi_market;
 import dto.Gosu_market;
-import dto.Gosu_product;
+import dto.Bachi_product;
 
 
 public class Gosu_mark {
 	
 	Connection conn = null;
 	Statement stmt = null;
-	Gosu_info bachi_info = new Gosu_info();
-	Gosu_product bachi_product = new Gosu_product();
+	Bachi_info bachi_info = new Bachi_info();
+	Bachi_product bachi_product = new Bachi_product();
 	
 	
 	void conn() {
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?useUnicode=true&characterEncoding=utf8","root","1111");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?useUnicode=true&characterEncoding=utf8","root","1234");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -39,7 +40,7 @@ public class Gosu_mark {
 		
 	}
 	
-	public void gosu_pro_add(Gosu_product gosu_pro_add){ //입력
+	public void gosu_pro_add(Bachi_product gosu_pro_add){ //입력
 		//게시글 작성
 
 		try{
@@ -65,10 +66,10 @@ public class Gosu_mark {
 	}
 	
 	
-	public ArrayList<Gosu_product> gosu_pro_sel(String cust_id){ 
+	public ArrayList<Bachi_product> gosu_pro_sel(String cust_id){ 
 		
 		
-		ArrayList<Gosu_product> pro_list = new ArrayList<Gosu_product>();
+		ArrayList<Bachi_product> pro_list = new ArrayList<Bachi_product>();
 		try {
 			this.conn();
 			if(conn == null)
@@ -78,7 +79,7 @@ public class Gosu_mark {
 			ResultSet rs = stmt.executeQuery("select* from gosu_market where cust_id ='"+cust_id+"';");
 			while(rs.next()){							
 				//return 해야함
-				Gosu_product gosu_pro = new Gosu_product();
+				Bachi_product gosu_pro = new Bachi_product();
 				
 				
 				gosu_pro.setGosu_id(rs.getString("gosu_id"));
@@ -110,8 +111,8 @@ public class Gosu_mark {
 	}
 
 	
-	public ArrayList<Gosu_market> gosu_mark_sel(){
-	    ArrayList<Gosu_market> market_list = new ArrayList<Gosu_market>();
+	public ArrayList<Bachi_market> gosu_mark_sel(){
+	    ArrayList<Bachi_market> market_list = new ArrayList<Bachi_market>();
 
 	    try{
 	        this.conn();
@@ -122,7 +123,7 @@ public class Gosu_mark {
 	        ResultSet rs = stmt.executeQuery("select * from gosu_product inner join gosu_market ON gosu_product.gosu_id = gosu_market.gosu_id;");
 
 	        while(rs.next()){
-	            Gosu_market mark = new Gosu_market();
+	            Bachi_market mark = new Bachi_market();
 	            
 	        
 	            // gosu_market 테이블의 데이터를 Gosu_market 객체에 저장
@@ -150,10 +151,10 @@ public class Gosu_mark {
 
 	
 	
-	public ArrayList<Gosu_market> gosu_mark_sel_custom(String serch_id,String serch_title,String serch_text){
+	public ArrayList<Bachi_market> gosu_mark_sel_custom(String serch_id,String serch_title,String serch_text){
 		
 		
-		ArrayList<Gosu_market> market_list = new ArrayList<Gosu_market>();
+		ArrayList<Bachi_market> market_list = new ArrayList<Bachi_market>();
 		
 		
 		try{
@@ -165,7 +166,7 @@ public class Gosu_mark {
 			ResultSet rs = stmt.executeQuery("select * from gosu_market inner join gosu_product on gosu_market.gosu_id = gosu_product.gosu_id where gosu_market.cust_id like '%"+serch_id+"%' or market_title like '%"+serch_title+"%' or market_text like'%"+serch_text+"%';");
 			while(rs.next()){
 				
-				Gosu_market mark = new Gosu_market();
+				Bachi_market mark = new Bachi_market();
 				mark.setMarket_id(rs.getInt("market_id"));
 				mark.setCust_id(rs.getString("cust_id"));
 				mark.setGosu_id(rs.getString("gosu_id"));
@@ -186,10 +187,10 @@ public class Gosu_mark {
 		return market_list;
 		}	
 	
-	public ArrayList<Gosu_market> gosu_mark_sel_det(int market_id){
+	public ArrayList<Bachi_market> gosu_mark_sel_det(int market_id){
 		// 상세 페이지
 		
-		ArrayList<Gosu_market> market_list_cust = new ArrayList<Gosu_market>();
+		ArrayList<Bachi_market> market_list_cust = new ArrayList<Bachi_market>();
 		
 		
 		try{
@@ -201,7 +202,7 @@ public class Gosu_mark {
 			ResultSet rs = stmt.executeQuery("select* from gosu_product inner join gosu_market on gosu_product.gosu_id = gosu_market.gosu_id where market_id="+market_id);
 			while(rs.next()){
 			
-				Gosu_market mark = new Gosu_market();
+				Bachi_market mark = new Bachi_market();
 				
 				
 				mark.setMarket_id(rs.getInt("market_id"));
@@ -224,7 +225,7 @@ public class Gosu_mark {
 		return market_list_cust;
 		}	
 	
-	public void gosu_mark_add(Gosu_market gosu_mark_add){
+	public void gosu_mark_add(Bachi_market gosu_mark_add){
 
 
 		try{
@@ -248,7 +249,7 @@ public class Gosu_mark {
 			}
 	
 	}
-	public void gosu_mark_update(Gosu_market gosu_mark_update){ 
+	public void gosu_mark_update(Bachi_market gosu_mark_update){ 
 		
 
 		try{

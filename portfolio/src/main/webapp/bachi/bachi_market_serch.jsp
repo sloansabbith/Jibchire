@@ -180,9 +180,9 @@ padding-bottom: 13px;
 		<option value="market_title">게시글 제목</option>
 		<option value="market_text">게시글 내용</option>
 		</select>
+		
 		<span class="select-input__icon"><svg class="icon" width="10" height="10" preserveAspectRatio="xMidYMid meet" style="fill: currentcolor;"><path fill-rule="evenodd" d="M0 3l5 5 5-5z"></path></svg></span>
 	</div>   	
-
 		<input type="text" name="serch" class="css-search-text" placeholder="검색어를 입력하세요.">
 		<input type="submit" value="검색" class="css-search-button">
 		<div class="market_re">
