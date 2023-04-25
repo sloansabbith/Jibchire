@@ -22,7 +22,6 @@ h1{font-size: 28pt;}
 #info tr td:nth-child(odd){ width:15%; font-weight: bold;}
 #info tr td:nth-child(even){ width:18%;}
 
-
 /*mainpic*/                           					  /* 여기서부터 slider css*/
 .postPics{width: 100%; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
 .postPics .pics{margin: 0 auto; object-fit:cover;}
@@ -36,7 +35,8 @@ h1{font-size: 28pt;}
 .itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:330px;}
 .postIteminfos{width : 200px; height: 100px; background-color: wheat;   }
 
-
+/*텍스트*/
+pre{margin-top: 20px; font-size: 12pt;}
 
 
 
