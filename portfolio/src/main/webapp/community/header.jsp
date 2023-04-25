@@ -441,9 +441,6 @@
 				<div class="index1"><li><a href="select_board.jsp">집들이</a></li></div>
 				<div class="index2"><li><a href="../sns/snsListAction.sns">일상공유</a></li></div> <!-- 이렇게 호출하는게 맞네 -->
 				<div class="index2"><li><a href="#">나와 비슷한</a></li></div>
-				<div class="index3"><li><a href="#">좋아요</a></li></div>
-				<div class="index4"><li><a href="#">북마크</a></li></div>
-				<div class="index5"><li><a href="#">팔로우</a></li></div>
 			</div>
 		
 			<div id="shop">
@@ -455,8 +452,8 @@
 			</div>
 			<div id="gosu">
 				<div class="index1"><li><a href="#">홈</a></li></div>
-				<div class="index2"><li><a href="../bachi/bachi_match.jsp"> 고수매칭 </a></li></div>
-
+				<div class="index2"><li><a href="#"> 고수매칭 </a></li></div>
+				<div class="index3"><li><a href="#">고수찾기</a></li></div>
 				<div class="index4"><li><a href="../bachi/bachi_market.jsp">마켓</a></li></div>
 				<div class="index5"><li><a href="#">받은견적</a></li></div>
 			</div>

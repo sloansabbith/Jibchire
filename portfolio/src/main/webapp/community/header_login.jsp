@@ -375,7 +375,7 @@
 								<div class="login_item_text2"><a href="../sns/snsHeartLoginAction.sns?cust_id=<%=id%>">좋아요</div>
 							</div>
 							<div class="login_item_index2">
-								<div class="login_item_text2"><a href="select_bookmark_list.jsp?cust_id=<%=id%>">북마크</div>
+								<div class="login_item_text2"><a href="#">북마크</div>
 							</div>
 							<div class="login_item_index2">
 								<div class="login_item_text2"><a href="logout.jsp">로그아웃</a></div>
@@ -534,7 +534,8 @@
 			</div>
 			<div id="gosu">
 				<div class="index1"><li><a href="#">홈</a></li></div>
-				<div class="index2"><li><a href ="../bachi/bachi_match.jsp"> 고수매칭 </a></li></div>
+				<div class="index2"><li><a href ="#"> 고수매칭 </a></li></div>
+				<div class="index3"><li><a href="#">고수찾기</a></li></div>
 				<div class="index4"><li><a href="../bachi/bachi_market.jsp">마켓</a></li></div>
 				<div class="index5"><li><a href="#">받은견적</a></li></div>
 			</div>

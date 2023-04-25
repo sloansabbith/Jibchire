@@ -34,6 +34,14 @@
 	}else {
 		alist = house.selectLoginArticleList(pages,limit,cust_id); //로그인되어있으면 좋아요정보까지 가져오는 메소드 연결
 	}
+	/*이번주에 가장 북마크 많이 설정 된 게시글 불러오기 이것도 로그인 한 거랑 안한거 분류. 얘는 탑3만 데리고 올 것 */
+	if(cust_id==null){
+		//alist = house.selectTopBookList();    // articleList = feed테이블에 저장되어 있는 모든 값
+	}else {
+		//alist = house.selectLoginTopBookList(cust_id); //로그인되어있으면 좋아요정보까지 가져오는 메소드 연결
+	}
+	
+	
 	
 	/* 페이징을 하는 거의 공식과 같은 문장들 */
 	int maxPage=(int)((double)listCount/limit+0.95); // 15/10+0.95=2.45, maxPage=2

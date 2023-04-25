@@ -138,7 +138,6 @@ public class CmtSns {
 		String board_list_sql="select * from Feed "
 				+" left outer join cust_houseinfo on Feed.cust_id=cust_houseinfo.cust_id "
 				+ "order by feed_date desc limit ?,8";
-						// 가장 최근에 작성한 순서대로 시작지점 부터 10개 셀렉 해오기
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		Feed feed = null;
 		int startrow=(page-1)*8; 
@@ -801,8 +800,13 @@ public class CmtSns {
 		
 		try{
 			pstmt = con.prepareStatement(
-					"select * from post_house where ?=? and ?=? and ?=?;");
-			//pstmt.setString(1, cust_id);
+					"select * from post_house where ?=? and ?=? and ?=? order by ;");
+			pstmt.setString(1, "post_house"); //주거형태
+			pstmt.setString(3, "post_rooms"); //방개수
+			pstmt.setString(5, "post_m2");	  //집평수
+			pstmt.setString(2, houseinfo.getCust_house());//주거형태
+			pstmt.setInt(4, houseinfo.getCust_room());	  //방개수
+			pstmt.setInt(6, houseinfo.getCust_m2());	  //집평수
 			rs= pstmt.executeQuery();
 
 			while(rs.next()){
@@ -832,9 +836,9 @@ public class CmtSns {
 				String feed_pics = rs.getString("post_pics");
 				String [] filename = feed_pics.split(",");
 				po.setPost_pics(filename[0]);
-				po.setPost_pic1(filename[1]);
-				po.setPost_pic2(filename[2]);
-				po.setPost_pic3(filename[3]);
+				po.setPost_pic2(filename[1]);
+				po.setPost_pic3(filename[2]);
+				po.setPost_pic4(filename[3]);
 				po.setPost_writetime(rs.getString("post_writetime"));
 				po.setBookmark_time(rs.getString("bookmark_time"));
 				alist.add(po);

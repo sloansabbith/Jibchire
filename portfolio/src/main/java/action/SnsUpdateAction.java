@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import dto.ActionForward;
 import dto.Feed;
 import svc.SnsUpdateService;
+import svc.SnsWriteService;
 
 
 public class SnsUpdateAction implements Action {

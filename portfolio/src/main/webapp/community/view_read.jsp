@@ -17,9 +17,7 @@
  request.setCharacterEncoding("utf-8");
 %>
 <%
-	CmtHousewarming sl = new CmtHousewarming();
-	int pid = Integer.parseInt(request.getParameter("post_id"));
-	Post_house po = sl.select_one(pid);
+	Post_house po = (Post_house)request.getAttribute("post");
 %>
 <body>
  	<!-- header -->
@@ -49,24 +47,10 @@
 			//out.println(sFilePath);
 			%>
 			<!-- 사진 슬라이더 -->
-			<div id="sliderwrap">
-				<div id="slider">
-					<a href="#" class="control_next">>></a>
-					<a href="#" class="control_prev"><<</a>
-					<ul>
-						<li><img src="postPics/<%=po.getPost_pics() %>" style="width: 860px; height: 500px;">></li>
-						<li><img src="postPics/<%=po.getPost_pic1() %>" style="width: 860px; height: 500px;"></li>
-						<li><img src="postPics/<%=po.getPost_pic2() %>" style="width: 860px; height: 500px;"></li>
-						<li><img src="postPics/<%=po.getPost_pic3() %>" style="width: 860px; height: 500px;"></li>
-					</ul>  
-				</div>
+			<div class="postPics">
+				 <img src="postPics/<%=po.getPost_pics() %>">
 			</div>
-			<!-- 사진
-			<section >
-				<div id="mainpic">
-				<img src="postPics/<%=po.getPost_pics() %>" id="mainpicimg"></div>
-			</section>-->
-			<!-- 제목 -->
+
 		   	<div id="title"> 
 		   		<h1><%=po.getPost_title() %></h1>
 		   		<!-- //현재 session에서 저장된 ID값과 db에서 가져온 id 값이 일치한다면 버튼생성 -->
@@ -122,9 +106,43 @@
 					
 			</div >
 			<!-- 내용 -->
-    		<div id="content">
-    			<%= po.getPost_txt() %>
-    		</div>
+    		<pre>
+    			<%=po.getPost_txt()%>
+    		</pre>
+    		<div class="postPics">
+				 <div class="pics"> <img src="postPics/<%=po.getPost_pic2() %>" style="width:600px; height: auto;"> </div>
+			</div>
+			<pre>
+    			<%=po.getPost_txt2()%>
+    		</pre>
+    		<div class="postPics">
+				 <div class="pics"> <img src="postPics/<%=po.getPost_pic3() %>"style="width:600px; height: auto;"> </div>
+				 <div class="postItem">
+				 	<ul class="itemthumbnailinfo">
+				 		<li> <div class="postIteminfos">11111<br>sdfsdf<br>bsdsdfs</div> </li>
+				 		<li> <div class="postIteminfos">2222222<br>sdfsdf<br>bsdsdfs</div> </li>
+				 		<li> <div class="postIteminfos">3333<br>sdfsdf<br>bsdsdfs</div> </li>
+				 		<li> <div class="postIteminfos">444<br>sdfsdf<br>bsdsdfs</div> </li>
+				 	</ul>
+				 	<ul class="itemthumbnail">
+				 		<li> <img src="postPics/<%=po.getPost_item10()%>" style="width:100px; height: 100px;"> </li>
+				 		<li> <img src="postPics/<%=po.getPost_item11()%>" style="width:100px; height: 100px;"> </li>
+				 		<li> <img src="postPics/<%=po.getPost_item12()%>" style="width:100px; height: 100px;"> </li>
+				 		<li> <img src="postPics/<%=po.getPost_item13()%>" style="width:100px; height: 100px;"> </li>
+				 	</ul>
+				 	
+				 </div> 
+			</div>
+			
+			<pre>
+    			<%=po.getPost_txt3()%>
+    		</pre>
+    		<div class="postPics">
+				 <div class="pics"> <img src="postPics/<%=po.getPost_pic4() %>" > </div>
+			</div>
+			<pre>
+    			<%=po.getPost_txt4() %>
+    		</pre>
 		</div>
 	<!-- footer -->
 	<footer>
@@ -132,49 +150,23 @@
 	</footer>
 <script>
 $(function(){
-	/*slider 관련 기능*/
-	$("subnav").hide();
-	setInterval(function () {
-	    moveRight();
-	}, 3000);
-	
-	var slideCount = $('#slider ul li').length;
-	var slideWidth = $('#slider ul li').width();
-	var slideHeight = $('#slider ul li').height();
-	var sliderUlWidth = slideCount * slideWidth;
-	
-	$('#slider').css({ width: slideWidth, height: slideHeight });
-	
-	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
-	
-	$('#slider ul li:last-child').prependTo('#slider ul');
-	
-	function moveLeft() {
-	    $('#slider ul').animate({
-	        left: + slideWidth
-	    }, 200, function () {
-	        $('#slider ul li:last-child').prependTo('#slider ul');
-	        $('#slider ul').css('left', '');
-	    });
-	};
-	
-	function moveRight() {
-	    $('#slider ul').animate({
-	        left: - slideWidth
-	    }, 200, function () {
-	        $('#slider ul li:first-child').appendTo('#slider ul');
-	        $('#slider ul').css('left', '');
-	    });
-	};
-	
-	$('a.control_prev').click(function () {
-	    moveLeft();
+	$(".postIteminfos").hide();
+	$(".itemthumbnail > li:first-child").mouseover(function(){
+		$(".itemthumbnailinfo > li:first-child > div").show();
+	});
+	$(".itemthumbnail > li:nth-child(2)").mouseover(function(){
+		$(".itemthumbnailinfo > li:nth-child(2) > div").show();
+	});
+	$(".itemthumbnail > li:nth-child(3)").mouseover(function(){
+		$(".itemthumbnailinfo > li:nth-child(3) > div").show();
+	});
+	$(".itemthumbnail > li:nth-child(4)").mouseover(function(){
+		$(".itemthumbnailinfo > li:nth-child(4) > div").show();
 	});
 	
-	$('a.control_next').click(function () {
-	    moveRight();
+	$(".itemthumbnail").mouseout(function(){
+		$(".postIteminfos").hide();
 	});
-	
 });
 </script>
 </body>
