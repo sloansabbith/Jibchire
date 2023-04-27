@@ -16,7 +16,7 @@ option{background: #ffffff;  color: #000;  padding: 3px 0; font-size:12pt;}
 .subtitle{font-size: 20pt; font-weight: bold; padding-left: 1em; margin-top:30px;}
 
 /*스타일 들어간 select box*/
-section #mid{height: 100px; width: 1280px;}
+section #mid{height: 100px; width: 1280px; margin-top: 20px;}
 .tabs {  display: flex;  position: relative;
   box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
   padding: 0.75rem;  border-radius: 99px; }

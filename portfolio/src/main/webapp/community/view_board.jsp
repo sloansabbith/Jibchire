@@ -45,7 +45,7 @@
 	%>
 	</header>
     <div id="wrap">
-    <div class="subtitle">이번주 가장 북마크가 많이 눌린 집들이</div>
+    <%-- <div class="subtitle">이번주 가장 북마크가 많이 눌린 집들이</div>
    	<%
 	if(alist != null && listCount > 0){
 	%>
@@ -90,9 +90,9 @@
 			<%
 			}
 			%>
-					
+					 --%>
 	   
-	       	<%
+   	<%
 	if(alist != null && listCount > 0){
 	%>
 	    <!-- 참고) section style 분류 탭 : jsp:include page="tap_style.jsp" -->    	
@@ -229,38 +229,7 @@ $(function(){
 		}
 	});
 	
-	/*select 메뉴*/
-	const label = document.querySelectorAll('.label');
-
-	label.forEach(function(lb){
-	    lb.addEventListener('click', e => {
-	        let optionList = lb.nextElementSibling;
-	        let optionItems = optionList.querySelectorAll('.optionItem');
-	        clickLabel(lb, optionItems);
-	    })
-	});
-	const clickLabel = (lb, optionItems) => {
-	    if(lb.parentNode.classList.contains('active')) {
-	        lb.parentNode.classList.remove('active');
-	        optionItems.forEach((opt) => {
-	            opt.removeEventListener('click', () => {
-	                handleSelect(lb, opt)
-	            })
-	        })
-	    } else {
-	        lb.parentNode.classList.add('active');
-	        optionItems.forEach((opt) => {
-	            opt.addEventListener('click', () => {
-	                handleSelect(lb, opt)
-	            })
-	        })
-	    }
-	}
-	const handleSelect = (label, item) => {
-	    label.innerHTML = item.textContent;
-	    label.parentNode.classList.remove('active');
-	}
-
+	/* 이미지 hover 했을 때 커지기 */
 	$("img").mouseenter(function(){
 		$(this).css("scale","1.05");
 		$(this).css("cursor","pointer");
@@ -268,6 +237,7 @@ $(function(){
 	$("img").mouseleave(function(){
 		$(this).css("scale","1.0");
 	});
+
 	$(".optionList1 .optionItem").click(function(){
 		var record = $(this).attr("value");
 		var field = $(".optionList1").attr("value");

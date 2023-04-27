@@ -10,33 +10,41 @@ body, pre{ font-family: 'NanumSquare'; }
 #mainpic{width:100%; height:400px; margin-top:20px; overflow:hidden; }
 #mainpicimg{width: 100%;height: 100%; object-fit:cover;}
 
-/*제목 및 수정삭제버튼*/
-#title{margin:20px 0;}
-h1{font-size: 28pt;}
-#title input[type="button"]{width: 100px;height: 40px; background-color:#C0C0C0; border-radius: 5px;
- float: right; margin-left: 10px; position: relative; top: -40px;}
-
-/*제목 아래 정보 나열*/
-#info{width:100%; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);}
-#info table{margin:0 auto; width:90%;}
-#info tr td:nth-child(odd){ width:15%; font-weight: bold;}
-#info tr td:nth-child(even){ width:18%;}
-
 /*mainpic*/                           					  /* 여기서부터 slider css*/
 .postPics{width: 100%; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
 .postPics .pics{margin: 0 auto; object-fit:cover;}
 
+/*제목 및 수정삭제버튼*/
+#title{margin:20px 0;}
+h1{font-size: 22pt;    position: absolute;    top: 258px;}
+#title input[type="button"]{width: 100px;height: 40px; background-color:#C0C0C0; border-radius: 5px;
+ float: right; margin-left: 10px; position: relative; top: -40px;}
+
+/*제목 아래 정보 나열*/
+#info{width:100%; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	background-color: white;
+    opacity: 0.9;
+    position: relative;
+    top: -110px;
+    padding: 10px 0;}
+#info table{margin:0 auto; width:90%;}
+#info tr td:nth-child(odd){ width:15%; font-weight: bold;}
+#info tr td:nth-child(even){ width:18%;}
+
+
 /*세로정렬 사진 내 상품*/
 .pics{float: left;}
 .postItem{width: 120px; float:right;}
-.itemthumbnailinfo li:first-child{position: absolute; right: 130px; }
-.itemthumbnailinfo li:nth-child(2){position: absolute; right: 130px; top:110px;}
-.itemthumbnailinfo li:nth-child(3){position: absolute; right: 130px; top:220px;}
-.itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:330px;}
-.postIteminfos{width : 200px; height: 100px; background-color: wheat;   }
+.itemthumbnailinfo li:first-child{position: absolute; right: 130px;}
+.itemthumbnailinfo li:nth-child(2){position: absolute; right: 130px; top:125px;}
+.itemthumbnailinfo li:nth-child(3){position: absolute; right: 130px; top:250px;}
+.itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:375px;}
+.postIteminfos{width : 200px; height: 100px; background-color:#FAFAFF; opacity: 0.9;  padding : 10px;
+	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); font-size: 12pt;  }
 
 /*텍스트*/
-pre{margin-top: 20px; font-size: 12pt;}
+
+pre{ margin-top: 20px; font-size: 12pt; white-space: pre-wrap;}
 
 
 

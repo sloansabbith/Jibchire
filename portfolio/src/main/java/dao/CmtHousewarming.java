@@ -14,6 +14,7 @@ import dto.Cust_houseinfo;
 import dto.Feed_like;
 import dto.Post_bookmark;
 import dto.Post_house;
+import dto.Pro_post;
 
 public class CmtHousewarming {
 	Connection conn = null;
@@ -631,6 +632,29 @@ public class CmtHousewarming {
 			disconn();
 		}
 		return alist;
+	}
+	public Pro_post selectproduct(String picture) {
+		Pro_post product = null;
+		try {
+			conn();
+			stmt = conn.createStatement();
+							//1주일간 가장 북마크를 많이 받은 게시물의 post_id
+			String select = "select * from pro_post where pro_picture like '%"+picture+"%';";
+			ResultSet rs = stmt.executeQuery(select);  
+			if(rs.next()) {
+				product = new Pro_post();
+				product.setPro_title(rs.getString("pro_title"));
+				product.setPro_company(rs.getString("pro_company"));
+				product.setPro_menu1(rs.getString("pro_menu1"));
+				product.setPro_price(rs.getInt("pro_price"));
+			}
+		}catch(Exception e) {
+			System.out.println(e+"selectproduct() 메소드 오류");
+		}finally {
+			disconn();
+		}
+		return product;
+	
 	}
 
 }
