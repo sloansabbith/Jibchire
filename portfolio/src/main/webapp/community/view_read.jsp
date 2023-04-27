@@ -49,6 +49,50 @@
 			<!-- 사진 슬라이더 -->
 			<div id="mainpic">
 				 <img src="postPics/<%=po.getPost_pics() %>" id="mainpicimg">
+				 			<!-- 세부내용박스(집특징, 평수 등등) -->	   	
+			   	<div id="info">
+			   		<table>
+			   			<tr><td>주거형태</td>
+			   				<td><%=po.getPost_house()%> </td>
+			   				<td>방개수</td>
+			   				<td><%=po.getPost_rooms()%>개</td>
+			   				<td>집 평수</td>
+			   				<td><%=po.getPost_m2()%>평</td>
+			   			</tr>
+			   			<tr>	
+			   				<td>집 연식</td>
+			   				<td><%=po.getPost_houseold()%>년 이상</td>
+			   				<td>가족 인원</td>
+			   				<td><%=po.getPost_fam()%>명</td>
+			   				<td>가족 형태</td>
+			   				<td><%=po.getPost_family()%></td>
+			   			</tr>
+	<!-- 		   			<tr> 스타일, 색상 빠졌음--> 
+	<!-- 		   				<td>가족 인원</td> -->
+	<%-- 		   				<td><%=po.getPost_fam()%>명</td> --%>
+	<!-- 		   				<td>가족형태</td> -->
+	<%-- 		   				<td><%=po.getPost_family()%></td> --%>
+	<!-- 		   				<td>반려동물</td> -->
+	<%-- 		   				<td><%=po.getPost_pet()%></td> --%>
+	<!--    					</tr> -->
+	<!--    					<tr> -->
+	<!-- 		   				<td>지역</td> -->
+	<%-- 		   				<td><%=po.getPost_region()%></td> --%>
+	<!-- 		   				<td>예산</td> -->
+	<%-- 		   				<td><%=po.getPost_budget()%>만원</td> --%>
+	<!-- 		   				<td></td> -->
+	<!-- 		   				<td></td> -->
+	<!--    					</tr> -->
+	<!--    					<tr> -->
+	<!-- 		   				<td>공사시작일</td> -->
+	<%-- 		   				<td><%=po.getPost_startdate()%></td> --%>
+	<!-- 		   				<td>공사마감일</td> -->
+	<%-- 		   				<td><%=po.getPost_enddate()%></td> --%>
+	<!-- 		   				<td></td> -->
+	<!-- 		   				<td></td> -->
+	<!-- 		   			</tr> -->
+			   		</table>
+				</div >
 			</div>
 
 		   	<div id="title"> 
@@ -64,51 +108,6 @@
 				}	
 				%>   	
 		   	</div>	
-			<!-- 세부내용박스(집특징, 평수 등등) -->	   	
-		   	<div id="info">
-		   		<table>
-		   			<tr><td>주거형태</td>
-		   				<td><%=po.getPost_house()%> </td>
-		   				<td>방개수</td>
-		   				<td><%=po.getPost_rooms()%>개</td>
-		   				<td>집 평수</td>
-		   				<td><%=po.getPost_m2()%>평</td>
-		   			</tr>
-		   			<tr>	
-		   				<td>집 연식</td>
-		   				<td><%=po.getPost_houseold()%>년 이상</td>
-		   				<td>가족 인원</td>
-		   				<td><%=po.getPost_fam()%>명</td>
-		   				<td>가족 형태</td>
-		   				<td><%=po.getPost_family()%></td>
-		   			</tr>
-<!-- 		   			<tr> 스타일, 색상 빠졌음--> 
-<!-- 		   				<td>가족 인원</td> -->
-<%-- 		   				<td><%=po.getPost_fam()%>명</td> --%>
-<!-- 		   				<td>가족형태</td> -->
-<%-- 		   				<td><%=po.getPost_family()%></td> --%>
-<!-- 		   				<td>반려동물</td> -->
-<%-- 		   				<td><%=po.getPost_pet()%></td> --%>
-<!--    					</tr> -->
-<!--    					<tr> -->
-<!-- 		   				<td>지역</td> -->
-<%-- 		   				<td><%=po.getPost_region()%></td> --%>
-<!-- 		   				<td>예산</td> -->
-<%-- 		   				<td><%=po.getPost_budget()%>만원</td> --%>
-<!-- 		   				<td></td> -->
-<!-- 		   				<td></td> -->
-<!--    					</tr> -->
-<!--    					<tr> -->
-<!-- 		   				<td>공사시작일</td> -->
-<%-- 		   				<td><%=po.getPost_startdate()%></td> --%>
-<!-- 		   				<td>공사마감일</td> -->
-<%-- 		   				<td><%=po.getPost_enddate()%></td> --%>
-<!-- 		   				<td></td> -->
-<!-- 		   				<td></td> -->
-<!-- 		   			</tr> -->
-		   		</table>
-					
-			</div >
 			<!-- 내용 -->
 			<div class="content">
 		   		<pre>
@@ -116,14 +115,16 @@
 		   		</pre>
     		</div>
     		<div class="postPics">
-				 <div class="pics"> <img src="postPics/<%=po.getPost_pic2() %>" id="insertedbigpicture" style="width:630px; height: 780px;"> </div>
-				 <div class="postItem">
+				 <div class="pics">
+				 	<img src="postPics/<%=po.getPost_pic2() %>" id="insertedbigpicture" style="width:630px; height: 780px;">
 				 	<ul class="itemthumbnailinfo">
 				 		<li> <div class="postIteminfos"> </div> </li>
 				 		<li> <div class="postIteminfos"> </div> </li>
 				 		<li> <div class="postIteminfos"> </div> </li>
 				 		<li> <div class="postIteminfos"> </div> </li>
 				 	</ul>
+				 </div>
+				 <div class="postItem">
 				 	<!-- 큰 사진에 대한 상품 사진 넣는 공간 -->
 				 	<ul class="insertedpicture">
 				 		<li><img src="postPics/<%=po.getPost_pics()%>" style="width:130px; height: 190px;"> 
@@ -136,18 +137,19 @@
 				 			<input type="hidden" value="postPics/<%=po.getPost_pic4()%>"></li>
 				 	</ul>
 				 </div> 
-				 <!-- 상품 슬라이드 -->		
-				 <div id="slider" >
-					<a href="#" class="control_next">>></a>
-					<a href="#" class="control_prev"><<</a>
-					<ul>
-					    <li><div class="pics"><img src="postPics/<%=po.getPost_item10()%>"></div></li>
-					    <li><div class="pics"><img src="postPics/<%=po.getPost_item11()%>%>"></div></li>
-					    <li><div class="pics"><img src="postPics/<%=po.getPost_item12()%>%>"></div></li>
-					    <li><div class="pics"><img src="postPics/<%=po.getPost_item13()%>%>"></div></li>
-				    </ul>
-				</div>	
-			</div>
+	 		</div>
+			<!-- 상품 슬라이드 -->
+			<div id="slider" >
+				<a href="#" class="control_next">>></a>
+				<a href="#" class="control_prev"><<</a>
+				<ul>
+				    <li><div class="pics"><img src="postPics/<%=po.getPost_item10()%>"></div></li>
+				    <li><div class="pics"><img src="postPics/<%=po.getPost_item11()%>"></div></li>
+				    <li><div class="pics"><img src="postPics/<%=po.getPost_item12()%>"></div></li>
+				    <li><div class="pics"><img src="postPics/<%=po.getPost_item13()%>"></div></li>
+			    </ul>
+			</div>	
+
 			<pre>
     			<%=po.getPost_txt2()%>
     		</pre>
@@ -181,55 +183,55 @@
 <script>
 $(function(){
 // 	상품상세설명 
-	$(".postIteminfos").hide();
-	$(".itemthumbnail > li:first-child").mouseover(function(){
-		var picName = $(".itemthumbnail > li:first-child >input[type=hidden]").val();
-		$.ajax({
-			url : "select_product.jsp?picture="+picName,  
-			dataType : "html",
-			success : function(check){
-				$(".itemthumbnailinfo > li:first-child > div").html(check);
-			}
-		}); 
-		$(".itemthumbnailinfo > li:first-child > div").show();
-	});
-	$(".itemthumbnail > li:nth-child(2)").mouseover(function(){
-		var picName = $(".itemthumbnail > li:nth-child(2) >input[type=hidden]").val();
-		$.ajax({
-			url : "select_product.jsp?picture="+picName,  
-			dataType : "html",
-			success : function(check){
-				$(".itemthumbnailinfo > li:nth-child(2)> div").html(check);
-			}
-		}); 
-		$(".itemthumbnailinfo > li:nth-child(2) > div").show();
-	});
-	$(".itemthumbnail > li:nth-child(3)").mouseover(function(){
-		var picName = $(".itemthumbnail > li:nth-child(3) >input[type=hidden]").val();
-		$.ajax({
-			url : "select_product.jsp?picture="+picName,  
-			dataType : "html",
-			success : function(check){
-				$(".itemthumbnailinfo > li:nth-child(3)> div").html(check);
-			}
-		}); 
-		$(".itemthumbnailinfo > li:nth-child(3) > div").show();
-	});
-	$(".itemthumbnail > li:nth-child(4)").mouseover(function(){
-		var picName = $(".itemthumbnail > li:nth-child(4) >input[type=hidden]").val();
-		$.ajax({
-			url : "select_product.jsp?picture="+picName,  
-			dataType : "html",
-			success : function(check){
-				$(".itemthumbnailinfo > li:nth-child(4)> div").html(check);
-			}
-		}); 
-		$(".itemthumbnailinfo > li:nth-child(4) > div").show();
-	});
+// 	$(".postIteminfos").hide();
+// 	$(".itemthumbnail > li:first-child").mouseover(function(){
+// 		var picName = $(".itemthumbnail > li:first-child >input[type=hidden]").val();
+// 		$.ajax({
+// 			url : "select_product.jsp?picture="+picName,  
+// 			dataType : "html",
+// 			success : function(check){
+// 				$(".itemthumbnailinfo > li:first-child > div").html(check);
+// 			}
+// 		}); 
+// 		$(".itemthumbnailinfo > li:first-child > div").show();
+// 	});
+// 	$(".itemthumbnail > li:nth-child(2)").mouseover(function(){
+// 		var picName = $(".itemthumbnail > li:nth-child(2) >input[type=hidden]").val();
+// 		$.ajax({
+// 			url : "select_product.jsp?picture="+picName,  
+// 			dataType : "html",
+// 			success : function(check){
+// 				$(".itemthumbnailinfo > li:nth-child(2)> div").html(check);
+// 			}
+// 		}); 
+// 		$(".itemthumbnailinfo > li:nth-child(2) > div").show();
+// 	});
+// 	$(".itemthumbnail > li:nth-child(3)").mouseover(function(){
+// 		var picName = $(".itemthumbnail > li:nth-child(3) >input[type=hidden]").val();
+// 		$.ajax({
+// 			url : "select_product.jsp?picture="+picName,  
+// 			dataType : "html",
+// 			success : function(check){
+// 				$(".itemthumbnailinfo > li:nth-child(3)> div").html(check);
+// 			}
+// 		}); 
+// 		$(".itemthumbnailinfo > li:nth-child(3) > div").show();
+// 	});
+// 	$(".itemthumbnail > li:nth-child(4)").mouseover(function(){
+// 		var picName = $(".itemthumbnail > li:nth-child(4) >input[type=hidden]").val();
+// 		$.ajax({
+// 			url : "select_product.jsp?picture="+picName,  
+// 			dataType : "html",
+// 			success : function(check){
+// 				$(".itemthumbnailinfo > li:nth-child(4)> div").html(check);
+// 			}
+// 		}); 
+// 		$(".itemthumbnailinfo > li:nth-child(4) > div").show();
+// 	});
 	
-	$(".itemthumbnail > li ").mouseout(function(){
-		$(".postIteminfos").hide();
-	});
+// 	$(".itemthumbnail > li ").mouseout(function(){
+// 		$(".postIteminfos").hide();
+// 	});
 	//메인사진 4개 보이기
 	$(".insertedpicture > li:first-child").mouseover(function(){
 		var picName = $(".insertedpicture > li:first-child >input[type=hidden]").val();
@@ -250,15 +252,18 @@ $(function(){
 	//슬라이더	                                                                  /* 슬라이더*/	
 	setInterval(function(){
         moveRight();
-    }, 2000);
+    }, 9000);
 
-	var slideCount = $('#slider ul li').length;
+	var slideCount = $('#slider ul li').length; //리스트 개수
 	var slideWidth = $('#slider ul li').width();
 	var slideHeight = $('#slider ul li').height();
 	var sliderUlWidth = slideCount * slideWidth;
 	
-	$('#slider').css({ width: slideWidth, height: slideHeight });	
-	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });	
+// 	$("a.control").css(right: slideWidth * (slideCount-1)); // 오른쪽 화살표 위치 조정
+	$('#slider').css({ width: slideWidth * slideCount, height: slideHeight });	
+	$('#slider ul').css({ width: sliderUlWidth
+		, marginLeft: - slideWidth 
+		});	
     $('#slider ul li:last-child').prependTo('#slider ul');
 
     function moveLeft() {
