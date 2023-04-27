@@ -7,40 +7,50 @@ body, pre{ font-family: 'NanumSquare'; }
 #wrap{width:770px; margin:0 auto;}
 
 /*메인사진 */
-#mainpic{width:100%; height:400px; margin-top:20px; overflow:hidden; }
+#mainpic{width:100%; height:700px; margin-top:20px; overflow:hidden; }
 #mainpicimg{width: 100%;height: 100%; object-fit:cover;}
 
-/*mainpic*/                           					  /* 여기서부터 slider css*/
-.postPics{width: 100%; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
-.postPics .pics{margin: 0 auto; object-fit:cover;}
+/*두번쨰 사진 모음*/                           					  /* 여기서부터 slider css*/
+.postPics{width: 100%; height:780px; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
+.postPics .pics{margin: 0 auto; object-fit:cover; cursor: pointer;}
 
 /*제목 및 수정삭제버튼*/
 #title{margin:20px 0;}
-h1{font-size: 22pt;    position: absolute;    top: 258px;}
+h1{font-size: 22pt; text-align: center; 
+/*   position: absolute;    top: 258px;*/}
 #title input[type="button"]{width: 100px;height: 40px; background-color:#C0C0C0; border-radius: 5px;
  float: right; margin-left: 10px; position: relative; top: -40px;}
 
 /*제목 아래 정보 나열*/
-#info{width:100%; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	background-color: white;
-    opacity: 0.9;
-    position: relative;
-    top: -110px;
-    padding: 10px 0;}
+#info{width:700px; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	background-color: white;    opacity: 0.9;    position: absolute;    top: 850px;    left: 585px;    padding: 10px 0;}
 #info table{margin:0 auto; width:90%;}
 #info tr td:nth-child(odd){ width:15%; font-weight: bold;}
 #info tr td:nth-child(even){ width:18%;}
 
+/*가로정렬 상품*/
+/*이미지 슬라이더*/
+#slider {  position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
+#slider ul {  position: relative;  margin: 0;  padding: 0;  list-style: none;}
+#slider ul li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  height: 120px; 
+	  text-align: center;  line-height: 120px; }
+a.control_prev, a.control_next {  position: absolute;top: 40%;  z-index: 999;  display: block;  padding: 4% 3%;
+  color: #fff;  font-size: 30px;  opacity: 0.8;  cursor: pointer;}
+a.control_prev:hover, a.control_next:hover {  opacity: 1;  -webkit-transition: all 0.2s ease;}
+a.control_prev {}
+a.control_next {  right: 0;}
+#slider .pics{width: 120px; height: 120px; overflow: hidden;  margin-left:20px;}
+#slider .pics>img{object-fit:cover;}
 
 /*세로정렬 사진 내 상품*/
 .pics{float: left;}
 .postItem{width: 120px; float:right;}
-.itemthumbnailinfo li:first-child{position: absolute; right: 130px;}
-.itemthumbnailinfo li:nth-child(2){position: absolute; right: 130px; top:125px;}
-.itemthumbnailinfo li:nth-child(3){position: absolute; right: 130px; top:250px;}
-.itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:375px;}
-.postIteminfos{width : 200px; height: 100px; background-color:#FAFAFF; opacity: 0.9;  padding : 10px;
-	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); font-size: 12pt;  }
+/* .itemthumbnailinfo li:first-child{position: absolute; right: 130px;} */
+/* .itemthumbnailinfo li:nth-child(2){position: absolute; right: 130px; top:125px;} */
+/* .itemthumbnailinfo li:nth-child(3){position: absolute; right: 130px; top:250px;} */
+/* .itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:375px;} */
+/* .postIteminfos{width : 200px; height: 100px; background-color:#FAFAFF; opacity: 0.9;  padding : 10px; */
+/* 	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); font-size: 12pt;  } */
 
 /*텍스트*/
 
