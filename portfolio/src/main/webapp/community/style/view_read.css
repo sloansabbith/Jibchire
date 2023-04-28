@@ -4,7 +4,7 @@ a { text-decoration : none;}
 body, pre{ font-family: 'NanumSquare'; }
 
 /* 큰박스들 크기 주기 */
-#wrap{width:770px; margin:0 auto;}
+#wrap{width:780px; margin:0 auto;}
 
 /*메인사진 */
 #mainpic{width:100%; height:700px; margin-top:20px; overflow:hidden; }
@@ -13,7 +13,6 @@ body, pre{ font-family: 'NanumSquare'; }
 /*두번쨰 사진 모음*/                           					  /* 여기서부터 slider css*/
 .postPics{width: 100%; height:780px; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
 .postPics .pics{margin: 0 auto; object-fit:cover; cursor: pointer;}
-
 /*제목 및 수정삭제버튼*/
 #title{margin:20px 0;}
 h1{font-size: 22pt; text-align: center; 
@@ -37,26 +36,27 @@ h1{font-size: 22pt; text-align: center;
 
 /*이미지 슬라이더*/
 #slider {  position: relative;  overflow: hidden;  margin: 10px auto 0 auto;}
-#slider ul {  position: relative;  margin: 0;  padding: 0;  list-style: none;}
-#slider ul li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  height: 120px; 
+#slider .itemthumbnail {  position: relative;  margin: 0;  padding: 0;  list-style: none;}
+#slider .itemthumbnail li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  height: 120px; 
 	  text-align: center;  line-height: 120px; }
-a.control_prev, a.control_next {  position: absolute;top: 20%;  z-index: 999;  display: block;  padding: 4% 3%;
-  color: #fff;  font-size: 30px;  opacity: 0.8;  cursor: pointer;}
+a.control_prev, a.control_next {  position: absolute;top: 10%;  z-index: 999;  display: block;  padding: 4% 3%;
+  color:black;  font-size: 30px;  opacity: 0.8;  cursor: pointer;}
 a.control_prev:hover, a.control_next:hover {  opacity: 1;  -webkit-transition: all 0.2s ease;}
 a.control_prev {left: 10px; }
-a.control_next {right: 140px; }
-#slider .pics{width: 120px; height: 120px; overflow: hidden;  margin-left:20px;}
-#slider .pics>img{object-fit:cover;}
+a.control_next {right: 40%;}
+/* #slider .pics{width: 120px; height: 120px; overflow: hidden;  margin-left:20px;} */
+/* #slider .pics>img{object-fit:cover;} */
+#jessie{font-size: 10pt;}
 
 /* 슬라이더 제품 상세정보 */
-/* .itemthumbnailinfo{position:relative} */
-/* .itemthumbnailinfo li{display: inline-block;} */
-.itemthumbnailinfo li:first-child{position: absolute; right: 130px; top: 0;}
-.itemthumbnailinfo li:nth-child(2){position: absolute; right: 130px; top:125px;}
-.itemthumbnailinfo li:nth-child(3){position: absolute; right: 130px; top:250px;}
-.itemthumbnailinfo li:nth-child(4){position: absolute; right: 130px; top:375px;}
+.itemthumbnailinfo{position: absolute; top: 1792px;}
+.itemthumbnailinfo li{display: inline-block;}
+.itemthumbnailinfo li:first-child{margin-left:0;}
+.itemthumbnailinfo li:nth-child(2){margin-left: -95px;}
+.itemthumbnailinfo li:nth-child(3){margin-left: -95px;}
+.itemthumbnailinfo li:nth-child(4){margin-left: -95px;}
 .postIteminfos{width : 200px; height: 100px; background-color:#FAFAFF; opacity: 0.9;  padding : 10px;
-	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); font-size: 12pt;  z-index:10;}
+	 box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); font-size: 12pt;  z-index:11;}
 
 /*텍스트*/
 

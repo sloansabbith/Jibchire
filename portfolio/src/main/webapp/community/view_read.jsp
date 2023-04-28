@@ -117,12 +117,6 @@
     		<div class="postPics">
 				 <div class="pics">
 				 	<img src="postPics/<%=po.getPost_pic2() %>" id="insertedbigpicture" style="width:630px; height: 780px;">
-				 	<ul class="itemthumbnailinfo">
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 	</ul>
 				 </div>
 				 <div class="postItem">
 				 	<!-- 큰 사진에 대한 상품 사진 넣는 공간 -->
@@ -138,43 +132,65 @@
 				 	</ul>
 				 </div> 
 	 		</div>
+	 		<!-- 상품(슬라이드) 에 대한 세부정보 들어가는 공간 -->
+			 	<ul class="itemthumbnailinfo">
+			 		<li> <div class="postIteminfos">123 </div> </li>
+			 		<li> <div class="postIteminfos">123 </div> </li>
+			 		<li> <div class="postIteminfos"> 123</div> </li>
+			 		<li> <div class="postIteminfos"> 123</div> </li>
+			 	</ul>
 			<!-- 상품 슬라이드 -->
 			<div id="slider" >
-				<a href="#" class="control_next">>></a>
-				<a href="#" class="control_prev"><<</a>
-				<ul>
-				    <li><div class="pics"><img src="postPics/<%=po.getPost_item10()%>"></div></li>
-				    <li><div class="pics"><img src="postPics/<%=po.getPost_item11()%>"></div></li>
-				    <li><div class="pics"><img src="postPics/<%=po.getPost_item12()%>"></div></li>
-				    <li><div class="pics"><img src="postPics/<%=po.getPost_item13()%>"></div></li>
+				<a class="control_next">>></a>
+				<a class="control_prev"><<</a>
+				<ul class="itemthumbnail">
+				    <li><img src="postPics/<%=po.getPost_item10()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item10()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item11()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item12()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item12()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item13()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item13()%>"></li>
+			    	<li><img src="postPics/<%=po.getPost_item14()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item14()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item15()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item15()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item16()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item16()%>"></li>
+				    <li><img src="postPics/<%=po.getPost_item17()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item17()%>"></li>
+			    	<li><img src="postPics/<%=po.getPost_item18()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item18()%>"></li>
+			    	<li><img src="postPics/<%=po.getPost_item19()%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=po.getPost_item19()%>"></li>
 			    </ul>
 			</div>	
-
 			<pre>
     			<%=po.getPost_txt2()%>
     		</pre>
-    		<div class="postPics">
-				 <div class="pics"> <img src="postPics/<%=po.getPost_pic3() %>"style="width:600px; height: auto;"> </div>
-				 <div class="postItem">
-				 	<ul class="itemthumbnailinfo">
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 		<li> <div class="postIteminfos"> </div> </li>
-				 	</ul>
-				 	<!-- 큰 사진에 대한 상품 사진 넣는 공간 -->
-				 	<ul class="itemthumbnail">
-				 		<li><img src="postPics/<%=po.getPost_item10()%>" style="width:120px; height: 120px;"> 
-				 			<input type="hidden" value="<%=po.getPost_item10()%>"></li>
-				 		<li><img src="postPics/<%=po.getPost_item11()%>" style="width:120px; height: 120px;"> 
-				 			<input type="hidden" value="<%=po.getPost_item11()%>"></li>
-				 		<li><img src="postPics/<%=po.getPost_item12()%>" style="width:120px; height: 120px;"> 
-				 			<input type="hidden" value="<%=po.getPost_item12()%>"></li>
-				 		<li><img src="postPics/<%=po.getPost_item13()%>" style="width:120px; height: 120px;"> 
-				 			<input type="hidden" value="<%=po.getPost_item13()%>"></li>
-				 	</ul>
-				 </div> 
-			</div>
+<!--     		<div class="postPics"> -->
+<%-- 				 <div class="pics"> <img src="postPics/<%=po.getPost_pic3() %>"style="width:600px; height: auto;"> </div> --%>
+<!-- 				 <div class="postItem"> -->
+<!-- 				 	<ul class="itemthumbnailinfo"> -->
+<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
+<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
+<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
+<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
+<!-- 				 	</ul> -->
+<!-- 				 	큰 사진에 대한 상품 사진 넣는 공간 -->
+<!-- 				 	<ul class="itemthumbnail"> -->
+<%-- 				 		<li><img src="postPics/<%=po.getPost_item10()%>" style="width:120px; height: 120px;">  --%>
+<%-- 				 			<input type="hidden" value="<%=po.getPost_item10()%>"></li> --%>
+<%-- 				 		<li><img src="postPics/<%=po.getPost_item11()%>" style="width:120px; height: 120px;">  --%>
+<%-- 				 			<input type="hidden" value="<%=po.getPost_item11()%>"></li> --%>
+<%-- 				 		<li><img src="postPics/<%=po.getPost_item12()%>" style="width:120px; height: 120px;">  --%>
+<%-- 				 			<input type="hidden" value="<%=po.getPost_item12()%>"></li> --%>
+<%-- 				 		<li><img src="postPics/<%=po.getPost_item13()%>" style="width:120px; height: 120px;">  --%>
+<%-- 				 			<input type="hidden" value="<%=po.getPost_item13()%>"></li> --%>
+<!-- 				 	</ul> -->
+<!-- 				 </div>  -->
+<!-- 			</div> -->
 		</div>
 	<!-- footer -->
 	<footer>
@@ -182,7 +198,7 @@
 	</footer>
 <script>
 $(function(){
-// 	상품상세설명 
+	//상품상세설명 
 // 	$(".postIteminfos").hide();
 // 	$(".itemthumbnail > li:first-child").mouseover(function(){
 // 		var picName = $(".itemthumbnail > li:first-child >input[type=hidden]").val();
@@ -249,21 +265,24 @@ $(function(){
 		var picName = $(".insertedpicture > li:nth-child(4) >input[type=hidden]").val();
 		$(".pics>#insertedbigpicture").attr("src",picName);
 	});
-	//슬라이더	                                                                  /* 슬라이더*/	
-	setInterval(function(){
-        moveRight();
-    }, 9000);
+	
+// 	자동 슬라이딩 기능 꺼둠
+// 	setInterval(function(){moveRight();}, 9000);
 
 	var slideCount = $('#slider ul li').length; //리스트 개수
 	var slideWidth = $('#slider ul li').width();
 	var slideHeight = $('#slider ul li').height();
 	var sliderUlWidth = slideCount * slideWidth;
+	var selectNum = null;
+	if(slideCount<6){
+		selectNum=0;
+		$('a.control_prev').hide();
+	}else{
+		selectNum = slideCount-6;
+	}
 	
-// 	$("a.control").css(right: slideWidth * (slideCount-1)); // 오른쪽 화살표 위치 조정
 	$('#slider').css({ width: slideWidth * slideCount, height: slideHeight });	
-	$('#slider ul').css({ width: sliderUlWidth
-		, marginLeft: - slideWidth 
-		});	
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth*selectNum });	//한 줄에 6개 들어감
     $('#slider ul li:last-child').prependTo('#slider ul');
 
     function moveLeft() {

@@ -103,31 +103,31 @@
 		    	<article id="mid">
 		    		<div class="wrap">
 						<div class="tabs">
-							<input type="radio" id="radio-1"  name="tabs" checked />
+							<input type="radio" id="radio-1" value="black"  name="tabs" checked />
 							<label class="tab" for="radio-1">
 								<img src="img/community/png/fullscreen-fill.png"> black </label>
-							<input type="radio" id="radio-2" name="tabs"/>
+							<input type="radio" id="radio-2" value="white" name="tabs"/>
 							<label class="tab" for="radio-2">
 								<img src="img/community/png/stop-line.png"> white</label>
-							<input type="radio" id="radio-3"  name="tabs"/>
+							<input type="radio" id="radio-3" value="beige"  name="tabs"/>
 							<label class="tab" for="radio-3">
 								<img src="img/community/png/plant-line.png">beige</label>
-							<input type="radio" id="radio-4" name="tabs" />
+							<input type="radio" id="radio-4"value="yellow"  name="tabs" />
 							<label class="tab" for="radio-4">
 								<img src="img/community/png/global-line.png">yellow</label>
-							<input type="radio" id="radio-5"  name="tabs"/>
+							<input type="radio" id="radio-5" value="brown"  name="tabs"/>
 							<label class="tab" for="radio-5">
 								<img src="img/community/png/seedling-line.png">brown</label>
-							<input type="radio" id="radio-6" name="tabs" />
+							<input type="radio" id="radio-6" value="red"  name="tabs" />
 							<label class="tab" for="radio-6">
 								<img src="img/community/png/rainbow-line.png">red</label>
-							<input type="radio" id="radio-7" name="tabs" />
+							<input type="radio" id="radio-7" value="green" name="tabs" />
 							<label class="tab" for="radio-7">
 								<img src="img/community/png/sun-line.png">green</label>
-							<input type="radio" id="radio-8" name="tabs" />
+							<input type="radio" id="radio-8" value="blue"  name="tabs" />
 							<label class="tab" for="radio-8">
 								<img src="img/community/png/mist-fill.png">blue</label>
-							<input type="radio" id="radio-9" name="tabs" />
+							<input type="radio" id="radio-9" value="purple" name="tabs" />
 							<label class="tab" for="radio-9">
 								<img src="img/community/png/ancient-pavilion-line.png">purple</label>
 							<span class="glider"></span>
@@ -145,7 +145,7 @@
 	    			<a href = "select_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
 		    			<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
 	    				<div class="thumbnail"> <img src="postPics/sm_%=alist.get(i).getPost_pics() %>"></div> -->
-		    			<div class="thumbnail"> <img src="postPics/<%=alist.get(i).getPost_pics() %>"></div>
+		    			<div class="thumbnail"> <img src="postPics/<%=alist.get(i).getPost_pics() %>" ></div>
 		    			<div class="title"><%=alist.get(i).getPost_title() %>  </div>
 	    			</a>
 	    				<!-- 북마크 버튼 -->
@@ -237,56 +237,24 @@ $(function(){
 	$("img").mouseleave(function(){
 		$(this).css("scale","1.0");
 	});
+	
+	/* 색상별로 글 분류하기 */
+	$("input[type=radio]").click(function(){
+		var record = $(this).attr("value");
+		alert(record);
+		var cust_id= $("input:hidden[name=cust_id]").val();
+		location.href= "select_board_list.jsp?menuword="+record+"&cust_id="+cust_id;
+	});
 
-	$(".optionList1 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList1").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList2 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList2").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList3 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList3").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList4 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList4").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList5 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList5").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList6 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList6").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList7 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList7").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
+//	select 리스트 따로 있었을 때
+// 	$(".optionList5 .optionItem").click(function(){
+// 		var record = $(this).attr("value");
+// 		var field = $(".optionList5").attr("value");
+// 		var cust_id= $("input:hidden[name=cust_id]").val();
+// 		alert(field);
+// 		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
+// 	});
+	
 	
 });
 </script>

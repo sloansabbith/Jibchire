@@ -830,7 +830,6 @@ public class CmtSns {
 				po.setPost_pet(rs.getString("post_pet"));
 				po.setPost_startdate(rs.getString("post_startdate"));
 				po.setPost_enddate(rs.getString("post_enddate"));
-				po.setPost_style(rs.getString("post_style"));
 				po.setPost_color(rs.getString("post_color"));
 				
 				String feed_pics = rs.getString("post_pics");

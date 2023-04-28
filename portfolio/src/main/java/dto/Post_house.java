@@ -8,8 +8,6 @@ public class Post_house {
 	public String post_title; //게시글 제목
 	public String post_txt;  //게시글 내용
 	public String post_txt2;  //게시글 내용
-	public String post_txt3;  //게시글 내용
-	public String post_txt4;  //게시글 내용
 	public String post_house; //주거형태
 
 	public int post_rooms; // 방의 갯수
@@ -24,7 +22,6 @@ public class Post_house {
 	public String post_pet; // char y or n
 	public String post_startdate; //공사시작일
 	public String post_enddate; //공사마감일
-	public String post_style; // 컬러풀,등등
 	public String post_color; // 색상 00,00,00,
 	public String post_pics; // 이미지 루트?
 	public String post_pic2;
@@ -40,24 +37,10 @@ public class Post_house {
 	public String post_item13;
 	public String post_item14;
 	public String post_item15;
-	
-	public String post_item20; 
-	public String post_item21;
-	public String post_item22;
-	public String post_item23;
-	public String post_item24;
-	
-	public String post_item30;
-	public String post_item31;
-	public String post_item32;
-	public String post_item33;
-	public String post_item34;
-	
-	public String post_item40;
-	public String post_item41;
-	public String post_item42;
-	public String post_item43;
-	public String post_item44;
+	public String post_item16;
+	public String post_item17;
+	public String post_item18;
+	public String post_item19;
 	
 	public int getPost_id() {
 		return post_id;
@@ -161,12 +144,6 @@ public class Post_house {
 	public void setPost_pics(String post_pics) {
 		this.post_pics = post_pics;
 	}
-	public String getPost_style() {
-		return post_style;
-	}
-	public void setPost_style(String post_style) {
-		this.post_style = post_style;
-	}
 	public String getPost_color() {
 		return post_color;
 	}
@@ -210,18 +187,6 @@ public class Post_house {
 	public void setPost_txt2(String post_txt2) {
 		this.post_txt2 = post_txt2;
 	}
-	public String getPost_txt3() {
-		return post_txt3;
-	}
-	public void setPost_txt3(String post_txt3) {
-		this.post_txt3 = post_txt3;
-	}
-	public String getPost_txt4() {
-		return post_txt4;
-	}
-	public void setPost_txt4(String post_txt4) {
-		this.post_txt4 = post_txt4;
-	}
 	public int getPost_read() {
 		return post_read;
 	}
@@ -264,98 +229,29 @@ public class Post_house {
 	public void setPost_item15(String post_item15) {
 		this.post_item15 = post_item15;
 	}
-	public String getPost_item20() {
-		return post_item20;
+	public String getPost_item16() {
+		return post_item16;
 	}
-	public void setPost_item20(String post_item20) {
-		this.post_item20 = post_item20;
+	public void setPost_item16(String post_item16) {
+		this.post_item16 = post_item16;
 	}
-	public String getPost_item21() {
-		return post_item21;
+	public String getPost_item17() {
+		return post_item17;
 	}
-	public void setPost_item21(String post_item21) {
-		this.post_item21 = post_item21;
+	public void setPost_item17(String post_item17) {
+		this.post_item17 = post_item17;
 	}
-	public String getPost_item22() {
-		return post_item22;
+	public String getPost_item18() {
+		return post_item18;
 	}
-	public void setPost_item22(String post_item22) {
-		this.post_item22 = post_item22;
+	public void setPost_item18(String post_item18) {
+		this.post_item18 = post_item18;
 	}
-	public String getPost_item23() {
-		return post_item23;
+	public String getPost_item19() {
+		return post_item19;
 	}
-	public void setPost_item23(String post_item23) {
-		this.post_item23 = post_item23;
+	public void setPost_item19(String post_item19) {
+		this.post_item19 = post_item19;
 	}
-	public String getPost_item24() {
-		return post_item24;
-	}
-	public void setPost_item24(String post_item24) {
-		this.post_item24 = post_item24;
-	}
-	public String getPost_item30() {
-		return post_item30;
-	}
-	public void setPost_item30(String post_item30) {
-		this.post_item30 = post_item30;
-	}
-	public String getPost_item31() {
-		return post_item31;
-	}
-	public void setPost_item31(String post_item31) {
-		this.post_item31 = post_item31;
-	}
-	public String getPost_item32() {
-		return post_item32;
-	}
-	public void setPost_item32(String post_item32) {
-		this.post_item32 = post_item32;
-	}
-	public String getPost_item33() {
-		return post_item33;
-	}
-	public void setPost_item33(String post_item33) {
-		this.post_item33 = post_item33;
-	}
-	public String getPost_item34() {
-		return post_item34;
-	}
-	public void setPost_item34(String post_item34) {
-		this.post_item34 = post_item34;
-	}
-	public String getPost_item40() {
-		return post_item40;
-	}
-	public void setPost_item40(String post_item40) {
-		this.post_item40 = post_item40;
-	}
-	public String getPost_item41() {
-		return post_item41;
-	}
-	public void setPost_item41(String post_item41) {
-		this.post_item41 = post_item41;
-	}
-	public String getPost_item42() {
-		return post_item42;
-	}
-	public void setPost_item42(String post_item42) {
-		this.post_item42 = post_item42;
-	}
-	public String getPost_item43() {
-		return post_item43;
-	}
-	public void setPost_item43(String post_item43) {
-		this.post_item43 = post_item43;
-	}
-	public String getPost_item44() {
-		return post_item44;
-	}
-	public void setPost_item44(String post_item44) {
-		this.post_item44 = post_item44;
-	}
-
 	
-	
-
 }
