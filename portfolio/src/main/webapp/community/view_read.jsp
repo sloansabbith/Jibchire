@@ -132,37 +132,37 @@
 				 	</ul>
 				 </div> 
 	 		</div>
-	 		<!-- 상품(슬라이드) 에 대한 세부정보 들어가는 공간 -->
-			 	<ul class="itemthumbnailinfo">
-			 		<li> <div class="postIteminfos">123 </div> </li>
-			 		<li> <div class="postIteminfos">123 </div> </li>
-			 		<li> <div class="postIteminfos"> 123</div> </li>
-			 		<li> <div class="postIteminfos"> 123</div> </li>
-			 	</ul>
 			<!-- 상품 슬라이드 -->
 			<div id="slider" >
 				<a class="control_next">>></a>
 				<a class="control_prev"><<</a>
+		 		<!-- 상품(슬라이드) 에 대한 세부정보 들어가는 공간 -->
+			 	<ul class="itemthumbnailinfo">
+			 		<li> <div id="iteminfo10" class="postIteminfos">123 </div> </li>
+			 		<li> <div id="iteminfo11" class="postIteminfos">123 </div> </li>
+			 		<li> <div class="postIteminfos"> 123</div> </li>
+			 		<li> <div class="postIteminfos"> 123</div> </li>
+			 	</ul>
 				<ul class="itemthumbnail">
-						<% if(!(po.getPost_item10()==null)){ %>
+<%-- 						<% if(!(po.getPost_item10()==null)){ %> --%>
 				    <li id="item10"><img src="postPics/<%=po.getPost_item10()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item10()%>"></li>
-				    	<% }else if(!(po.getPost_item11()==null)){ %>
-				    <li><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;">
+<%-- 				    	<% }else if(!(po.getPost_item11()==null)){ %> --%>
+				    <li id="item11"><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item11()%>"></li>
-				    	<% }else if(!(po.getPost_item12()==null)){ %>
+<%-- 				    	<% }else if(!(po.getPost_item12()==null)){ %> --%>
 				    <li><img src="postPics/<%=po.getPost_item12()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item12()%>"></li>
-				    	<% }else if(!(po.getPost_item13()==null)){ %>
+<%-- 				    	<% }else if(!(po.getPost_item13()==null)){ %> --%>
 				    <li><img src="postPics/<%=po.getPost_item13()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item13()%>"></li>
-			    		<% }else if(!(po.getPost_item14()==null)){ %>
+<%-- 			    		<% }else if(!(po.getPost_item14()==null)){ %> --%>
 			    	<li><img src="postPics/<%=po.getPost_item14()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item14()%>"></li>
-				    	<% }else if(!(po.getPost_item15()==null)){ %>
+<%-- 				    	<% }else if(!(po.getPost_item15()==null)){ %> --%>
 				    <li><img src="postPics/<%=po.getPost_item15()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item15()%>"></li>
-				    	<% }else if(!(po.getPost_item16()==null)){ %>
+				    	<%  if(!(po.getPost_item16()==null)){ %>
 				    <li><img src="postPics/<%=po.getPost_item16()%>"style="width:130px; height: 130px;">
 				    	<input type="hidden" value="<%=po.getPost_item16()%>"></li>
 				    	<% }else if(!(po.getPost_item17()==null)){ %>
@@ -210,10 +210,9 @@
 <script>
 $(function(){
 	//상품상세설명 
-	$(".postIteminfos").hide();
-	$(".itemthumbnail > li#item10").mouseover(function(){
-		//alert();
-		var picName = $(".itemthumbnail > li#item10 >input[type=hidden]").val();
+// 	$(".postIteminfos").hide();
+	$(".itemthumbnail > li.item11").mouseover(function(){
+		var picName = $(".itemthumbnail > li.item10 >input[type=hidden]").val();
 // 		$.ajax({
 // 			url : "select_product.jsp?picture="+picName,  
 // 			dataType : "html",
@@ -221,7 +220,7 @@ $(function(){
 // 				$(".itemthumbnailinfo > li:first-child > div").html(check);
 // 			}
 // 		}); 
-		$(".itemthumbnail > li#item10 > postIteminfos").show();
+		$("#iteminfo11").show();
 		//$(".itemthumbnailinfo > li:first-child > div").show();
 	});
 // 	$(".itemthumbnail > li:nth-child(2)").mouseover(function(){
@@ -258,7 +257,7 @@ $(function(){
 // 		$(".itemthumbnailinfo > li:nth-child(4) > div").show();
 // 	});
 	
-	$(".itemthumbnail > li ").mouseout(function(){
+	$(".itemthumbnail > li.item10 ").mouseout(function(){
 		$(".postIteminfos").hide();
 	});
 	//메인사진 4개 보이기
@@ -281,10 +280,9 @@ $(function(){
 	
 // 	자동 슬라이딩 기능 꺼둠
 // 	setInterval(function(){moveRight();}, 9000);
-
-	var slideCount = $('#slider ul li').length; //리스트 개수
-	var slideWidth = $('#slider ul li').width();
-	var slideHeight = $('#slider ul li').height();
+	var slideCount = $('#slider .itemthumbnail li').length; //리스트 개수
+	var slideWidth = $('#slider .itemthumbnail li').width();
+	var slideHeight = $('#slider .itemthumbnail li').height()+$('#slider .itemthumbnailinfo li').height();
 	var sliderUlWidth = slideCount * slideWidth;
 	var selectNum = null;
 	if(slideCount<6){
@@ -295,23 +293,23 @@ $(function(){
 	}
 	
 	$('#slider').css({ width: slideWidth * slideCount, height: slideHeight });	
-	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth*selectNum });	//한 줄에 6개 들어감
-    $('#slider ul li:last-child').prependTo('#slider ul');
+	$('#slider .itemthumbnail').css({ width: sliderUlWidth, marginLeft: - slideWidth*selectNum });	//한 줄에 6개 들어감
+    $('#slider .itemthumbnail li:last-child').prependTo('#slider ul');
 
     function moveLeft() {
-        $('#slider ul').animate({
+        $('#slider .itemthumbnail').animate({
             left: + slideWidth
         }, 200, function () {
-            $('#slider ul li:last-child').prependTo('#slider ul');
-            $('#slider ul').css('left', '');
+            $('#slider .itemthumbnail li:last-child').prependTo('#slider .itemthumbnail');
+            $('#slider .itemthumbnail').css('left', '');
         });
     };
     function moveRight() {
-        $('#slider ul').animate({
+        $('#slider .itemthumbnail').animate({
             left: - slideWidth
         }, 200, function () {
-            $('#slider ul li:first-child').appendTo('#slider ul');
-            $('#slider ul').css('left', '');
+            $('#slider .itemthumbnail li:first-child').appendTo('#slider .itemthumbnail');
+            $('#slider .itemthumbnail').css('left', '');
         });
     };
     $('a.control_prev').click(function () {
