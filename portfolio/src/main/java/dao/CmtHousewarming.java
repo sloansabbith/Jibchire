@@ -88,6 +88,7 @@ public class CmtHousewarming {
 				//아이템 등록 
 				String post_item1 = rs.getString("post_item1");
 				String [] postitem1 = post_item1.split(",");
+				System.out.println("select_one 에서 postitem1.length => "+postitem1.length);
 				for(int i = 0; i<postitem1.length;i++) {
 					if(i==0) {
 						po.setPost_item10(postitem1[0]);
@@ -278,7 +279,6 @@ public class CmtHousewarming {
 
 			if(rs.next()){
 				listCount=rs.getInt(1); //첫번째 값을 listCount에 넣어라 (어차피 하나의 값 밖에 없지만)
-				System.out.println("listCount =>" +listCount);
 			}
 		}catch(Exception ex){
 

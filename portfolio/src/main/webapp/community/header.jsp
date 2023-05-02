@@ -467,21 +467,32 @@
 		$("#cumu").hide();
 		$("#shop").hide();
 		$("#gosu").hide();
+		$(".nav").hide();
 		
 		$(".cumu").mouseenter(function(){
+			$(".nav").show();
 			$("#cumu").show();
 			$("#shop").hide();
 			$("#gosu").hide();
 		});
 		$(".store").mouseenter(function(){
+			$(".nav").show();
 			$("#shop").show();
 			$("#cumu").hide();
 			$("#gosu").hide();
 		})
 		$(".gosu").mouseenter(function(){
+			$(".nav").show();
 			$("#gosu").show();
 			$("#cumu").hide();
 			$("#shop").hide();
+		});
+		$("div.nav,div.header,#cumu,#shop,#gosu").mouseenter(function(){
+			$(".nav").show();
+		});
+		$("div.nav div[class^=index]").mouseout(function(){
+			//$(".nav").hide();
+				//언제 hide해야할지 모르겠음
 		});
 		
 		$("#write").on("click", function() {
