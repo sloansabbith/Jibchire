@@ -546,40 +546,56 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script>
 	$(function(){
-			$("#cumu").hide();
+		
+	$("#cumu").hide();
+		$("#shop").hide();
+		$("#gosu").hide();
+		$(".nav").hide();
+
+		$(".cumu").mouseenter(function() {
+			$(".nav").slideDown();
+			$("#cumu").show();
 			$("#shop").hide();
 			$("#gosu").hide();
+		});
+		$(".store").mouseenter(function() {
+			$(".nav").slideDown();
+			$("#shop").show();
+			$("#cumu").hide();
+			$("#gosu").hide();
+		})
+		$(".gosu").mouseenter(function() {
+			$(".nav").slideDown();
+			$("#gosu").show();
+			$("#cumu").hide();
+			$("#shop").hide();
+		});
 
-			$(".cumu").mouseenter(function(){
-				$("#cumu").show();
-				$("#shop").hide();
-				$("#gosu").hide();
+		$(".cumu , .store, .gosu").mouseout(function() {
+			$(".nav").mouseenter(function() {
+				$(".nav").show();
 			});
-			$(".store").mouseenter(function(){
-				$("#shop").show();
-				$("#cumu").hide();
-				$("#gosu").hide();
-			})
-			$(".gosu").mouseenter(function(){
-				$("#gosu").show();
-				$("#cumu").hide();
-				$("#shop").hide();
-			});
-
-
-			$("#cust").on("click",function(){
-				$(".login_items, .login_items2").toggle();
-				if($(".item, .items, .items2").css('display') !== 'none') {
-					$(".item, .items, .items2").hide();
-				}
-			});
-				
-			$("#write").on("click", function() {
-				$(".items, .items2").toggle();
-					if($(".login_items").css('display') !== 'none') {
-						$(".login_items").hide();
-					}
+			$("header ~ .line").mouseout(function() {
+				$(".nav, .header").mouseenter(function() {
+					$(".nav").show();
+				});
+				$(".nav").slideUp();
 			});
 		});
+
+		$("#cust").on("click", function() {
+			$(".login_items, .login_items2").toggle();
+			if ($(".item, .items, .items2").css('display') !== 'none') {
+				$(".item, .items, .items2").hide();
+			}
+		});
+
+		$("#write").on("click", function() {
+			$(".items, .items2").toggle();
+			if ($(".login_items").css('display') !== 'none') {
+				$(".login_items").hide();
+			}
+		});
+	});
 </script>
 </html>

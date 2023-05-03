@@ -470,29 +470,34 @@
 		$(".nav").hide();
 		
 		$(".cumu").mouseenter(function(){
-			$(".nav").show();
+			$(".nav").slideDown();
 			$("#cumu").show();
 			$("#shop").hide();
 			$("#gosu").hide();
 		});
 		$(".store").mouseenter(function(){
-			$(".nav").show();
+			$(".nav").slideDown();
 			$("#shop").show();
 			$("#cumu").hide();
 			$("#gosu").hide();
 		})
 		$(".gosu").mouseenter(function(){
-			$(".nav").show();
+			$(".nav").slideDown();
 			$("#gosu").show();
 			$("#cumu").hide();
 			$("#shop").hide();
 		});
-		$("div.nav,div.header,#cumu,#shop,#gosu").mouseenter(function(){
-			$(".nav").show();
-		});
-		$("div.nav div[class^=index]").mouseout(function(){
-			//$(".nav").hide();
-				//언제 hide해야할지 모르겠음
+
+		$(".cumu , .store, .gosu").mouseout(function(){
+			$(".nav").mouseenter(function(){
+				$(".nav").show();
+			});
+			$("header ~ .line").mouseout(function(){
+				$(".nav, .header").mouseenter(function(){
+					$(".nav").show();
+				});	
+				$(".nav").slideUp();
+			});
 		});
 		
 		$("#write").on("click", function() {

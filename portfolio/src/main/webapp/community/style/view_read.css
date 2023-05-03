@@ -72,4 +72,7 @@ pre{ margin-top: 20px; font-size: 12pt; white-space: pre-wrap;}
 /*이미지*/
 img{border-radius: 5px;}
 
-
+/*북마크 표시*/
+#like {width:80px;position: fixed; right: 200px;  top: 350px; }
+#like li{display: block; text-align: center; font-size: 10pt; margin-top: 5px;}
+#like li:nth-child(3n){margin-bottom:20px;}

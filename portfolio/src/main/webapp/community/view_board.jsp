@@ -25,7 +25,9 @@
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
+	String selectedcolor = (String) request.getAttribute("color");
 %>	  
+	<input type="hidden" name="selectedcolor" value="<%=selectedcolor%>">
 <body>
  	<!-- header -->
  	<header>
@@ -103,7 +105,7 @@
 		    	<article id="mid">
 		    		<div class="wrap">
 						<div class="tabs">
-							<input type="radio" id="radio-1" value="black"  name="tabs" checked />
+							<input type="radio" id="radio-1" value="black"  name="tabs" />
 							<label class="tab" for="radio-1">
 								<img src="img/community/png/fullscreen-fill.png"> black </label>
 							<input type="radio" id="radio-2" value="white" name="tabs"/>
@@ -172,21 +174,21 @@
 			<%if(nowPage<=1){ %>
 				[이전]&nbsp;&nbsp;
 			<%}else{ %>
-				<a href="snsListAction.sns?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+				<a href="select_board.jsp?page=<%=nowPage-1 %>&cust_id=<%=id%>">[이전]</a>&nbsp;
 			<%} %>
 	
 			<%for(int a=startPage;a<=endPage;a++){
 					if(a==nowPage){%>
 						[<%=a%>]&nbsp;&nbsp;
 					<%}else{ %>
-					<a href="snsListAction.sns?page=<%=a%>">[<%=a%>]
+					<a href="select_board.jsp?page=<%=a%>&cust_id=<%=id%>">[<%=a%>]
 					</a>&nbsp;
 					<%} %>
 			<%} %>
 			<%if(nowPage>=maxPage){ %>
 				[다음]
 			<%}else{ %>
-				<a href="snsListAction.sns?page=<%=nowPage+1 %>">[다음]</a>
+				<a href="select_board.jsp?page=<%=nowPage+1 %>&cust_id=<%=id%>">[다음]</a>
 			<%} %>
 			</section>
 			<%
@@ -241,10 +243,21 @@ $(function(){
 	/* 색상별로 글 분류하기 */
 	$("input[type=radio]").click(function(){
 		var record = $(this).attr("value");
-		alert(record);
+		//alert(record);
 		var cust_id= $("input:hidden[name=cust_id]").val();
 		location.href= "select_board_list.jsp?menuword="+record+"&cust_id="+cust_id;
 	});
+	
+	/*선택한 색상 radio checked*/
+	var selectedcolor = $("input:hidden[name=selectedcolor]").val();
+	for(var i=1; i<=9; i++){
+		var id = "#radio-"+i;
+		var color = $(id).val();
+		if(selectedcolor==color){
+			$(id).prop("checked",true);
+		}
+	}
+	
 
 //	select 리스트 따로 있었을 때
 // 	$(".optionList5 .optionItem").click(function(){

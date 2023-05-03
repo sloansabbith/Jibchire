@@ -467,21 +467,37 @@
 		$("#cumu").hide();
 		$("#shop").hide();
 		$("#gosu").hide();
+		$(".nav").hide();
 		
 		$(".cumu").mouseenter(function(){
+			$(".nav").slideDown();
 			$("#cumu").show();
 			$("#shop").hide();
 			$("#gosu").hide();
 		});
 		$(".store").mouseenter(function(){
+			$(".nav").slideDown();
 			$("#shop").show();
 			$("#cumu").hide();
 			$("#gosu").hide();
 		})
 		$(".gosu").mouseenter(function(){
+			$(".nav").slideDown();
 			$("#gosu").show();
 			$("#cumu").hide();
 			$("#shop").hide();
+		});
+
+		$(".cumu , .store, .gosu").mouseout(function(){
+			$(".nav").mouseenter(function(){
+				$(".nav").show();
+			});
+			$("header ~ .line").mouseout(function(){
+				$(".nav, .header").mouseenter(function(){
+					$(".nav").show();
+				});	
+				$(".nav").slideUp();
+			});
 		});
 		
 		$("#write").on("click", function() {

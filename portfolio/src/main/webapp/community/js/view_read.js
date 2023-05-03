@@ -155,6 +155,8 @@ $(function(){
 	if(slideCount<6){
 		selectNum=0;
 		$('a.control_prev').hide();
+		$('a.control_next').hide();
+		/*상품 6개 이하면 굳이 슬라이드 버튼 안누를 수 있게끔 */
 	}else{
 		selectNum = slideCount-6;
 	}

@@ -36,8 +36,27 @@
 		}
 	%>
 	</header>
-		<div id="wrap">
-
+<!-- 	<aside> -->
+<!-- 		<div id="like"> -->
+<!-- 			<ul> -->
+<!-- 				<li>북마크</li> -->
+<!-- 				<li> -->
+<%-- 				<% --%>
+<%-- 					%><img src="img/sns/heart-add-line.png" class="buttonlike" ><% --%>
+<%-- 				%> --%>
+<!-- 				</li> -->
+<!-- 				<li>42</li> -->
+<!-- 				<li>팔로우</li> -->
+<!-- 				<li> -->
+<%-- 				<% --%>
+<%-- 					%><img src="img/sns/user-follow-fill.png" class="buttonfollow" ><% --%>
+<%-- 				%> --%>
+<!-- 				</li> -->
+<!-- 				<li>16</li> -->
+<!-- 			</ul> -->
+<!-- 		</div> -->
+<!-- 	</aside> -->
+	<div id="wrap">
 			<%
 			String savePath = "/community/communityPic";
 			ServletContext context = getServletContext();
