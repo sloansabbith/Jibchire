@@ -1,4 +1,3 @@
-0.
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,7 +23,7 @@ a.control_prev:hover, a.control_next:hover {  opacity: 1;  -webkit-transition: a
 a.control_prev {}
 a.control_next {  right: 0;}
 /*slider css*/                                            	 /*여기까지 slider css*/
-
+   
 #csBannerFixed{    height: 100%;    width: 190px;    background: #FFFFFF;    border-left: 1px solid #e1e1e1;
 }
 .css-title{

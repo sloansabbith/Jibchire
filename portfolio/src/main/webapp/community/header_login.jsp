@@ -21,7 +21,7 @@
 	.head{width:1900px; margin-left: auto; margin-right: auto;}
 	.header .logo{
 		margin-top: 20px;
-		margin-left: 200px;
+		margin-left: 350px;
 		width: 150px;
 		height: 50px;
 		background-image: url("img/logo/chiere.jpg");
@@ -502,7 +502,7 @@
 		<div class="header">
 			<div class="cumu"><li><a href ="community.jsp"> 커뮤니티 </a></li></div>
 <!-- 			<div class="store"><li><a href ="../shopping.html"> 스토어 </a></li></div> -->
-			<div class="gosu"><li><a href ="../gosumain.html"> 바치 </a></li></div>
+			<div class="gosu"><li><a href ="../bachi/bachi_main.jsp"> 바치 </a></li></div>
 	
 			<li><a href="index.jsp"><div class="logo"> </div></a></li>
 	
@@ -533,10 +533,10 @@
 <!-- 				<div class="index5"><li><a href="#">이벤트</a></li></div> -->
 <!-- 			</div> -->
 			<div id="gosu">
-				<div class="index2"><li><a href ="../bachi/bachi_match_anser.bc"> 받은견적 </a></li></div>
-				<div class="index3"><li><a href="../bachi/bachi_match-home.bc">고수매칭</a></li></div>
-				<div class="index4"><li><a href="../bachi/bachi_match_req.bc">견적답변</a></li></div>
-				<div class="index5"><li><a href="../bachi/bachi_market.jsp">마켓</a></li></div>
+				<div class="index1"><li><a href ="../bachi/bachi_match_anser.bc"> 받은견적 </a></li></div>
+				<div class="index2"><li><a href="../bachi/bachi_match-home.bc">고수매칭</a></li></div>
+				<div class="index3"><li><a href="../bachi/bachi_match_req.bc">견적답변</a></li></div>
+				<div class="index4"><li><a href="../bachi/bachi_market.jsp">마켓</a></li></div>
 			</div>
 		</nav>
 	</div>
@@ -595,6 +595,18 @@
 					$(".login_items").hide();
 				}
 		});
+		$.ajax({ // gosu_info에 등록되지 않은 아이디일 경우, hide되며 등록된 아이디만 show하도록 구현
+	            url : "bachi_select_id.bc",
+	            data : {cust_id: "<%= id %>" },
+	            type : "post",
+	            success: function(result){ 
+	                if(result === "false"){ // "false" 값이 반환되면
+	                  $(".index3").show(); //견적답변이 보이게 하기
+	                }else{
+	                	$(".index3").hide(); //견적답변 보이지 않게 하기
+	                }
+	            }
+	    });
 	});
 </script>
 </html>

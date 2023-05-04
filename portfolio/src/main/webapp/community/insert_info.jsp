@@ -1,5 +1,3 @@
-<%@page import="dto.Cust_info"%>
-<%@page import="dao.CmtHousewarming"%>
 <%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %> 
 
 <%@ page import = "java.sql.*" %>
@@ -12,11 +10,6 @@
 <body> <!-- 모든 조건을 만족한 회원가입이 완료되면 데이터베이스에 insert하는 역할 -->
 	<%
 		request.setCharacterEncoding("utf-8"); 
-	
-		CmtHousewarming com = new CmtHousewarming();  
-		//dao 호출
-		Cust_info cust = new Cust_info();
-		//값을 담을 객체 생성
 
 		String cust_id = request.getParameter("cust_id");
 		String cust_pw2 = request.getParameter("cust_pw2");
@@ -24,7 +17,7 @@
 		String year = request.getParameter("yy");
 		String month = request.getParameter("mm");
 		String date = request.getParameter("dd");
-		String cust_sex = request.getParameter("cust_sex");
+		String male = request.getParameter("male");
 		String cust_phn_1 = request.getParameter("cust_phn_1");
 		String cust_phn_2 = request.getParameter("cust_phn_2");
 		String cust_adr2 = request.getParameter("cust_adr2");
@@ -33,18 +26,18 @@
 		String emailadr = request.getParameter("emailadr");     // 이메일 주소선택 select박스
 		String emailadr_input = request.getParameter("emailadr_input"); // 주소=> 직접입력 선택 후 
 		String cust_pic = request.getParameter("cust_pic");
-
+		String cust_sex = request.getParameter("cust_sex");
 
 		Connection conn = null;
 		Statement stmt = null;
 
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useUnicode=true","root","1111");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior","root","1111");
 			if(conn == null)
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			stmt = conn.createStatement();
-			String inst = String.format("insert into cust_info (cust_id, cust_pw, cust_name, cust_birth, cust_adr, cust_phn, cust_email, cust_pic, cust_sex ) values('%s', '%s', '%s', '%s','%s', '%s', '%s', '%s', '%s');",cust_id,cust_pw2,cust_name,year+month+date,cust_adr2+cust_adr3,cust_phn_1+cust_phn_2,cust_email+"@"+emailadr+emailadr_input,cust_pic,cust_sex);
+			String inst = String.format("insert into cust_info (cust_id, cust_pw, cust_name, cust_birth, cust_adr, cust_phn, cust_email, cust_pic, cust_sex) values('%s', '%s', '%s', '%s','%s', '%s', '%s', '%s','%s');",cust_id,cust_pw2,cust_name,year+month+date,cust_adr2+cust_adr3,cust_phn_1+cust_phn_2,cust_email+"@"+emailadr+emailadr_input,cust_pic,cust_sex);
 			stmt.executeUpdate(inst);
 			//if(rowNum<1)
 				//out.println("<script> alert('정상적으로 가입이 되지 않았습니다') </script>");
@@ -53,7 +46,7 @@
 				//confirm() 으로 해서 확인==> 로그인하러가기
 			out.println(" if(cfm){ document.location.href = 'login.jsp';  }");
 				//확인버튼 누르면 로그인페이지로 
-			out.println("else{	document.location.href = 'cust_info4.jsp'; 	}</script>"); 		
+			out.println("else{	document.location.href = 'index.jsp'; 	}</script>"); 		
 				//취소버튼 누르면 회원가입페이지로
 		} finally {
 			try{
@@ -69,6 +62,5 @@
 		}	
 	%>
 
-	
 </body>
 </html>
