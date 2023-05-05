@@ -7,56 +7,21 @@
 <title>집치레</title>
 </head>
 <style>
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 /* reset css */ 
-* { margin : 0 ; padding : 0 ; font-family: 'NanumSquare'; } 
+* { margin : 0 ; padding : 0 ; } 
 /* 가로폭 좁혀졌을 때 화면이 항상 중앙에 보일 수 있도록*/
 .wrap{	margin: 0 auto;}
 
-/*section01*/
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
-#section01{width:100%; height: 500px; background-color: #f4ede7;} 
-.skewdBox {  position: absolute;      left: -60px;   width: 45%;  height: 500px;  background-color:#d1c9be;
-	transform: skewX(30deg) translateX(-85px);  overflow: hidden;}
-.skewdBox #background{background-image: url(img/index/entrance01.jpg); height: inherit;    transform: skewX(-30deg);    opacity: 0.2;
-    position: relative;    left: 5%;}
-.skewdBox2 {  width: 100%;  height: 100%;   background-color: #f4ede7;}
-.skewdBox2 #halfround{width:280px;height:400px;    background-image: url(img/index/door02.jpg); box-shadow: 10px 10px 10px #8d6046; border-top-left-radius:50%; border-top-right-radius:50%;
-    position: relative;    left: 15%;    top: 50px; animation:section01slide 2s ease-in;}
-.skewdBox2 #explain01{ width: 50%; height: 100%; position: relative;     left: 49%;      bottom: 300px;  animation:explain01 2s ease-in;}
-@keyframes section01slide{	0%{left:-15%;}100%{left:15%;}}
-@keyframes explain01{	0%{left:88%;}100%{left:49%;}}
-
-/*section01 텍스트*/
-section[id^=sec] h1{font-family: 'DM Serif Text', serif; font-size: 43px; color:#8b6450; }
-.skewdBox2 ul{margin-top: 20px;}
-.skewdBox2 ul li {width: inherit;  background-color: wheat;} 
-.skewdBox2 ul li h5{font-size: 12pt; color: #8d6046;    font-style: italic;    font-weight: 900;}
-.skewdBox2 ul li h6{font-size: 10pt;  margin: 10px 0 10px 20px;}
-
-/*section02*/
-#section02{width: 100%; height: 500px;}
-#portionleft{width: 100%; height: inherit; float: left;     position: absolute;    left: 0;}
-#portionleft #leftexplain{    width: 900px;  height: inherit;   
-/* position: absolute;   top: 100px;   right: 10%; */
-    margin: 0 auto;
-}
-#portionleft #explain02{position: absolute;   top: 90px; animation:explain02 2s ease-in;}
-#portionleft ul{margin-top: 20px;}
-#portionleft ul li{width: inherit;}
-#portionleft ul li h5{font-size: 12pt; color: #8d6046;    font-style: italic;    font-weight: 900;}
-#portionleft ul li h6{font-size: 10pt; margin: 10px 0 10px 20px;}
-#portionright{width: 35%;    height: 500px;  background-color: #dcdedd;   position: absolute;    right: 0;}
-#portionright #leftpicture{width:280px; height:400px; background-image: url(img/index/bachi.jpg); box-shadow: 10px 10px 10px #6c746f; 
-	position: absolute;    top: 50px;    left: -140px; animation:leftpicture 2s ease-in;}
-#portionright #background2{background-image: url(img/index/entrance02.jpg); height: inherit;  opacity: 0.2;}
-@keyframes leftpicture{	0%{left:0;}100%{left:-140px;}}
-@keyframes explain02{	0%{left:-60px;}100%{left:0;}}
-
-/*section03*/
-#section03{width: 100%; height: 500px; background-color: #d0c0b0; position: absolute;}
-#section03 #explain03{width: 500px; margin: 60px auto 0 auto;}
-
+/*slider css*/                           					  /* 여기서부터 slider css*/
+#slider {  position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
+#slider ul {  position: relative;  margin: 0;  padding: 0;  list-style: none;}
+#slider ul li {  position: relative;  display: block;  float: left;  margin: 0;padding: 0;  height: 480px;  text-align: center;  line-height: 300px;}
+a.control_prev, a.control_next {  position: absolute;top: 40%;  z-index: 999;  display: block;  padding: 4% 3%;
+  color: #fff;  font-size: 30px;  opacity: 0.8;  cursor: pointer;}
+a.control_prev:hover, a.control_next:hover {  opacity: 1;  -webkit-transition: all 0.2s ease;}
+a.control_prev {}
+a.control_next {  right: 0;}
+/*slider css*/                                            	 /*여기까지 slider css*/
 
 #csBannerFixed{    height: 100%;    width: 190px;    background: #FFFFFF;    border-left: 1px solid #e1e1e1;
 }
@@ -203,9 +168,9 @@ align-items: center;
 }
 </style>
 <body>
+
 	<% 
-		request.setCharacterEncoding("utf-8");
-		//response.sendRedirect("snsIndexList.sns"); //index에서 보여줄 sns 데이터 가져오기
+		request.setCharacterEncoding("utf-8"); 
 		String id = (String) session.getAttribute("ID");  //session값에서 아이디 가져올 때 null이면 일반헤더, 아니면 로그인헤더
 		if((id==null)){
 	%>
@@ -218,56 +183,47 @@ align-items: center;
 		}
 	%>
 <div class="wrap">
-	<!-- section01 -->
-	<section id="section01">
-		<section class="skewdBox">
-			<div id="background"><!-- 바탕사진 들어감 --></div>
-		</section>
-			<section class="skewdBox2">
-				<div style="width: 1280px; margin: 0 auto;">
-					<div id="halfround"></div>
-					<div id="explain01">
-						<h1> Show Your Rooms <br> on Community </h1>
-						<ul>
-							<li><h5> 집들이</h5> </li>
-							<li><h6> 집의 사진 및 인테리어에 이용한 상품 정보를 공유하는 공간 </h6>  </li>
-							<li><h5> 일상공유 </h5> </li>
-							<li><h6> 일상에 대한 정보를 공유하고 다른 사용자와 소통하는 공간 </h6>  </li>
-							<li><h5> 나와 비슷한 </h5> </li>
-							<li><h6> 우리집에 대한 정보를 입력하면 관련된 정보를 추천해주는 공간</h6>  </li>
-						</ul>
+	<!-- 중앙 상단부 슬라이더-->
+	<div id="slider">
+	  <a href="#" class="control_next">>></a>
+	  <a href="#" class="control_prev"><<</a>
+	  <ul>
+	    <li><img src="img/index/banner1.png" style="width: 1280px; height: 480px;"></li>
+	    <li><img src="img/index/banner2.png" style="width: 1280px; height: 480px;"></li>
+	    <li><img src="img/index/banner1.png" style="width: 1280px; height: 480px;"></li>
+	    <li><img src="img/index/banner2.png" style="width: 1280px; height: 480px;"></li>
+	  </ul>  
+	</div>
+
+	<!-- 중앙 하단부 커뮤니티, 스토어, 바치 사진&설명칸 -->
+	<div class="css-section-all">
+		<section>
+			<article>
+				<div class="css-title"><span>집치레에서 이용 할 수 있는 것</span></div>			
+				<!-- 커뮤니티/스토어/고수의 이미지 및 설명 영역 -->
+				<div class="css-chire-imgline">
+					<div class="css-chire-img">
+						<img src="img/index/community.gif" class="img-pic"/>
+						<img src="img/index/bachi.gif" class="img-pic"/s>
 					</div>
 				</div>
-			</section>
-		</section>
-	<!-- section02 -->
-	<section id="section02">
-		<div id="portionleft">
-			<div id="leftexplain">
-				<div id="explain02">
-					<h1>Connect with Experts <br>on Bachi</h1>
-					<ul>
-						<li><h5> 바치란?</h5> </li>
-						<li><h6> 어떤 한 분야의 장인을 뜻하는 말 입니다. <br> 집치레 에서는 이용자가 직접 서비스를 판매할 수 있는 시스템을 갖추고 있습니다. <br>
-								로그인 후 바치전환을 시도해 보세요.  </h6>  </li>
-						<li><h5> 바치를 이용하는 방법 </h5> </li>
-						<li><h6> 바치 마켓을 이용해보세요. <br> 여러가지 분야에 대한 서비스를 구매할 수 있습니다. <br> 
-								내가 관심있는 분야에 대해 직접 견적요청을 넣을 수도 있습니다.<br>  </h6>  </li>
-					</ul>
+			</article>
+			<article>
+			<div class="css-text">
+				<div class="css-text-area">
+					<h3> 커뮤니티</h3>
+					<li>커뮤니티 안에서는 글을 작성할 수 있으며, 인테리어에 관한 정보를 볼 수 있습니다.<br>
+					또한,각종 정보를 공유하고 sns기능과 같이 팔로우를 하고,좋아요 등 많은 기능을 사용할 수 있습니다.</li>
+				</div>
+				<div class="css-text-area">
+					<h3> 바치 </h3>
+					<li>바치에서는 바치를 등록하여 직접 서비스 판매자가 될 수 있습니다.<br>
+					또한,고객으로 서비스를 구매할 수 있으며 ,견적요청을 통해 많은 정보를 얻을 수 있습니다. </li>
 				</div>
 			</div>
-		</div>
-		<div id="portionright">
-			<div id="background2"><!-- 바탕사진 들어감 --></div>						
-			<div id="leftpicture"></div>			
-		</div>
-	</section>
-	<!-- section03 -->
-	<section id="section03">
-		<div style="width:1280px; margin : 0 auto;">
-			<div id="explain03"> <h1>How to Use Service?</h1> </div>
-		</div>
-	</section>
+			</article>
+		</section>
+	</div>
 </div>
 
 <!-- 좌측 sns팝업공간 -->
@@ -337,13 +293,56 @@ $(document).ready(function(){
 	/* 좌측 팝업 열고 닫는 기능 */
 	$(".out").on("click",function(){
 		$(".fixed-banner").css({'left':"-100%"});
-		$(".fixed-banner").css({'transition':"all 2s ease-out"});
+		$(".fixed-banner").css({'transition':"all 1s"});
 		});
 	$(".in").on("click",function(){
 		$(".fixed-banner").css({'left':"0"});
-		$(".fixed-banner").css({'transition':"all 2s ease-in"});
+		$(".fixed-banner").css({'transition':"all 1s"});
 		});
-});
+	});
+	
+	/*slider 관련 기능*/
+	$("subnav").hide();
+	setInterval(function () {
+	    moveRight();
+	}, 3000);
+	
+	var slideCount = $('#slider ul li').length;
+	var slideWidth = $('#slider ul li').width();
+	var slideHeight = $('#slider ul li').height();
+	var sliderUlWidth = slideCount * slideWidth;
+	
+	$('#slider').css({ width: slideWidth, height: slideHeight });
+	
+	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+	
+	$('#slider ul li:last-child').prependTo('#slider ul');
+	
+	function moveLeft() {
+	    $('#slider ul').animate({
+	        left: + slideWidth
+	    }, 200, function () {
+	        $('#slider ul li:last-child').prependTo('#slider ul');
+	        $('#slider ul').css('left', '');
+	    });
+	};
+	
+	function moveRight() {
+	    $('#slider ul').animate({
+	        left: - slideWidth
+	    }, 200, function () {
+	        $('#slider ul li:first-child').appendTo('#slider ul');
+	        $('#slider ul').css('left', '');
+	    });
+	};
+	
+	$('a.control_prev').click(function () {
+	    moveLeft();
+	});
+	
+	$('a.control_next').click(function () {
+	    moveRight();
+	});
 </script>
 </body>
 </html>
