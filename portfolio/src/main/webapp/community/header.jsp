@@ -299,7 +299,7 @@
 <!-- 						<input type="button" class="gosuch" id="write" value="글쓰기"> -->
 					</div>
 					<div class="items items2">
-						<a class="item_index" href="login.jsp">
+						<a class="item_index" href="snsIndexList.jsp">
 							<div style="width:50px; height: 50px;">
 							<!-- 이미지영역 -->
 							<svg version="1.1" id="Uploaded to svgrepo.com" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="50px" height="50px" viewBox="0 0 32 32" xml:space="preserve">
@@ -417,7 +417,7 @@
 			<div class="cumu"><li><a href ="community.jsp"> 커뮤니티 </a></li></div>
 <!-- 			<div class="store"><li><a href ="shopping.jsp"> 스토어 </a></li></div> -->
 			<div class="gosu"><li><a href ="../bachi/bachi_main.jsp"> 바치 </a></li></div>
-			<li><a href="index.jsp"><div class="logo"> </div></a></li>
+			<li><a href="snsIndexList.sns"><div class="logo"> </div></a></li>
 
 			<div class="serch">
 				<div class="search-box">
