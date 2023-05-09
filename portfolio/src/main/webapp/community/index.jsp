@@ -220,7 +220,6 @@ align-items: center;
     border-bottom: 1px solid #C0C0C0;
     z-index: 99;
 }
-}
 .in{
     position: fixed;
     _position: absolute;
@@ -265,7 +264,7 @@ align-items: center;
 				</div>
 				<ul>
 					<%
-						for(int i=0;i<=3;i++){
+						for(int i=0;i<=6;i++){
 							%>
 							<!-- 나머지 칸 -->
 							<li>
@@ -342,7 +341,7 @@ align-items: center;
 				<div id="leftexplain">
 					<div id="explain02">
 						<h1>
-							Connect with Experts <br>on Bachi
+							Connect with Experts <br> on Bachi
 						</h1>
 						<ul>
 							<li><h5>바치란?</h5></li>
