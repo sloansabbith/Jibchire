@@ -8,6 +8,7 @@ public class Feed_comment {
 	public int parent_cmt;
 	public String cmt_txt;
 	public String cmt_time;
+	public String cust_pic;
 	public int getCmt_id() {
 		return cmt_id;
 	}
@@ -49,6 +50,12 @@ public class Feed_comment {
 	}
 	public void setCmt_time(String cmt_time) {
 		this.cmt_time = cmt_time;
+	}
+	public String getCust_pic() {
+		return cust_pic;
+	}
+	public void setCust_pic(String cust_pic) {
+		this.cust_pic = cust_pic;
 	}
 	
 }

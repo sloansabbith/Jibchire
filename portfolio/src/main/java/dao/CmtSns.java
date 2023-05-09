@@ -272,7 +272,7 @@ public class CmtSns {
 				System.out.println("filename[3] =>"+filename[3]);
 				*/
 				feed.setWriterpic(rs.getString("cust_pic"));
-				feed.setWriterintroduce(rs.getString("cust_introduce"));
+//				feed.setWriterintroduce(rs.getString("cust_introduce"));
 				feed.setFeed_read(rs.getInt("feed_read"));
 				articleList.add(feed);
 			}
@@ -971,8 +971,16 @@ public class CmtSns {
 //			System.out.println(i+feed_id+"  출력중");
 		
 		try{
+//			pstmt = con.prepareStatement(
+//					"select * from feed_comment  "
+//					+ "left outer join cust_houseinfo on feed_comment.cust_id = cust_houseinfo.cust_id  "
+//					+ " where feed_id=? order by cmt_time desc;");
 			pstmt = con.prepareStatement(
-					"select * from feed_comment where feed_id=? order by cmt_time desc;");
+					"select feed_comment.feed_id, feed_comment.cmt_id, feed_comment.cust_id, feed_comment.root_cmt,"
+					+"feed_comment.parent_cmt, feed_comment.cmt_txt, cust_houseinfo.cust_pic,DATE_FORMAT(feed_comment.cmt_time,'%b.%e %H:%i') as cmt_time "
+					+"from feed_comment"
+					+"left outer join cust_houseinfo on feed_comment.cust_id = cust_houseinfo.cust_id  "
+					+"where feed_id=? order by cmt_time desc;");
 			pstmt.setInt(1, feed_id); 
 			rs= pstmt.executeQuery();
 	
@@ -986,7 +994,7 @@ public class CmtSns {
 				comment.setParent_cmt(rs.getInt("parent_cmt"));
 				comment.setCmt_txt(rs.getString("cmt_txt"));
 				comment.setCmt_time(rs.getString("cmt_time"));
-	
+				comment.setCust_pic(rs.getString("cust_pic"));
 				commentlist.add(comment);
 			}
 		}catch(Exception ex){

@@ -91,9 +91,10 @@
 									if(commentlist.get(j).getFeed_id()==feedid){
 										%>
 										<ul>
-											<li><%=commentlist.get(j).getCust_id() %> </li>
+											<li><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
+											<li><%=commentlist.get(j).getCust_id()%> </li>
 											<li><%=commentlist.get(j).getCmt_txt()%> </li>
-											<li><%=commentlist.get(j).getCmt_time() %> </li>
+											<li><%=commentlist.get(j).getCmt_time()%> </li>
 										</ul>
 										<% 
 									}
