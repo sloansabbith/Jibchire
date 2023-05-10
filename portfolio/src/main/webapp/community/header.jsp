@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
 <style>
 	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-
+* { margin : 0 ; padding : 0 ; } 
 	html{
 		font-family: 'NanumSquare';
 	}
@@ -414,7 +414,7 @@
 		</div>
 
 		<div class="header">
-			<div class="cumu"><li><a href ="community.jsp"> 커뮤니티 </a></li></div>
+			<div class="cumu"><li><a href ="../community/community.jsp"> 커뮤니티 </a></li></div>
 <!-- 			<div class="store"><li><a href ="shopping.jsp"> 스토어 </a></li></div> -->
 			<div class="gosu"><li><a href ="../bachi/bachi_main.jsp"> 바치 </a></li></div>
 			<li><a href="snsIndexList.sns"><div class="logo"> </div></a></li>
@@ -438,7 +438,7 @@
 		<div class="nav">
 		<nav>
 			<div id="cumu">	
-				<div class="index1"><li><a href="select_board.jsp">집들이</a></li></div>
+				<div class="index1"><li><a href="../community/select_board.jsp">집들이</a></li></div>
 				<div class="index2"><li><a href="../sns/snsListAction.sns">일상공유</a></li></div> <!-- 이렇게 호출하는게 맞네 -->
 				<div class="index2"><li><a href="login.jsp">나와 비슷한</a></li></div>
 			</div>
@@ -466,19 +466,19 @@
 		$(".nav").hide();
 		
 		$(".cumu").mouseenter(function(){
-			$(".nav").slideDown();
+			$(".nav").slideDown(200,'swing');
 			$("#cumu").show();
 			$("#shop").hide();
 			$("#gosu").hide();
 		});
 		$(".store").mouseenter(function(){
-			$(".nav").slideDown();
+			$(".nav").slideDown(200,'swing');
 			$("#shop").show();
 			$("#cumu").hide();
 			$("#gosu").hide();
 		})
 		$(".gosu").mouseenter(function(){
-			$(".nav").slideDown();
+			$(".nav").slideDown(200,'swing');
 			$("#gosu").show();
 			$("#cumu").hide();
 			$("#shop").hide();
@@ -486,19 +486,20 @@
 
 		$(".cumu , .store, .gosu").mouseout(function(){
 			$(".nav").mouseenter(function(){
-				$(".nav").show();
+				$(".nav").show(200,'swing');
 			});
 			$("header ~ .line").mouseout(function(){
 				$(".nav, .header").mouseenter(function(){
-					$(".nav").show();
+					$(".nav").show(200,'swing');
 				});	
-				$(".nav").slideUp();
+				$(".nav").slideUp(200,'swing');
 			});
 		});
 		
 		$("#write").on("click", function() {
 			$(".items, .items, .items2").toggle();
 		});
+		
 	});
 </script>
 </html>

@@ -37,15 +37,15 @@
 	<!-- 사진, 내용, 댓글 -->
 	<!-- 리스트, 썸네일목록 -->
 		<section>
-			<div id="title"> <h2><%=articleList.get(0).getCust_id()%> 님의 피드 </h2></div>
+			<div id="title"> <h2><%=articleList.get(0).getCust_id()%><%=articleList.get(0).getCust_pic()%> 님의 피드 </h2></div>
 			<div id="snsthunbnail">				
 				<ul>
 				<%	for(int i=0;i<articleList.size();i++){	%>
 					<li class="feed">
 					  	<!-- 타이틀. 회원사진과 아이디 -->
 					  	<div class='snstitle'>
-					  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='img/sns/901.png'"> 
-					  			<span>작성자 <%=articleList.get(i).getCust_id() %></span>
+					  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px;"> 
+					  			<span><%=articleList.get(i).getCust_id()%></span>
 					  		</div>
 				  		</div>
 						<div class='slider' id='slider<%=articleList.get(i).getFeed_id()%>'>
@@ -60,8 +60,9 @@
 						</div>
 						<!-- 내용공간. hashtag, 조회수 -->
 						<div class='txt'>
-							<!-- 팔로우 버튼. 이미 팔로우 누른 피드는 초록색 아이콘, 안누른 피드는 검은라인 아이콘 -->
+							<!-- 댓글 버튼 -->
 							<img src="img/sns/chat-1-line.png" class="buttoncomment" value="<%=articleList.get(i).getFeed_id()%>">
+							<!-- 팔로우 버튼. 이미 팔로우 누른 피드는 초록색 아이콘, 안누른 피드는 검은라인 아이콘 -->
 							<%
 								String follow = articleList.get(i).getFollow_time();
 								if(follow==null){
@@ -84,25 +85,30 @@
 							</div>
 						</div>
 						<!-- 댓글 -->
-						<div class="comment">
+						<div class="comment" id="<%=articleList.get(i).getFeed_id()%>">
 							<%
 								int feedid = articleList.get(i).getFeed_id();
 								for(int j =0; j<commentlist.size(); j++){
 									if(commentlist.get(j).getFeed_id()==feedid){
 										%>
 										<ul>
-											<li><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
-											<li><%=commentlist.get(j).getCust_id()%> </li>
-											<li><%=commentlist.get(j).getCmt_txt()%> </li>
-											<li><%=commentlist.get(j).getCmt_time()%> </li>
+											<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
+											<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li>
+											<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li>
+											<li class="commenttime"><%=commentlist.get(j).getCmt_time()%> </li>
 										</ul>
 										<% 
 									}
 								}
 							%>
-							<ul>
-								<li><input type="text" name="feed_comment"></li>
-								<li><button> 댓글 쓰기 </button> </li>
+							<ul class="inputcomment">
+								<% if(!(id==null)){%>
+								<li><%=id%></li>
+								<%	
+								}
+								%> 
+								<li><input type="text" name="feed_comment" class="commentwrite"></li>
+								<li><button class="commentsubmit" id="<%=articleList.get(i).getFeed_id()%>"> 입력 </button> </li>
 							</ul>
 						</div>
 					</li>
@@ -152,27 +158,6 @@
 	   });
 	});
 	
-// 	function deleteConfirm(){
-// 		var fid = document.getElementById("deleteConfirm").value;
-// 		var cnfm = confirm("삭제 하시겠습니까?");
-
-// 		if(cnfm){
-// 			document.location.href = "snsDeleteAction.sns?feed_id="+fid;
-// 		}else{
-// 			return false;
-// 		}
-// 	}
-// 	function updateConfirm(){
-// 		var fid = document.getElementById("deleteConfirm").value;
-// 		var cnfm = confirm("수정 하시겠습니까?");
-
-// 		if(cnfm){
-// 			document.location.href = "snsUpdateDataAction.sns?feed_id="+fid;
-// 		}else{
-// 			return false;
-// 		}
-// 	}
-
 	$(function(){
 		/* 좋아요 버튼 눌렀을 때 바로 DB작업하기*/
 		$(".buttonlike").click(function(){  
@@ -232,18 +217,58 @@
 		$(".comment").hide(); //댓글창 숨기기
 		/* 댓글 아이콘 눌렀을 때 댓글 창 */
 		$(".buttoncomment").click(function(){
-			var aa = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
-			$(".comment").show();
+			var value = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
+			var dd = "div#"+value;
+			$(dd).show(200,'swing');
 		});
 		
 		/*로그인 안했을 때 댓글 남길 수 없음*/
 		var cust_id= $("input:hidden[name=cust_id]").val();  
-		if(cust_id==null || cust_id.equals(null)){
+		if(cust_id==null){
 			$("input:text[name=feed_comment]").attr("readonly","readonly");
+			$("input:text[name=feed_comment]").attr("placeholder","로그인을 실행해주세요");
+		}else{
+			$("input:text[name=feed_comment]").attr("placeholder","50자까지 가능합니다");
 		}
 		
+		/*댓글 submit후 바로 보이기*/
+		$(".commentsubmit").click(function(){
+			var cmt_txt = $(".commentwrite").val();
+			var feed_id = $(".commentsubmit").attr("id");
+			var cust_id = $("input:hidden[name=cust_id]").val();
+			var feed_writer =$("span").html(); 
+			//alert(feed_writer);
+			$.ajax({
+				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
+				dataType : "html",
+				//data : "post",
+				success : function(check){
+					location.reload();//새로고침
+				}
+			});
+		});		
 
 		
+//	 	function deleteConfirm(){
+//	 		var fid = document.getElementById("deleteConfirm").value;
+//	 		var cnfm = confirm("삭제 하시겠습니까?");
+
+//	 		if(cnfm){
+//	 			document.location.href = "snsDeleteAction.sns?feed_id="+fid;
+//	 		}else{
+//	 			return false;
+//	 		}
+//	 	}
+//	 	function updateConfirm(){
+//	 		var fid = document.getElementById("deleteConfirm").value;
+//	 		var cnfm = confirm("수정 하시겠습니까?");
+
+//	 		if(cnfm){
+//	 			document.location.href = "snsUpdateDataAction.sns?feed_id="+fid;
+//	 		}else{
+//	 			return false;
+//	 		}
+//	 	}
 
 	});
 </script>	
