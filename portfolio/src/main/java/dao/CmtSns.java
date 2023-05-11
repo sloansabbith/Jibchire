@@ -262,7 +262,7 @@ public class CmtSns {
 				System.out.println("filename[2] =>"+filename[2]);
 				System.out.println("filename[3] =>"+filename[3]);
 				*/
-				feed.setWriterpic(rs.getString("cust_pic"));
+				feed.setCust_pic(rs.getString("cust_pic"));
 //				feed.setWriterintroduce(rs.getString("cust_introduce"));
 				feed.setFeed_read(rs.getInt("feed_read"));
 				articleList.add(feed);
@@ -282,14 +282,14 @@ public class CmtSns {
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		try{
 			String sql="select * from feed left outer join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id= ? "
-					+ "left outer join cust_follow on feed.cust_id = cust_follow.cust_following and cust_follow.cust_id= ? "
-					+ "left outer join cust_houseinfo on cust_houseinfo.cust_id= ? "
-					+ "where feed.cust_id= ? "
-					+ "order by feed.feed_date desc;";
+					+ " left outer join cust_follow on feed.cust_id = cust_follow.cust_following and cust_follow.cust_id= ? "
+					+ " left outer join cust_houseinfo on cust_houseinfo.cust_id= ? "
+					+ " where feed.cust_id= ? "
+					+ " order by feed.feed_date desc;";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, cust_id);
 			pstmt.setString(2, cust_id);
-			pstmt.setString(3, cust_id);
+			pstmt.setString(3, feed_writer);
 			pstmt.setString(4, feed_writer);
 			rs= pstmt.executeQuery();
 
@@ -528,9 +528,14 @@ public class CmtSns {
 		Feed feed;
 		int startrow=(page-1)*8; 
 		try{
-			pstmt = con.prepareStatement("select * from feed join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id=? left outer join cust_houseinfo on feed.cust_id=cust_houseinfo.cust_id order by feed_date desc limit ?,8");
+			pstmt = con.prepareStatement("select * from feed "
+					+ " join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id=? "
+					+ " left outer join cust_follow on feed.cust_id= cust_follow.cust_following and cust_follow.cust_id=?"
+					+ " left outer join cust_houseinfo on feed.cust_id=cust_houseinfo.cust_id "
+					+ " order by feed_like.like_time desc limit ?,8");
 			pstmt.setString(1, cust_id);
-			pstmt.setInt(2, startrow);
+			pstmt.setString(2, cust_id);
+			pstmt.setInt(3, startrow);
 			
 			rs= pstmt.executeQuery();
 
@@ -559,7 +564,8 @@ public class CmtSns {
 						feed.setFeed_pic3(filename[3]);
 					}
 				}
-				feed.setFeed_pics(filename[0]);
+				feed.setLike_time(rs.getString("like_time"));
+				feed.setFollow_time(rs.getString("follow_time"));
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
@@ -577,8 +583,11 @@ public class CmtSns {
 		PreparedStatement pstmt = null;  
 		ResultSet rs = null;
 		int page = search.getPage();
-		String select_search ="select * from Feed where feed_hashtag like '%"+search.getSearchword()+"%' "
-				+ "or feed_txt like '%"+search.getSearchword()+"%' order by feed_date desc limit ?,8 ;";
+		String select_search ="select * from Feed "
+				+ " left outer join cust_houseinfo on feed.cust_id = cust_houseinfo.cust_id "
+				+ " where feed_hashtag like '%"+search.getSearchword()+"%' "
+//				+ " or feed_txt like '%"+search.getSearchword()+"%' "
+				+ "order by feed_date desc limit ?,8 ;";
 		
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		Feed feed = null;
@@ -604,7 +613,18 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				feed.setFeed_pics(filename[0]);
+				for(int i = 0; i<filename.length;i++) {
+					if(i==0) {
+						feed.setFeed_pics(filename[0]);
+					}else if(i==1) {
+						feed.setFeed_pic1(filename[1]);
+					}else if(i==2) {
+						feed.setFeed_pic2(filename[2]);
+					}else if(i==3) {
+						feed.setFeed_pic3(filename[3]);
+					}
+				}
+				feed.setCust_pic(rs.getString("cust_pic"));
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
@@ -772,12 +792,14 @@ public class CmtSns {
 		Feed feed;
 		int startrow=(page-1)*8; 
 		try{
-			pstmt = con.prepareStatement(
-					"select * from feed join cust_follow on feed.cust_id= cust_follow.cust_following and cust_follow.cust_id=? "
+			pstmt = con.prepareStatement(" select * from feed "
+					+ " join cust_follow on feed.cust_id= cust_follow.cust_following and cust_follow.cust_id=? "
+					+ " left outer join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id=? "
 					+ " left outer join cust_houseinfo on feed.cust_id = cust_houseinfo.cust_id "
 					+ " order by feed_date desc limit ?, 8;");
 			pstmt.setString(1, cust_id);
-			pstmt.setInt(2, startrow);
+			pstmt.setString(2, cust_id);
+			pstmt.setInt(3, startrow);
 			rs= pstmt.executeQuery();
 
 			while(rs.next()){
@@ -794,7 +816,19 @@ public class CmtSns {
 				feed.setFeed_read(rs.getInt("feed_read"));
 				String feed_pics = rs.getString("feed_pics");
 				String [] filename = feed_pics.split(",");
-				feed.setFeed_pics(filename[0]);
+				for(int i = 0; i<filename.length;i++) {
+					if(i==0) {
+						feed.setFeed_pics(filename[0]);
+					}else if(i==1) {
+						feed.setFeed_pic1(filename[1]);
+					}else if(i==2) {
+						feed.setFeed_pic2(filename[2]);
+					}else if(i==3) {
+						feed.setFeed_pic3(filename[3]);
+					}
+				}
+				feed.setFollow_time(rs.getString("follow_time"));
+				feed.setLike_time(rs.getString("like_time"));
 				//썸네일에서는 어차피 파일 하나만 보여지기 때문에 썸네일 파일을 만든 첫번째 파일로 만들면 된다
 				articleList.add(feed);
 			}
@@ -972,6 +1006,7 @@ public class CmtSns {
 		ArrayList<Feed_comment> commentlist = new ArrayList<Feed_comment>();
 		Feed_comment comment = null;
 		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
 		ResultSet rs = null;
 		int feed_id = 0;
 		for (int i = 0 ; i<articleList.size(); i++) {
@@ -979,13 +1014,18 @@ public class CmtSns {
 //			System.out.println(i+feed_id+"  출력중");
 		
 		try{
+//			pstmt2 = con.prepareStatement("select feed_id from feed left outer join feed_like on feed.feed_id= feed_like.feed_id and feed_like.cust_id= ? "
+//					+ " left outer join cust_follow on feed.cust_id = cust_follow.cust_following and cust_follow.cust_id= ? "
+//					+ " left outer join cust_houseinfo on cust_houseinfo.cust_id= ? "
+//					+ " where feed.cust_id= ? "
+//					+ " order by feed.feed_date desc;");
 //			pstmt = con.prepareStatement(
 //					"select * from feed_comment  "
 //					+ "left outer join cust_houseinfo on feed_comment.cust_id = cust_houseinfo.cust_id  "
 //					+ " where feed_id=? order by cmt_time desc;");
 			pstmt = con.prepareStatement("select feed_comment.feed_id, feed_comment.cmt_id, feed_comment.cust_id, feed_comment.root_cmt,"
-					+ "feed_comment.parent_cmt, feed_comment.cmt_txt, cust_houseinfo.cust_pic,DATE_FORMAT(feed_comment.cmt_time,'%b.%e %H:%i') as cmt_time "
-					+ "from feed_comment left outer join cust_houseinfo on feed_comment.cust_id = cust_houseinfo.cust_id where feed_id= ? order by cmt_time desc");
+					+ " feed_comment.parent_cmt, feed_comment.cmt_txt, cust_houseinfo.cust_pic,DATE_FORMAT(feed_comment.cmt_time,'%b.%e %H:%i') as cmt_time "
+					+ " from feed_comment left outer join cust_houseinfo on feed_comment.cust_id = cust_houseinfo.cust_id where feed_id= ? order by cmt_time desc");
 			pstmt.setInt(1, feed_id); 
 			rs= pstmt.executeQuery();
 	

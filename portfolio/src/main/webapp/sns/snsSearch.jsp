@@ -69,7 +69,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='img/sns/901.png'"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>' onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>
@@ -129,7 +129,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='img/sns/901.png'"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"   onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'  onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>	
@@ -166,7 +166,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='img/sns/901.png'"></div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"></div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>' onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>	
@@ -234,15 +234,15 @@
 			}
 			%>
 		<!-- 글쓰기버튼 -->
-		<section> 
-			<% //로그인한 상태면 글쓰기 버튼 보이게 할 것
-				String id2 = (String) session.getAttribute("ID");
-				if(!(id2==null)){
-			%>
-			    <input type="button" value="글쓰기" onclick="location.href='snsWrite.jsp'" id="writing">
-		    <%  } 	
-		    %> 
-		</section>
+<!-- 		<section>  -->
+<%-- 			<% //로그인한 상태면 글쓰기 버튼 보이게 할 것 --%>
+<!-- // 				String id2 = (String) session.getAttribute("ID"); -->
+<!-- // 				if(!(id2==null)){ -->
+<%-- 			%> --%>
+<!-- 			    <input type="button" value="글쓰기" onclick="location.href='snsWrite.jsp'" id="writing"> -->
+<%-- 		    <%  } 	 --%>
+<%-- 		    %>  --%>
+<!-- 		</section> -->
 	</div>		
 <script>
 $(function(){
@@ -259,12 +259,60 @@ $(function(){
 				dataType : "html",
 				//data : "post",
 				success : function(check){
-					//alert("좋아요 완료");
+					//alert("");
 				}
 			});
-			$(this).css("background-color","black");
+
+			var src1 = $(this).attr("src");
+			//alert(src1);
+			if(src1=="img/sns/heart-fill.png"){
+				$(this).attr("src","img/sns/heart-add-line.png");
+			}else{
+				$(this).attr("src","img/sns/heart-fill.png");
+			}
+
 		}
 	});
+
+	/* 팔로우 버튼 눌렀을 때 바로 DB작업하기*/
+	$(".buttonfollow").click(function(){  
+		//버튼 div의 value값으로 feed_id를 넣어놨음
+		var cust_following= $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
+		var cust_id= $("input:hidden[name=cust_id]").val();  //로그인 한 사람의 아이디
+		if(cust_id==undefined){
+			alert("팔로우를 이용하시려면 로그인을 실행해주세요");
+		}else{ //아직 좋아요버튼을 누르지 않은 상태일때
+			$.ajax({
+				url : "snsFollowAction.sns?cust_following="+cust_following+"&cust_id="+cust_id,  
+				dataType : "html",
+				//data : "post",
+				success : function(check){
+					//alert("");
+				}
+			});
+		//내가 누른 버튼의 아이콘 변경. 그리고 같은 글쓴이를 공유하고 있는 다른 버튼들도 팔로우 버튼 자동적으로 변경 
+		var src1 = $(this).attr("src");
+		if(src1=="img/sns/user-unfollow-line.png"){
+			$(this).attr("src","img/sns/user-follow-fill.png");
+			$(".buttonfollow[value="+cust_following+"]").attr("src","img/sns/user-follow-fill.png");
+		}else{
+			$(this).attr("src","img/sns/user-unfollow-line.png");
+			$(".buttonfollow[value="+cust_following+"]").attr("src","img/sns/user-unfollow-line.png");
+		}
+		}
+	});
+	
+	/*마우스 올렸을 때 이미지 살짝 커지게 하기*/
+	$("img").mouseenter(function(){
+		$(this).css("scale","1.05");
+		$(this).css("transition","all 0.3s cubic-bezier(.25,.8,.25,1)");
+		$(this).css("cursor","pointer");
+	});
+	$("img").mouseleave(function(){
+		$(this).css("scale","1.0");
+	});
+	
+
 });
 </script>
 <!-- footer -->

@@ -68,7 +68,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px;"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>' onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>
@@ -128,7 +128,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px;"> </div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"  onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"> </div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>'  onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>	
@@ -165,7 +165,7 @@
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>
-								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"   onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px;"></div>
+								  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>"   onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"></div>
 								  		<span>작성자 <%=articleList.get(i).getCust_id() %></span></div>
 									<div class='thumbnail'><img src='feedPics/sm_<%=articleList.get(i).getFeed_pics() %>' onerror="this.src='feedPics/<%=articleList.get(i).getFeed_pics() %>'"   style="width: 350px; height: 350px;"> </div>
 								</a>	

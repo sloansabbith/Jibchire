@@ -37,15 +37,20 @@
 	<!-- 사진, 내용, 댓글 -->
 	<!-- 리스트, 썸네일목록 -->
 		<section>
-			<div id="title"> <h2><%=articleList.get(0).getCust_id()%><%=articleList.get(0).getCust_pic()%> 님의 피드 </h2></div>
+			<div id="title"> <h2 value="<%=articleList.get(0).getCust_id()%>"><%=articleList.get(0).getCust_id()%></h2></div>
 			<div id="snsthunbnail">				
 				<ul>
 				<%	for(int i=0;i<articleList.size();i++){	%>
 					<li class="feed">
 					  	<!-- 타이틀. 회원사진과 아이디 -->
 					  	<div class='snstitle'>
-					  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px;"> 
+					  		<div class="custpic"><img src="feedPics/<%=articleList.get(i).getCust_pic()%>" onerror="this.src='../sns/img/sns/profile04.jpg'" style="width: 50px; height: 50px;"> 
 					  			<span><%=articleList.get(i).getCust_id()%></span>
+					  			<div class="updatemenu" value="<%=articleList.get(i).getFeed_id()%>"><img src="img/sns/threedots.png" style="width: 50px;">  </div>
+					  			<ul class="updatelist" id="update<%=articleList.get(i).getFeed_id()%>">
+					  				<li class="btn_update">수정</li>
+					  				<li class="btn_delete">삭제</li>
+					  			</ul>
 					  		</div>
 				  		</div>
 						<div class='slider' id='slider<%=articleList.get(i).getFeed_id()%>'>
@@ -141,6 +146,7 @@
 		   }, 200, function () {
 		       $(li).prependTo(ul);
 		       $(ul).css('left', '');
+		       $(ul).css('transition',' all 0.4s cubic-bezier(.25,.8,.25,1)');
 	   });
 	});
 	
@@ -155,6 +161,7 @@
 		   }, 200, function () {
 		       $(li).prependTo(ul);
 		       $(ul).css('left', '');
+		       $(ul).css('transition',' all 0.4s cubic-bezier(.25,.8,.25,1)');
 	   });
 	});
 	
@@ -247,28 +254,45 @@
 				}
 			});
 		});		
-
 		
-//	 	function deleteConfirm(){
-//	 		var fid = document.getElementById("deleteConfirm").value;
-//	 		var cnfm = confirm("삭제 하시겠습니까?");
+		/*로그인 한 사람이 쓴 글일때 보이기 점3개 메뉴 보이기*/
+		var writer_id = $("h2").attr("value");
+		var login_id = $("input:hidden[name=cust_id]").val();
+		if(writer_id==login_id){
+			$(".updatemenu").show();
+		}
+		$(".updatelist").hide();
+		$(".updatemenu").click(function(){
+			var feed_id = $(this).attr("value");
+			var updatelist_id = "ul#update"+feed_id;
+			//alert(updatelist_id);
+			$(updatelist_id).show(200,'swing');
+			$(".btn_update").click(function(){
+				updateConfirm();
+			});
+			$(".btn_delete").click(function(){
+				deleteConfirm();
+			});
+			
+		 	function deleteConfirm(){
+		 		var cnfm = confirm("삭제 하시겠습니까?");
+		 		if(cnfm){
+		 			document.location.href = "snsDeleteAction.sns?feed_id="+feed_id;
+		 		}else{
+		 			return false;
+		 		}
+		 	}
+		 	function updateConfirm(){
+		 		var cnfm = confirm("수정 하시겠습니까?");
+		 		if(cnfm){
+		 			document.location.href = "snsUpdateDataAction.sns?feed_id="+feed_id;
+		 		}else{
+		 			return false;
+		 		}
+		 	}
+		});
+		
 
-//	 		if(cnfm){
-//	 			document.location.href = "snsDeleteAction.sns?feed_id="+fid;
-//	 		}else{
-//	 			return false;
-//	 		}
-//	 	}
-//	 	function updateConfirm(){
-//	 		var fid = document.getElementById("deleteConfirm").value;
-//	 		var cnfm = confirm("수정 하시겠습니까?");
-
-//	 		if(cnfm){
-//	 			document.location.href = "snsUpdateDataAction.sns?feed_id="+fid;
-//	 		}else{
-//	 			return false;
-//	 		}
-//	 	}
 
 	});
 </script>	
