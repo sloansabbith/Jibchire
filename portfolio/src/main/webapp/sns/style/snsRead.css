@@ -57,7 +57,7 @@ a.control_next {  right: 0;}
 .comment ul li.commenttime{position: relative;    top: -7px;font-size: 8px; }
 .inputcomment {margin:20px;}
 .inputcomment li:first-child{font-weight: 600;}
-.inputcomment .commentwrite{height: 40px;     width: 280px;  padding-left: 2em; border: 1px solid white;  
+.inputcomment .commentwrite{height: 40px;     width: 260px;  padding-left: 2em; border: 1px solid white;  
 			 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);}
 .inputcomment .commentsubmit{height: 41px;      width: 40px; border: 1px solid white;  
 			 box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);}
