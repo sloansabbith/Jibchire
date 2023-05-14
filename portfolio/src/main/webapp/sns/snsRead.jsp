@@ -12,7 +12,6 @@
 </head>
 <%  //데이터 작업으로 얻은 객체 가져오기
 	ArrayList<Feed> articleList = (ArrayList<Feed>)request.getAttribute("articleList");
-	ArrayList<Feed_comment> commentlist = (ArrayList<Feed_comment>)request.getAttribute("commentlist");
 %>
 <body>
 <!-- header -->
@@ -91,31 +90,32 @@
 						</div>
 						<!-- 댓글 -->
 						<div class="comment" id="<%=articleList.get(i).getFeed_id()%>">
-							<%
-								int feedid = articleList.get(i).getFeed_id();
-								for(int j =0; j<commentlist.size(); j++){
-									if(commentlist.get(j).getFeed_id()==feedid){
-										%>
+<%-- 							<% --%>
+<!-- // 								int feedid = articleList.get(i).getFeed_id(); -->
+<!-- // 								for(int j =0; j<commentlist.size(); j++){ -->
+<!-- // 									if(commentlist.get(j).getFeed_id()==feedid){ -->
+<%-- 										%> --%>
 										<ul>
-											<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
-											<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li>
-											<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li>
-											<li class="commenttime"><%=commentlist.get(j).getCmt_time()%> </li>
+<%-- 											<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li> --%>
+<%-- 											<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li> --%>
+<%-- 											<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li> --%>
+<%-- 											<li class="commenttime"><%=commentlist.get(j).getCmt_time()%> </li> --%>
 										</ul>
-										<% 
-									}
-								}
-							%>
-							<ul class="inputcomment">
-								<% if(!(id==null)){%>
-								<li><%=id%></li>
-								<%	
-								}
-								%> 
-								<li><input type="text" name="feed_comment" class="commentwrite"></li>
-								<li><button class="commentsubmit" id="<%=articleList.get(i).getFeed_id()%>"> 입력 </button> </li>
-							</ul>
+<%-- 										<%  --%>
+<!-- // 									} -->
+<!-- // 								} -->
+<%-- 							%> --%>
 						</div>
+						<ul class="inputcomment">
+							<% if(!(id==null)){%>
+							<li><%=id%></li>
+							<%	
+							}
+							%> 
+							<li><input type="text" name="feed_comment" class="commentwrite"></li>
+							<li><button class="commentsubmit" id="<%=articleList.get(i).getFeed_id()%>"> 입력 </button> </li>
+						</ul>
+						
 					</li>
 				<% } %>
 				</ul>
@@ -224,9 +224,23 @@
 		$(".comment").hide(); //댓글창 숨기기
 		/* 댓글 아이콘 눌렀을 때 댓글 창 */
 		$(".buttoncomment").click(function(){
-			var value = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
-			var dd = "div#"+value;
-			$(dd).show(200,'swing');
+			var cust_id = $("input:hidden[name=cust_id]").val();
+			var feed_id = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
+			var dd = "div#"+feed_id;
+			alert(cust_id+",feed_id"+feed_id);
+
+			$.ajax({
+	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
+	            dataType : "html",
+	            //data : "post",
+	            success : function(check){
+	            	alert(check);
+	                $(dd).html(check);
+	              
+      	     	}
+			});
+			 $(dd).show(200,'swing');
+			
 		});
 		
 		/*로그인 안했을 때 댓글 남길 수 없음*/
@@ -250,7 +264,7 @@
 				dataType : "html",
 				//data : "post",
 				success : function(check){
-					location.reload();//새로고침
+					//location.reload();//새로고침
 				}
 			});
 		});		

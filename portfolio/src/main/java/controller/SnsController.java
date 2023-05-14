@@ -17,6 +17,7 @@ import action.SnsIndexAction;
 import action.SnsInsertCommentAction;
 import action.SnsListAction;
 import action.SnsReadAction;
+import action.SnsReadCommentAction;
 import action.SnsSearchAction;
 import action.SnsUpdateAction;
 import action.SnsUpdateDataAction;
@@ -162,9 +163,17 @@ public class SnsController extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/sns/snsInsertComment.sns")){  //index화면에서 보여줄 데이터 연결
+		}else if(command.equals("/sns/snsInsertComment.sns")){  //댓글 집어넣기
 			System.out.println("댓글 insert 컨트롤러 실행");
 			action = new SnsInsertCommentAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/snsSelectComment.sns")){  //읽기화면에서 댓글 불러오기 
+			System.out.println("댓글 select 컨트롤러 실행");
+			action = new SnsReadCommentAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
