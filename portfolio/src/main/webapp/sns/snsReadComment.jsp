@@ -34,6 +34,7 @@
 	}else{
 		for(int j =0; j<commentlist.size(); j++){ 
 %>
+	<div class="comments"> 
 	<ul id="<%=commentlist.get(j).getFeed_id()%>">
 		<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
 		<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li>
@@ -48,6 +49,7 @@
 		}
 %>		
 	</ul>
+	</div>
 <%  
 		}
 	}
@@ -67,6 +69,8 @@
 		            dataType : "html",
 		            //data : "post",
 		            success : function(check){
+		            	alert(check);
+		            	$("div").html(check);
 		            	//$(location).prop("href", location.href); //새로고침
 		            	
 	      	     	}
