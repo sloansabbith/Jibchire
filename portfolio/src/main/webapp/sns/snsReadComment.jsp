@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.commentupdate:hover{cursor: pointer;}
+.commentdelete:hover{cursor: pointer;}
+</style>
 </head>
    <% 
 	String id = (String) session.getAttribute("ID");  //로그인한 아이디
@@ -30,7 +34,7 @@
 	}else{
 		for(int j =0; j<commentlist.size(); j++){ 
 %>
-	<ul>
+	<ul id="<%=commentlist.get(j).getFeed_id()%>">
 		<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
 		<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li>
 		<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li>
@@ -54,14 +58,17 @@
 		$(".commentdelete").click(function(){
 			var cnfm = confirm("삭제 하시겠습니까?");
 			var cmt_id = $(this).attr("id");
+			var cust_id = $("input:hidden[name=cust_id]").val();
+			var feed_id = $(this).parent().attr("id");
 	 		if(cnfm){
-	 			//alert(cmt_id);
+	 			//alert(feed_id);
 	 			$.ajax({
-		            url : "snsDeleteComment.sns?cmt_id="+cmt_id,  
+		            url : "snsDeleteComment.sns?cmt_id="+cmt_id+"&cust_id="+cust_id+"&feed_id="+feed_id,  
 		            dataType : "html",
 		            //data : "post",
 		            success : function(check){
-		            	//alert(check);
+		            	//$(location).prop("href", location.href); //새로고침
+		            	
 	      	     	}
 				});
 	 			//document.location.href = "snsDeleteComment.sns?cmt_id="+cmt_id;

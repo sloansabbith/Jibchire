@@ -97,10 +97,12 @@
 <!-- // 									if(commentlist.get(j).getFeed_id()==feedid){ -->
 <%-- 										%> --%>
 										<ul>
-<%-- 											<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li> --%>
-<%-- 											<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li> --%>
-<%-- 											<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li> --%>
-<%-- 											<li class="commenttime"><%=commentlist.get(j).getCmt_time()%> </li> --%>
+											<li class="commentimg"> </li>
+											<li class="commentid"> </li>
+											<li class="comnenttxt"> </li>
+											<li class="commenttime"></li>
+											<li class="commentupdate"></li>
+											<li class="commentdelete" ></li>
 										</ul>
 <%-- 										<%  --%>
 <!-- // 									} -->
@@ -240,7 +242,15 @@
 	                $(dd).html(check);
       	     	}
 			});
-			 $(dd).show(200,'swing');
+			$(dd).show(200,'swing');
+			var src1 = $(this).attr("src");
+			//alert(src1);
+			if(src1=="img/sns/chat-1-fill.png"){
+				$(this).attr("src","img/sns/chat-1-line.png");
+				$(dd).hide(200,'swing');
+			}else{
+				$(this).attr("src","img/sns/chat-1-fill.png");
+			} 
 			
 		});
 
@@ -260,28 +270,29 @@
 			var cmt_txt = $(input_txt).val();
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
-			alert(cmt_txt);
+			var dd = "div#"+feed_id;
+			//alert(cmt_txt);
 			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
 				dataType : "html",
 				//data : "post",
 				success : function(check){
-
+					/*댓글창 바로 보이기*/
+					//alert(dd);
+					$.ajax({
+			            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
+			            dataType : "html",
+			            success : function(check){
+			                $(dd).html(check);
+		      	     	}
+					});
 				}
 			});
-			/*댓글창 바로 보이기*/
-			var dd = "div#"+feed_id;
-			//alert(dd);
-			$.ajax({
-	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
-	            dataType : "html",
-	            success : function(check){
-	                $(dd).html(check);
-      	     	}
-			});
+			
 			$(dd).show(200,'swing');
 		});		
+		
 		
 		/*로그인 한 사람이 쓴 글일때 보이기 점3개 메뉴 보이기*/
 		var writer_id = $("h2").attr("value");
