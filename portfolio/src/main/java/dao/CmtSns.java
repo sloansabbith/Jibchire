@@ -1020,9 +1020,8 @@ public class CmtSns {
 					+ " where feed_id= ? order by cmt_time desc");
 			pstmt.setInt(1, feed_id); 
 			rs= pstmt.executeQuery();
-	
+			System.out.println("댓글select하는중");
 			while(rs.next()){
-				System.out.println("댓글select하는중");
 				comment = new Feed_comment();
 				comment.setFeed_id(rs.getInt("feed_id"));
 				comment.setCmt_id(rs.getInt("cmt_id"));
@@ -1049,7 +1048,7 @@ public class CmtSns {
 		int num =0;
 		String sql="";
 		int insertCount=0;
-
+		System.out.println("댓글insert하는중");
 		try{
 			sql="insert into feed_comment (cmt_id,feed_id,cust_id,root_cmt,parent_cmt,cmt_txt, cmt_time) values(default,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);
@@ -1068,7 +1067,23 @@ public class CmtSns {
 		}
 
 		return insertCount;
+	}
+	public int deleteComment(int cmt_id){  // 본인이 작성한 게시글을 하나 삭제하기
 
+		PreparedStatement pstmt = null;
+		int deleteCount=0;
+
+		try{
+			pstmt=con.prepareStatement("delete from feed_comment where cmt_id=?");
+			pstmt.setInt(1, cmt_id);
+			deleteCount=pstmt.executeUpdate();
+		}catch(Exception ex){
+			System.out.println(ex+"deleteComment메소드에서 오류");
+		}	finally{
+			close(pstmt);
+		}
+
+		return deleteCount;
 	}
 
 }

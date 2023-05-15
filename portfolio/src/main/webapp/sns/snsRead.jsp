@@ -90,6 +90,7 @@
 						</div>
 						<!-- 댓글 -->
 						<div class="comment" id="<%=articleList.get(i).getFeed_id()%>">
+							<div class="emptycomment"></div>
 <%-- 							<% --%>
 <!-- // 								int feedid = articleList.get(i).getFeed_id(); -->
 <!-- // 								for(int j =0; j<commentlist.size(); j++){ -->
@@ -110,9 +111,11 @@
 							<% if(!(id==null)){%>
 							<li><%=id%></li>
 							<%	
+							}else{
+							%><li style="width:40px;"></li><%	
 							}
 							%> 
-							<li><input type="text" name="feed_comment" class="commentwrite"></li>
+							<li><input type="text" name="feed_comment" id="<%=articleList.get(i).getFeed_id()%>"class="commentwrite"></li>
 							<li><button class="commentsubmit" id="<%=articleList.get(i).getFeed_id()%>"> 입력 </button> </li>
 						</ul>
 						
@@ -227,22 +230,20 @@
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_id = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
 			var dd = "div#"+feed_id;
-			alert(cust_id+",feed_id"+feed_id);
-
+			//alert(cust_id+",feed_id"+feed_id);
 			$.ajax({
 	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
 	            dataType : "html",
 	            //data : "post",
 	            success : function(check){
-	            	alert(check);
+	            	//alert(check);
 	                $(dd).html(check);
-	              
       	     	}
 			});
 			 $(dd).show(200,'swing');
 			
 		});
-		
+
 		/*로그인 안했을 때 댓글 남길 수 없음*/
 		var cust_id= $("input:hidden[name=cust_id]").val();  
 		if(cust_id==null){
@@ -254,19 +255,32 @@
 		
 		/*댓글 submit후 바로 보이기*/
 		$(".commentsubmit").click(function(){
-			var cmt_txt = $(".commentwrite").val();
-			var feed_id = $(".commentsubmit").attr("id");
+			var feed_id = $(this).attr("id"); 
+			var input_txt = "input:text[id="+feed_id+"]";
+			var cmt_txt = $(input_txt).val();
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
-			//alert(feed_writer);
+			alert(cmt_txt);
+			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
 				dataType : "html",
 				//data : "post",
 				success : function(check){
-					//location.reload();//새로고침
+
 				}
 			});
+			/*댓글창 바로 보이기*/
+			var dd = "div#"+feed_id;
+			//alert(dd);
+			$.ajax({
+	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
+	            dataType : "html",
+	            success : function(check){
+	                $(dd).html(check);
+      	     	}
+			});
+			$(dd).show(200,'swing');
 		});		
 		
 		/*로그인 한 사람이 쓴 글일때 보이기 점3개 메뉴 보이기*/
@@ -306,8 +320,6 @@
 		 	}
 		});
 		
-
-
 	});
 </script>	
 <!-- footer -->

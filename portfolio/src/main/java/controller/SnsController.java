@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MyPageWriteAction;
 import action.SnsDeleteAction;
+import action.SnsDeleteCommentAction;
 import action.SnsFollowAction;
 import action.SnsFollowLoginAction;
 import action.SnsHeartAction;
@@ -174,6 +175,14 @@ public class SnsController extends javax.servlet.http.HttpServlet
 		}else if(command.equals("/sns/snsSelectComment.sns")){  //읽기화면에서 댓글 불러오기 
 			System.out.println("댓글 select 컨트롤러 실행");
 			action = new SnsReadCommentAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/snsDeleteComment.sns")){  //읽기화면에서 댓글 불러오기 
+			System.out.println("댓글 delete 컨트롤러 실행");
+			action = new SnsDeleteCommentAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

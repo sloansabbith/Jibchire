@@ -23,6 +23,7 @@ import svc.SnsReadService;
 		commentlist = srv.getFeedComment(feed_id,cust_id);
 		
 		request.setAttribute("commentlist",commentlist);
+		request.setAttribute("cust_id", cust_id);
 
 		ActionForward forward = new ActionForward();
    		forward.setPath("snsReadComment.jsp");
