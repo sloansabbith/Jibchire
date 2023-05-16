@@ -73,18 +73,22 @@
 			$(this).parent().append("<li class='nothing'><input type='text' value='"+text+"' class='updatetxt'></li>"); //수정완료버튼 추가
 			$(this).parent().append("<li class='updatefinish'>수정완료</li>"); //수정완료버튼 추가
 			
-			
+			/*현재 시간 구하기*/
+			var today = new Date();   
+			var hours = ('0' + today.getHours()).slice(-2); 
+			var minutes = ('0' + today.getMinutes()).slice(-2);
+			var timeString = hours + ':' + minutes;
 			//$(this).prev().prev().html("<input type='text' value='"+text+"' class='updatetxt'>"); //수정 누르면 댓글=> 입력창으로 변경. 내용 디폴트로 넣어두기 
 			
 			$(".updatefinish").click(function(){
 				var cmt_txt = $(this).prev().children().val(); //수정한 텍스트값
-				alert(cmt_txt);
+				//  alert(cmt_txt);
 	 			/* ui로 수정되는 모습 먼저 보여주기. */
 	 			$(".nothing").hide();
 	 			$(".updatefinish").hide();
             	var ss = "ul#"+cmt_id;
 				$(ss).children(".comnenttxt").text(cmt_txt).show(200,'swing');
-				$(ss).children(".commenttime").show(200,'swing');
+				$(ss).children(".commenttime").text(timeString).show(200,'swing');
             	$(ss).children(".commentupdate").show(200,'swing');
             	$(ss).children(".commentdelete").show(200,'swing');
             	
