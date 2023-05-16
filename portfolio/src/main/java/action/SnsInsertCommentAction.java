@@ -25,8 +25,6 @@ public class SnsInsertCommentAction implements Action {
 		comment.setFeed_id(feed_id);
 		comment.setCmt_txt(cmt_txt);
 		
-		System.out.println("snsInsertCommentAction도착");
-		
 		/*service 부르기*/
 		SnsInsertCommentService srv = new SnsInsertCommentService();
 		boolean isWriteSuccess = srv.registArticle(comment);

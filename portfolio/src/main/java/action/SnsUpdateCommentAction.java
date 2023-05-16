@@ -1,35 +1,52 @@
 package action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.ActionForward;
-import dto.Feed;
-import svc.SnsReadService;
-import svc.SnsUpdateDataService;
+import dto.Feed_comment;
+import svc.SnsUpdateCommentService;
 
  public class SnsUpdateCommentAction implements Action {
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{ 
 	   	
-		int feed_id=Integer.parseInt(request.getParameter("feed_id")); //고유번호 feed_id 가져오기
-		Feed feed = null;
-		
-		SnsUpdateDataService srv = new SnsUpdateDataService();
-		/*로그인 되어있으면 좋아요&팔로잉 정보까지 가져오기, 로그인 안되어있으면 전체정보만 가져오기*/
+		Feed_comment comment = new Feed_comment();
+		int cmt_id = Integer.parseInt(request.getParameter("cmt_id"));
+		int feed_id = Integer.parseInt(request.getParameter("feed_id")); //고유번호 feed_id 가져오기
 		String cust_id= request.getParameter("cust_id");
-		if(cust_id==null||cust_id.equals(null)||cust_id.equals("null")){
-			System.out.println(" readaction도착 로그인 비완료 ==>> 그냥 출력 서비스 메소드로 ");
-			feed = srv.getArticle(feed_id);    // articleList = feed테이블에 저장되어 있는 모든 값
-		}else {
-			System.out.println(" readaction도착 로그인 완료 ==>> "+cust_id+"  좋아요,팔로우 로그인 서비스 출력 메소드로");
-			feed = srv.getHeartArticle(feed_id,cust_id);//로그인되어있으면 좋아요정보까지 가져오는 메소드 연결
-			
-		}
+		String cmt_txt = request.getParameter("cmt_txt");
+		System.out.println("cmt_id  : "+cmt_id);
+		System.out.println("feed_id  : "+feed_id);
+		System.out.println("cust_id  : "+cust_id);
+		System.out.println("cmt_txt  : "+cmt_txt);
+		
+		comment.setCmt_id(cmt_id);
+		comment.setFeed_id(feed_id);
+		comment.setCust_id(cust_id);
+		comment.setCmt_txt(cmt_txt);
 
+		System.out.println("snsUpdateCommentAction도착");
+		SnsUpdateCommentService srv = new SnsUpdateCommentService();
+		boolean isUpdateSuccess = srv.updateComment(comment);
+		
 		ActionForward forward = new ActionForward();
-	   	request.setAttribute("Feed", feed);
-   		forward.setPath("snsUpdate.jsp");
+		
+		if(!isUpdateSuccess){
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('글 수정하기에 실패했습니다')");
+			out.println("history.back();");
+			out.println("</script>");
+		}
+		else{
+			forward = new ActionForward();
+			forward.setRedirect(true);
+			forward.setPath("snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id);
+		}
    		return forward;
 
 	 }

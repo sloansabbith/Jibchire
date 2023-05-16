@@ -10,6 +10,10 @@
 <style>
 .commentupdate:hover{cursor: pointer;}
 .commentdelete:hover{cursor: pointer;}
+.updatetxt{height: 25px;    padding-left: 0.5em;    width: 260px; border: 1px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);     position: relative;
+    top: -7px;
+    margin-left: 10px;}
+.updatefinish{height: 25px; position: relative;  top: -13px; font-size: 9pt;  border: 1px solid white;  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); margin-left: 5px;}
 </style>
 </head>
    <% 
@@ -28,14 +32,13 @@
 	if(commentlist.size()==0){
 %>
 	<div class="comment">
-		<div style="margin: 20px auto; width: 60%;font-weight: 700; font-style: italic;"> 아직 등록된 댓글이 없습니다. </div>
+		<div style="margin: 20px auto; width: 60%; font-weight: 700; font-style: italic;"> 아직 등록된 댓글이 없습니다. </div>
 	</div>
 <%	
 	}else{
 		for(int j =0; j<commentlist.size(); j++){ 
 %>
-	<div class="comments"> 
-	<ul id="<%=commentlist.get(j).getFeed_id()%>">
+	<ul class="<%=commentlist.get(j).getFeed_id()%>" id="<%=commentlist.get(j).getCmt_id()%>"> 
 		<li class="commentimg"><img src="feedPics/<%=commentlist.get(j).getCust_pic()%>" onerror="this.src='img/sns/reddit-round-line-icon.png'" style="width:24px; height: 24px;"> </li>
 		<li class="commentid"><%=commentlist.get(j).getCust_id()%> </li>
 		<li class="comnenttxt"><%=commentlist.get(j).getCmt_txt()%> </li>
@@ -49,33 +52,78 @@
 		}
 %>		
 	</ul>
-	</div>
 <%  
 		}
 	}
 %>
 <script>
 	$(function(){
-		/*댓글 수정 삭제*/
+		/*댓글 수정 */
+		$(".commentupdate").click(function(){
+			
+			var feed_id = $(this).parent().attr("class");
+			var cmt_id = $(this).attr("id");
+			var cust_id = $("input:hidden[name=cust_id]").val();
+			var text = $(this).prev().prev().text();     // 댓글내용 가져오기 (시간을 지웠으므로 바로 전의 값을 가져와야 함)
+			
+			$(this).prev().hide(); //시간 감추기
+			$(this).prev().prev().hide(); //본래의 텍스트 감추기
+			$(this).next().hide(); //삭제버튼 감추기
+			$(this).hide();   //기존의 수정버튼 감추기
+			$(this).parent().append("<li class='nothing'><input type='text' value='"+text+"' class='updatetxt'></li>"); //수정완료버튼 추가
+			$(this).parent().append("<li class='updatefinish'>수정완료</li>"); //수정완료버튼 추가
+			
+			
+			//$(this).prev().prev().html("<input type='text' value='"+text+"' class='updatetxt'>"); //수정 누르면 댓글=> 입력창으로 변경. 내용 디폴트로 넣어두기 
+			
+			$(".updatefinish").click(function(){
+				var cmt_txt = $(this).prev().children().val(); //수정한 텍스트값
+				alert(cmt_txt);
+	 			/* ui로 수정되는 모습 먼저 보여주기. */
+	 			$(".nothing").hide();
+	 			$(".updatefinish").hide();
+            	var ss = "ul#"+cmt_id;
+				$(ss).children(".comnenttxt").text(cmt_txt).show(200,'swing');
+				$(ss).children(".commenttime").show(200,'swing');
+            	$(ss).children(".commentupdate").show(200,'swing');
+            	$(ss).children(".commentdelete").show(200,'swing');
+            	
+            	/* 데이터 작업하기 */
+	 			var cnfm = confirm("수정 하시겠습니까?");
+	 	 		if(cnfm){
+	 	 			$.ajax({
+	 		            url : "snsUpdateComment.sns?cmt_id="+cmt_id+"&cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt,  
+	 		            dataType : "html",
+	 		            success : function(check){
+	 	      	     	}
+	 				});
+	 	 		}else{
+	 	 			return false;
+	 	 		}
+			});
+
+		});
+		/*댓글 삭제*/
 		$(".commentdelete").click(function(){
 			var cnfm = confirm("삭제 하시겠습니까?");
 			var cmt_id = $(this).attr("id");
 			var cust_id = $("input:hidden[name=cust_id]").val();
-			var feed_id = $(this).parent().attr("id");
+			var feed_id = $(this).parent().attr("class");
 	 		if(cnfm){
-	 			//alert(feed_id);
+	 			/* ui로 삭제되는 모습 먼저 보여주기.*/
+            	var ss = "ul#"+cmt_id;
+            	$(ss).hide(200,'swing');
+            	$(ss).children.hide(200,'swing');
+            	/* 데이터 작업하기 */
 	 			$.ajax({
 		            url : "snsDeleteComment.sns?cmt_id="+cmt_id+"&cust_id="+cust_id+"&feed_id="+feed_id,  
 		            dataType : "html",
 		            //data : "post",
 		            success : function(check){
-		            	alert(check);
-		            	$("div").html(check);
-		            	//$(location).prop("href", location.href); //새로고침
-		            	
+	            	
 	      	     	}
 				});
-	 			//document.location.href = "snsDeleteComment.sns?cmt_id="+cmt_id;
+	 			//document.location.href = "snsDeleteComment.sns?cmt_id="+cmt_id; //새로고침은 실패했을 때 차선책
 	 		}else{
 	 			return false;
 	 		}

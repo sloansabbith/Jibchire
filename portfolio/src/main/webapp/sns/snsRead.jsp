@@ -227,18 +227,17 @@
 		});
 		
 		$(".comment").hide(); //댓글창 숨기기
-		/* 댓글 아이콘 눌렀을 때 댓글 창 */
+		/* 댓글 아이콘 눌렀을 때 댓글 창 보이기 */
 		$(".buttoncomment").click(function(){
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_id = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
 			var dd = "div#"+feed_id;
-			//alert(cust_id+",feed_id"+feed_id);
+			
 			$.ajax({
 	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
 	            dataType : "html",
 	            //data : "post",
 	            success : function(check){
-	            	//alert(check);
 	                $(dd).html(check);
       	     	}
 			});
@@ -271,15 +270,14 @@
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
 			var dd = "div#"+feed_id;
-			//alert(cmt_txt);
+			
 			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
 				dataType : "html",
-				//data : "post",
 				success : function(check){
+					
 					/*댓글창 바로 보이기*/
-					//alert(dd);
 					$.ajax({
 			            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
 			            dataType : "html",

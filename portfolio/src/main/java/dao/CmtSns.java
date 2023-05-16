@@ -1085,5 +1085,31 @@ public class CmtSns {
 
 		return deleteCount;
 	}
+	public int updateComment(Feed_comment comment){   // 댓글 수정 
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int num =0;
+		String sql="";
+		int updateCount=0;
+
+		try{
+			sql="update feed_comment set cmt_txt=?, cmt_time=now() "
+					+ "where cmt_id=?;";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, comment.getCmt_txt());
+			pstmt.setInt(2, comment.getCmt_id());
+
+			updateCount=pstmt.executeUpdate(); //수행하면 insertCount=1
+
+		}catch(Exception ex){
+			System.out.println(ex+"=> updateFeed에서 오류");
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+
+		return updateCount;
+
+	}
 
 }
