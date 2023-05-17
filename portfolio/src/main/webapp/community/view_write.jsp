@@ -7,12 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>게시글 작성</title>
 	<link rel="stylesheet" type="text/css" href="style/view_write.css">
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/resources/demos/style.css">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 <script>
 //첨부파일 삽입하면 이미지 미리보기
@@ -30,7 +26,6 @@ function readImage(input) {
 	  }
 	}
 $(function(){
-	$(".draggable").draggable({ containment: "#previewImg" });
 	
 	// 공사시작일, 공사마감일에 대한 select의 옵션 추가하기
     // 생년월일 selectbox 만들기 위한 변수선언
@@ -243,37 +238,32 @@ $(function(){
 			</tr>
 			</tbody>		
 		</table>
-		<table id="writing">
-			<thead><tr><td><h4> 글 작성 </h4></td></tr></thead>
-				<tbody>
-					<tr>
-						<td id="title"><input type="text" name="post_title" placeholder="글제목"></td>
-					</tr>
-					<tr>
-						<td><div id="preview">
-								<img id="previewImg">
-								<img src="img/community/png/green-button.png" class="draggable" id="icon1">
-									<input type="hidden" name="icon1">
-								<img src="img/community/png/green-button.png" class="draggable" id="icon2">
-									<input type="hidden" name="icon2">
-								<img src="img/community/png/green-button.png" class="draggable" id="icon3">
-									<input type="hidden" name="icon3">
-							</div></td>
-					</tr>
-					<tr>
-						<td><h5>가장 메인이 되는 사진을 올려주세요. 이 사진은 썸네일로 사용 될 예정입니다</h5> <input
-							type="file" onchange="readImage(this);" name="post_pics">
-							<input type="file" name="post_pic1"> <input type="file"
-							name="post_pic2"> <input type="file" name="post_pic3">
-						</td>
-					</tr>
-					<tr>
-						<td id="text"><textarea name="post_txt" id="textarea"
-								placeholder="글내용을 입력해주세요"></textarea></td>
-					</tr>
-				</tbody>
-				<tfoot>	<tr><td> <input type="submit" value="작성완료"> </td></tr>	</tfoot>
-		</table>
+		<jsp:include page="draggable.jsp"></jsp:include>
+<!-- 		<table id="writing"> -->
+<!-- 			<thead><tr><td><h4> 글 작성 </h4></td></tr></thead> -->
+<!-- 				<tbody> -->
+<!-- 					<tr> -->
+<!-- 						<td id="title"><input type="text" name="post_title" placeholder="글제목"></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td><div id="preview"> -->
+<!-- 								<img id="previewImg"> -->
+<!-- 							</div></td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td><h5>가장 메인이 되는 사진을 올려주세요. 이 사진은 썸네일로 사용 될 예정입니다</h5> <input -->
+<!-- 							type="file" onchange="readImage(this);" name="post_pics"> -->
+<!-- 							<input type="file" name="post_pic1"> <input type="file" -->
+<!-- 							name="post_pic2"> <input type="file" name="post_pic3"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+<!-- 					<tr> -->
+<!-- 						<td id="text"><textarea name="post_txt" id="textarea" -->
+<!-- 								placeholder="글내용을 입력해주세요"></textarea></td> -->
+<!-- 					</tr> -->
+<!-- 				</tbody> -->
+<!-- 				<tfoot>	<tr><td> <input type="submit" value="작성완료"> </td></tr>	</tfoot> -->
+<!-- 		</table> -->
 	</div>
 </form>
 

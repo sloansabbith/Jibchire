@@ -294,12 +294,12 @@ public class CmtHousewarming {
 			stmt = conn.createStatement();
 			String insert = String.format("insert into post_house (post_id,cust_id,post_title,post_txt,post_txt2,post_house,"
 					+ "post_rooms,post_m2,post_fam,post_houseold,post_budget,post_family,post_direc,post_region,"
-					+ "post_pet,post_startdate,post_enddate,post_pics,post_color,post_writetime)"
-					+ "values(%s,'%s','%s','%s','%s',%s,%s,%s,%s,%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s',now());", "default",
+					+ "post_pet,post_startdate,post_enddate,post_pics,post_color,post_writetime,post_position)"
+					+ "values(%s,'%s','%s','%s','%s',%s,%s,%s,%s,%s,'%s','%s','%s','%s','%s','%s','%s','%s','%s',now(),'%s');", "default",
 					po.getCust_id(),po.getPost_title(),po.getPost_txt(),po.getPost_txt2(),po.getPost_house(),
 					po.getPost_rooms(),po.getPost_m2(),po.getPost_fam(),po.getPost_houseold(),po.getPost_budget(),
 					po.getPost_family(),po.getPost_direc(),po.getPost_region(),po.getPost_pet(),po.getPost_startdate(),
-					po.getPost_enddate(),po.getPost_pics(),po.getPost_color());
+					po.getPost_enddate(),po.getPost_pics(),po.getPost_color(),po.getPost_position());
 			stmt.executeUpdate(insert);	
 		}catch(Exception e){
 			System.out.println(e+"insert_board() 메소드에서 오류남");
