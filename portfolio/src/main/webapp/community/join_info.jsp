@@ -3,6 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title> cust_info4 </title>
 	<link rel="stylesheet" type="text/css" href="style/join_info.css?ver=1">
 	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Hahmlet&family=Noto+Sans+KR:wght@100&display=swap" rel="stylesheet">
@@ -11,9 +12,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="js/join_info.js"> </script>
-<script type="text/javascript">
 
-</script>
 <% request.setCharacterEncoding("utf-8");  %>
 <body>
 	<section>     

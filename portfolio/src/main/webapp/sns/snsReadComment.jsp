@@ -114,11 +114,8 @@
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_id = $(this).parent().attr("class");
 	 		if(cnfm){
-	 			/* ui로 삭제되는 모습 먼저 보여주기.*/
-            	var ss = "ul#"+cmt_id;
-            	$(ss).hide(200,'swing');
-            	$(ss).children.hide(200,'swing');
-            	/* 데이터 작업하기 */
+            	//alert(cmt_id+" cust_id "+cust_id+"  feed_id  "+feed_id);
+            	/* 데이터 작업하기*/
 	 			$.ajax({
 		            url : "snsDeleteComment.sns?cmt_id="+cmt_id+"&cust_id="+cust_id+"&feed_id="+feed_id,  
 		            dataType : "html",
@@ -127,6 +124,10 @@
 	            	
 	      	     	}
 				});
+	 			/* ui로 삭제되는 모습 보여주기. ui삭제가 먼저 보여지면 데이터 값을 못 불러와서 삭제가 안됨!!!!*/
+            	var ss = "ul#"+cmt_id;
+            	$(ss).hide(200,'swing');
+            	$(ss).children.hide(200,'swing');
 	 			//document.location.href = "snsDeleteComment.sns?cmt_id="+cmt_id; //새로고침은 실패했을 때 차선책
 	 		}else{
 	 			return false;
