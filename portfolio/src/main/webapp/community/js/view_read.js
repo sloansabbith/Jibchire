@@ -1,4 +1,10 @@
-$(function(){		
+$(function(){	
+	
+	/* 설정된 좌표 가져오기  */	
+	var top = $("#icon1").css("top");
+	var left = $("#icon1").css("left");
+	var position = top +","+left;
+	$("input:hidden[name='icon1']").attr("value",position);
 	//상품상세설명 
  	$(".itemthumbnailinfo").hide();
 	$(".itemthumbnail > li#item10").mouseover(function(){

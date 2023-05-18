@@ -193,6 +193,14 @@
 				    	<% }%>
 			    </ul>
 			</div>	
+			<div>
+				<img src="../img/community/png/green-button.png" class="draggable" style="position:relative; top:<%=po.getPost_position10()%> ; left:<%=po.getPost_position11()%>;">
+					<input type="hidden" name="icon1">
+				<img src="../img/community/png/green-button.png" class="draggable" id="icon2">
+					<input type="hidden" name="icon2">
+				<img src="../img/community/png/green-button.png" class="draggable" id="icon3">
+					<input type="hidden" name="icon3">
+			</div>
 			<pre>
     			<%=po.getPost_txt2()%>
     		</pre>
