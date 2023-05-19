@@ -133,6 +133,27 @@
 		   			<%=po.getPost_txt()%>
 		   		</pre>
     		</div>
+			<div id="position">
+
+				<%  String pstn =  po.getPost_postition();
+					String [] position = null;
+					if(!(pstn == null || pstn.isEmpty())){
+						position = pstn.split(",");
+						for(int j =0 ; j<position.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
+				%>
+				<!-- 포지션 값이 있으면 각각의 값에 대한 아이콘 넣기 -->
+				<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" 
+					style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;">
+				<%		}
+						for(int j =0 ; j<position.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
+							String distinctitem = "item_div"+position[j];
+				%>
+				<!-- 아이콘에 대한 정보를 넣기 위한 div. for문을 각각 돌려줘야 position 오류가 나지 않음 -->
+				<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;"> </div>
+				<%		}
+					}
+				%>
+			</div>
     		<div class="postPics">
 				 <div class="pics">
 				 	<img src="postPics/<%=po.getPost_pic2() %>" id="insertedbigpicture" style="width:630px; height: 780px;">
@@ -160,72 +181,56 @@
 				<a class="control_next">>></a>
 				<a class="control_prev"><<</a>
 				<ul class="itemthumbnail">
-						<% if(!(po.getPost_item10()==null)){ %>
-				    <li id="item10"><img src="postPics/<%=po.getPost_item10()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item10()%>"></li>
-				    	<% } if(!(po.getPost_item11()==null)){ %>
-				    <li id="item11"><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item11()%>"></li>
-				    	<% } if(!(po.getPost_item12()==null)){ %>
-				    <li id="item12"><img src="postPics/<%=po.getPost_item12()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item12()%>"></li>
-				    	<% } if(!(po.getPost_item13()==null)){ %>
-				    <li id="item13"><img src="postPics/<%=po.getPost_item13()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item13()%>"></li>
-			    		<% } if(!(po.getPost_item14()==null)){ %>
-			    	<li id="item14"><img src="postPics/<%=po.getPost_item14()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item14()%>"></li>
-				    	<% } if(!(po.getPost_item15()==null)){ %>
-				    <li id="item15"><img src="postPics/<%=po.getPost_item15()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item15()%>"></li>
-				    	<% } if(!(po.getPost_item16()==null)){ %>
-				    <li id="item16"><img src="postPics/<%=po.getPost_item16()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item16()%>"></li>
-				    	<% } if(!(po.getPost_item17()==null)){ %>
-				    <li id="item17"><img src="postPics/<%=po.getPost_item17()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item17()%>"></li>
-				    	<% } if(!(po.getPost_item18()==null)){ %>
-			    	<li id="item18"><img src="postPics/<%=po.getPost_item18()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item18()%>"></li>
-				    	<% } if(!(po.getPost_item19()==null)){ %>
-			    	<li id="item19"><img src="postPics/<%=po.getPost_item19()%>"style="width:130px; height: 130px;">
-				    	<input type="hidden" value="<%=po.getPost_item19()%>"></li>
-				    	<% }%>
+				<%  
+					String item = po.getPost_item();
+					String [] items = null;
+					if(!(item == null || item.isEmpty())){
+						items = item.split(",");
+						for(int j =0 ; j<items.length ; j++){ //포지션은 x,y이니까 2칸씩 점프
+							String itemid = "item1"+j;
+				%>				
+				    <li id="<%=itemid%>"><img src="postPics/<%=items[j]%>"style="width:130px; height: 130px;">
+				    	<input type="hidden" value="<%=items[j]%>"></li>
+				<% 
+						} 
+				    }
+				%>
+<%-- 						<% if(!(po.getPost_item10()==null)){ %> --%>
+<%-- 				    <li id="item10"><img src="postPics/<%=po.getPost_item10()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item10()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item11()==null)){ %> --%>
+<%-- 				    <li id="item11"><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item11()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item12()==null)){ %> --%>
+<%-- 				    <li id="item12"><img src="postPics/<%=po.getPost_item12()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item12()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item13()==null)){ %> --%>
+<%-- 				    <li id="item13"><img src="postPics/<%=po.getPost_item13()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item13()%>"></li> --%>
+<%-- 			    		<% } if(!(po.getPost_item14()==null)){ %> --%>
+<%-- 			    	<li id="item14"><img src="postPics/<%=po.getPost_item14()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item14()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item15()==null)){ %> --%>
+<%-- 				    <li id="item15"><img src="postPics/<%=po.getPost_item15()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item15()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item16()==null)){ %> --%>
+<%-- 				    <li id="item16"><img src="postPics/<%=po.getPost_item16()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item16()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item17()==null)){ %> --%>
+<%-- 				    <li id="item17"><img src="postPics/<%=po.getPost_item17()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item17()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item18()==null)){ %> --%>
+<%-- 			    	<li id="item18"><img src="postPics/<%=po.getPost_item18()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item18()%>"></li> --%>
+<%-- 				    	<% } if(!(po.getPost_item19()==null)){ %> --%>
+<%-- 			    	<li id="item19"><img src="postPics/<%=po.getPost_item19()%>"style="width:130px; height: 130px;"> --%>
+<%-- 				    	<input type="hidden" value="<%=po.getPost_item19()%>"></li> --%>
+<%-- 				    	<% }%> --%>
 			    </ul>
 			</div>	
-			<div>
-				<img src="../img/community/png/green-button.png" class="draggable" style="position:relative; top:<%=po.getPost_position10()%> ; left:<%=po.getPost_position11()%>;">
-					<input type="hidden" name="icon1">
-				<img src="../img/community/png/green-button.png" class="draggable" id="icon2">
-					<input type="hidden" name="icon2">
-				<img src="../img/community/png/green-button.png" class="draggable" id="icon3">
-					<input type="hidden" name="icon3">
-			</div>
 			<pre>
     			<%=po.getPost_txt2()%>
     		</pre>
-<!--     		<div class="postPics"> -->
-<%-- 				 <div class="pics"> <img src="postPics/<%=po.getPost_pic3() %>"style="width:600px; height: auto;"> </div> --%>
-<!-- 				 <div class="postItem"> -->
-<!-- 				 	<ul class="itemthumbnailinfo"> -->
-<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
-<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
-<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
-<!-- 				 		<li> <div class="postIteminfos"> </div> </li> -->
-<!-- 				 	</ul> -->
-<!-- 				 	큰 사진에 대한 상품 사진 넣는 공간 -->
-<!-- 				 	<ul class="itemthumbnail"> -->
-<%-- 				 		<li><img src="postPics/<%=po.getPost_item10()%>" style="width:120px; height: 120px;">  --%>
-<%-- 				 			<input type="hidden" value="<%=po.getPost_item10()%>"></li> --%>
-<%-- 				 		<li><img src="postPics/<%=po.getPost_item11()%>" style="width:120px; height: 120px;">  --%>
-<%-- 				 			<input type="hidden" value="<%=po.getPost_item11()%>"></li> --%>
-<%-- 				 		<li><img src="postPics/<%=po.getPost_item12()%>" style="width:120px; height: 120px;">  --%>
-<%-- 				 			<input type="hidden" value="<%=po.getPost_item12()%>"></li> --%>
-<%-- 				 		<li><img src="postPics/<%=po.getPost_item13()%>" style="width:120px; height: 120px;">  --%>
-<%-- 				 			<input type="hidden" value="<%=po.getPost_item13()%>"></li> --%>
-<!-- 				 	</ul> -->
-<!-- 				 </div>  -->
-<!-- 			</div> -->
 		</div>
 	<!-- footer -->
 	<footer>

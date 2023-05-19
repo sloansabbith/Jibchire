@@ -30,7 +30,7 @@ import dto.ActionForward;
 public class SnsController extends javax.servlet.http.HttpServlet 
 {
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response)  /*jsp는 request와 response를 server page에서 객체를 사용할 수 있는게 이미 약속이 되어있기 때문에 괜찮지만
-																							servlet은 java를 통해 사용할 부분을 import를 해왔기 때문에
+																						servlet은 java를 통해 사용할 부분을 import를 해왔기 때문에
 																							method에서 request와 response를 parameter로 가져와야만 사용이 가능한 것.*/
 		throws ServletException, IOException {
 		

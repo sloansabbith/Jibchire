@@ -1,10 +1,27 @@
 $(function(){	
 	
-	/* 설정된 좌표 가져오기  */	
-	var top = $("#icon1").css("top");
-	var left = $("#icon1").css("left");
-	var position = top +","+left;
-	$("input:hidden[name='icon1']").attr("value",position);
+	/* 포지션별로 지정된 아이콘에 대한 정보 가져오기 */
+	$("#position img").mouseover(function(){
+		var pro_id = $(this).attr("id");
+		//alert(pro_id);
+		var div_id = "#item_div"+pro_id;
+		$.ajax({
+ 			url : "select_item.jsp?pro_id="+pro_id,  
+ 			dataType : "html",
+ 			success : function(check){
+				//alert(check);
+ 				$(div_id).html(check);
+ 			}
+ 		}); 
+ 		$(div_id).show(100);
+ 		
+		$("#position img").mouseout(function(){
+			$(div_id).hide(50,'swing');
+		});
+	});
+	
+
+	
 	//상품상세설명 
  	$(".itemthumbnailinfo").hide();
 	$(".itemthumbnail > li#item10").mouseover(function(){
