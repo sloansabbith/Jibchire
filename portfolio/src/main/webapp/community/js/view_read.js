@@ -14,9 +14,13 @@ $(function(){
  			}
  		}); 
  		$(div_id).show(100);
- 		
+// 		var height =  $(div_id).css('height');
+// 		//alert(height);
+// 		height = "-"+height;
+// 		$(".postPics").css("top", height);
 		$("#position img").mouseout(function(){
 			$(div_id).hide(50,'swing');
+			$(".postPics").css("top", 0);
 		});
 	});
 	

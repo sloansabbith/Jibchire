@@ -6,9 +6,28 @@ body, pre{ font-family: 'NanumSquare'; }
 /* 큰박스들 크기 주기 */
 #wrap{width:780px; margin:0 auto;}
 
-/*메인사진 */
-#mainpic{width:100%; height:700px; overflow:hidden; }
-#mainpicimg{width: 100%;height: 100%; object-fit:cover;}
+/*section01*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text&display=swap');
+#section01{width:100%; height: 500px; background-color: #f4ede7;} 
+.skewdBox {  position: absolute;      left: -60px;   width: 45%;  height: 500px;  
+			transform: skewX(30deg) translateX(-85px); overflow: hidden;     opacity: 0.7;}
+.skewdBox #background{ height: inherit;   opacity: 0.2;    position: relative;    left: 5%;
+			transform: skewX(-30deg) translateX(-85px);}
+.skewdBox2 {  width: 100%;  height: 100%;   background-color: white;}
+.skewdBox2 #halfround{width:280px;height:400px;   
+    position: relative;  top: 50px; animation:section01slide 0.3s ease-in;}
+.skewdBox2 #explain01{ width: 60%; height: 100%; position: relative;  left: 40%;  bottom: 300px;  animation:explain01 0.3s ease-in;}
+section[id^=sec] h1{ font-size: 43px; }
+@keyframes section01slide{	0%{left:-15%;}100%{left:15%;}}
+@keyframes explain01{	0%{left:88%;}100%{left:49%;}}
+
+/*제목 아래 정보 나열*/
+#info{width:760px; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	background-color: white;    opacity: 0.9;  z-index:2;
+	    margin-top: 20px; padding: 10px 0;}
+#info table{margin:0 auto; width:90%;}
+#info tr td:nth-child(odd){ width:15%; font-weight: bold;}
+#info tr td:nth-child(even){ width:18%;}
 
 /*두번쨰 사진 모음*/                           					  /* 여기서부터 slider css*/
 .postPics{width: 100%; height:780px; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
@@ -21,21 +40,11 @@ h1{font-size: 22pt; text-align: center;
 #title input[type="button"]{width: 100px;height: 40px; background-color:#C0C0C0; border-radius: 5px;
  float: right; margin-left: 10px; position: relative; top: -40px;}
 
-/*제목 아래 정보 나열*/
-#info{width:700px; border:2px solid #C0C0C0; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	background-color: white;    opacity: 0.9;  z-index:2;
-	position: relative;
-    top: -100px;
-    left: 35px;  padding: 10px 0;}
-#info table{margin:0 auto; width:90%;}
-#info tr td:nth-child(odd){ width:15%; font-weight: bold;}
-#info tr td:nth-child(even){ width:18%;}
-
 /*사진에 등록된 상품에 대한 정보*/
 #position{height: 0;} /* height:0 이 아니면 뜨지 않음*/
 .draggable{z-index: 3;}
 .draggable:hover{cursor: pointer;}
-.iteminfo{width : 200px; background-color: beige; display: none; z-index: 3;}
+.iteminfo{width : 300px; height: 300px;  background-color: beige; display: none; z-index: 3;}
 #selectimg{float: left;}
 #selectinfo{float: right;}
 
@@ -87,3 +96,9 @@ img{border-radius: 5px;}
 #like {width:80px;position: fixed; right: 200px;  top: 350px; }
 #like li{display: block; text-align: center; font-size: 10pt; margin-top: 5px;}
 #like li:nth-child(3n){margin-bottom:20px;}
+
+
+
+/*메인사진 */
+#mainpic{width:100%; height:700px; overflow:hidden; }
+#mainpicimg{width: 100%;height: 100%; object-fit:cover;}
