@@ -14,16 +14,44 @@ $(function(){
  			}
  		}); 
  		$(div_id).show(100);
-// 		var height =  $(div_id).css('height');
-// 		//alert(height);
-// 		height = "-"+height;
-// 		$(".postPics").css("top", height);
 		$("#position img").mouseout(function(){
 			$(div_id).hide(50,'swing');
 			$(".postPics").css("top", 0);
 		});
 	});
-	
+	/* 처음 게시글을 클릭할 때 2번사진에 포커스가 가있기 때문에 나머지는 지우면 됨 */
+	$("#position ul li:nth-child(1)").hide();
+	$("#position ul li:nth-child(3)").hide();
+	$("#position ul li:nth-child(4)").hide();
+	/*사진에 마우스 올리면 각기 다른 아이콘 위치 뜨기*/
+	$(".insertedpicture li:nth-child(1)").mouseover(function(){
+//		alert("1");
+		$("#position ul li:nth-child(1)").show();
+		$("#position ul li:nth-child(2)").hide();
+		$("#position ul li:nth-child(3)").hide();
+		$("#position ul li:nth-child(4)").hide();
+	});
+	$(".insertedpicture li:nth-child(2)").mouseover(function(){
+//		alert("2");
+		$("#position ul li:nth-child(1)").hide();
+		$("#position ul li:nth-child(2)").show();
+		$("#position ul li:nth-child(3)").hide();
+		$("#position ul li:nth-child(4)").hide();
+	});
+	$(".insertedpicture li:nth-child(3)").mouseover(function(){
+//		alert("3");
+		$("#position ul li:nth-child(1)").hide();
+		$("#position ul li:nth-child(2)").hide();
+		$("#position ul li:nth-child(3)").show();
+		$("#position ul li:nth-child(4)").hide();
+	});
+	$(".insertedpicture li:nth-child(4)").mouseover(function(){
+//		alert("4");
+		$("#position ul li:nth-child(1)").hide();
+		$("#position ul li:nth-child(2)").hide();
+		$("#position ul li:nth-child(3)").hide();
+		$("#position ul li:nth-child(4)").show();
+	});
 
 	
 	//상품상세설명 

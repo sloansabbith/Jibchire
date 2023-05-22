@@ -132,22 +132,94 @@
 		<div id="position">
 			<%  String pstn =  po.getPost_postition();
 				String [] position = null;
+				String [] position2 = null;
+				String [] position3 = null;
+				String [] position4 = null;
 				if(!(pstn == null || pstn.isEmpty())){
-					position = pstn.split(",");
-					for(int j =0 ; j<position.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
-			%>
-			<!-- 포지션 값이 있으면 각각의 값에 대한 아이콘 넣기 -->
-			<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" 
-				style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;">
-			<%		}
-					for(int j =0 ; j<position.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
-						String distinctitem = "item_div"+position[j];
-			%>
-			<!-- 아이콘에 대한 정보를 넣기 위한 div. for문을 각각 돌려줘야 position 오류가 나지 않음 -->
-			<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;"> </div>
-			<%		}
+					String [] post_pic = pstn.split("/");     // 값이 있으면 리스트를 만들 것 
+					%>
+					<ul> 
+					<% 
+					for(int i = 0 ; i<post_pic.length; i++){
+						if(i==0){
+							position = post_pic[i].split(",");
+						%>
+							<li>
+						<%
+								for(int j =0 ; j<position.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
+						%>
+								<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;">
+						<%		}
+								for(int j =0 ; j<position.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
+									String distinctitem = "item_div"+position[j];
+						%>
+								<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;"> </div>
+						<%		}
+								
+						%>
+							</li>
+						<% 
+						}else if(i==1){
+							position2 = post_pic[i].split(",");
+							%>
+								<li>
+							<%
+									for(int j =0 ; j<position2.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
+							%>
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position2[j]%>" style="position:relative; top:<%=position2[j+1]%>; left:<%=position2[j+2]%>;">
+							<%		}
+									for(int j =0 ; j<position2.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
+										String distinctitem = "item_div"+position2[j];
+							%>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position2[j+1]%>; left:<%=position2[j+2]%>;"> </div>
+							<%		}
+									
+							%>
+								</li>
+							<% 
+						}else if(i==2){
+							position3 = post_pic[i].split(",");
+							%>
+								<li>
+							<%
+									for(int j =0 ; j<position3.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
+							%>
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position3[j]%>" style="position:relative; top:<%=position3[j+1]%>; left:<%=position3[j+2]%>;">
+							<%		}
+									for(int j =0 ; j<position3.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
+										String distinctitem = "item_div"+position3[j];
+							%>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position3[j+1]%>; left:<%=position3[j+2]%>;"> </div>
+							<%		}
+									
+							%>
+								</li>
+							<% 
+						}else if(i==3){
+							position4 = post_pic[i].split(",");
+							%>
+								<li>
+							<%
+									for(int j =0 ; j<position4.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
+							%>
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position4[j]%>" style="position:relative; top:<%=position4[j+1]%>; left:<%=position4[j+2]%>;">
+							<%		}
+									for(int j =0 ; j<position4.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
+										String distinctitem = "item_div"+position4[j];
+							%>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position4[j+1]%>; left:<%=position4[j+2]%>;"> </div>
+							<%		}
+									
+							%>
+								</li>
+							<% 
+						}
+					}
+				%>
+					</ul>
+				<%
 				}
-			%>
+				%>
 		</div>
    		<div class="postPics">
 			 <div class="pics">
