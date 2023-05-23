@@ -129,6 +129,13 @@
 <%-- 	   			<%=po.getPost_txt()%> --%>
 <!-- 	   		</pre> -->
 <!--    		</div> -->
+<!-- 
+UPDATE `interior`.`post_house` SET `post_position` = 
+'1,50px,120px,2,150px,120px,3,250px,220px,4,50px,720px,5,250px,620px,6,150px,690px,7,150px,420px,8,250px,520px,9,150px,690px,10,150px,220px,/
+11,130px,560px,12,130px,260px,13,230px,360px,14,230px,560px,15,130px,760px,16,230px,460px,17,130px,360px,18,160px,180px,19,120px,460px,20,180px,360px,/
+21,80px,130px,22,280px,330px,23,180px,460px,24,180px,230px,25,180px,730px,26,280px,330px,27,280px,630px,28,280px,530px,29,180px,730px,30,180px,430px,/
+31,140px,700px,32,140px,470px,33,240px,230px,34,340px,70px,35,240px,670px,36,140px,440px,37,140px,490px,38,120px,370px,39,140px,270px,40,120px,570px,/';
+ -->
 		<div id="position">
 			<%  String pstn =  po.getPost_position();
 				String [] position = null;
@@ -148,12 +155,12 @@
 						<%
 								for(int j =0 ; j<position.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
 						%>
-								<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;">
+								<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" style="position:relative; left:<%=position[j+1]%>; top:<%=position[j+2]%>;">
 						<%		}
 								for(int j =0 ; j<position.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
 									String distinctitem = "item_div"+position[j];
 						%>
-								<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position[j+1]%>; left:<%=position[j+2]%>;"> </div>
+								<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; left:<%=position[j+1]%>; top:<%=position[j+2]%>;"> </div>
 						<%		}
 								
 						%>
@@ -166,12 +173,12 @@
 							<%
 									for(int j =0 ; j<position2.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
 							%>
-									<img src="img/community/png/green-button.png" class="draggable" id="<%=position2[j]%>" style="position:relative; top:<%=position2[j+1]%>; left:<%=position2[j+2]%>;">
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position2[j]%>" style="position:relative; left:<%=position2[j+1]%>; top:<%=position2[j+2]%>;">
 							<%		}
 									for(int j =0 ; j<position2.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
 										String distinctitem = "item_div"+position2[j];
 							%>
-									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position2[j+1]%>; left:<%=position2[j+2]%>;"> </div>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; left:<%=position2[j+1]%>; top:<%=position2[j+2]%>;"> </div>
 							<%		}
 									
 							%>
@@ -184,12 +191,12 @@
 							<%
 									for(int j =0 ; j<position3.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
 							%>
-									<img src="img/community/png/green-button.png" class="draggable" id="<%=position3[j]%>" style="position:relative; top:<%=position3[j+1]%>; left:<%=position3[j+2]%>;">
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position3[j]%>" style="position:relative; left:<%=position3[j+1]%>; top:<%=position3[j+2]%>;">
 							<%		}
 									for(int j =0 ; j<position3.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
 										String distinctitem = "item_div"+position3[j];
 							%>
-									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position3[j+1]%>; left:<%=position3[j+2]%>;"> </div>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; left:<%=position3[j+1]%>; top:<%=position3[j+2]%>;"> </div>
 							<%		}
 									
 							%>
@@ -202,12 +209,12 @@
 							<%
 									for(int j =0 ; j<position4.length ; j=j+3){ //1:pro_id, 2:x축, 3:y축
 							%>
-									<img src="img/community/png/green-button.png" class="draggable" id="<%=position4[j]%>" style="position:relative; top:<%=position4[j+1]%>; left:<%=position4[j+2]%>;">
+									<img src="img/community/png/green-button.png" class="draggable" id="<%=position4[j]%>" style="position:relative; left:<%=position4[j+1]%>; top:<%=position4[j+2]%>;">
 							<%		}
 									for(int j =0 ; j<position4.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
 										String distinctitem = "item_div"+position4[j];
 							%>
-									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; top:<%=position4[j+1]%>; left:<%=position4[j+2]%>;"> </div>
+									<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; left:<%=position4[j+1]%>; top:<%=position4[j+2]%>;"> </div>
 							<%		}
 									
 							%>
@@ -247,7 +254,18 @@
 		<div id="slider" >
 			<a class="control_next">>></a>
 			<a class="control_prev"><<</a>
-			<ul class="itemthumbnail">
+			<ul class="itemthumbnail" id="positionlist1">
+			<%
+// 				if(!(position.length==0)){
+// 					for(int i = 0; i<position.length;i=i+3){
+// 						String itemid = "item1"+i;
+			%>
+<%-- 					<li id="<%=itemid%>"><img src="postPics/<%=position[i]%>"style="width:130px; height: 130px;"> --%>
+<%-- 			    	<input type="hidden" value="<%=position[i]%>"></li> --%>
+			<%
+// 					}
+// 				}
+			%>
 			<%  
 				String item = po.getPost_item();
 				String [] items = null;
@@ -262,6 +280,7 @@
 					} 
 			    }
 			%>
+
 		    </ul>
 		</div>	
 		<pre>
