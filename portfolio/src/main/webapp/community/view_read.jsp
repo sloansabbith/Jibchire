@@ -130,7 +130,7 @@
 <!-- 	   		</pre> -->
 <!--    		</div> -->
 		<div id="position">
-			<%  String pstn =  po.getPost_postition();
+			<%  String pstn =  po.getPost_position();
 				String [] position = null;
 				String [] position2 = null;
 				String [] position3 = null;
@@ -262,37 +262,6 @@
 					} 
 			    }
 			%>
-<%-- 						<% if(!(po.getPost_item10()==null)){ %> --%>
-<%-- 				    <li id="item10"><img src="postPics/<%=po.getPost_item10()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item10()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item11()==null)){ %> --%>
-<%-- 				    <li id="item11"><img src="postPics/<%=po.getPost_item11()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item11()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item12()==null)){ %> --%>
-<%-- 				    <li id="item12"><img src="postPics/<%=po.getPost_item12()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item12()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item13()==null)){ %> --%>
-<%-- 				    <li id="item13"><img src="postPics/<%=po.getPost_item13()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item13()%>"></li> --%>
-<%-- 			    		<% } if(!(po.getPost_item14()==null)){ %> --%>
-<%-- 			    	<li id="item14"><img src="postPics/<%=po.getPost_item14()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item14()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item15()==null)){ %> --%>
-<%-- 				    <li id="item15"><img src="postPics/<%=po.getPost_item15()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item15()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item16()==null)){ %> --%>
-<%-- 				    <li id="item16"><img src="postPics/<%=po.getPost_item16()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item16()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item17()==null)){ %> --%>
-<%-- 				    <li id="item17"><img src="postPics/<%=po.getPost_item17()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item17()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item18()==null)){ %> --%>
-<%-- 			    	<li id="item18"><img src="postPics/<%=po.getPost_item18()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item18()%>"></li> --%>
-<%-- 				    	<% } if(!(po.getPost_item19()==null)){ %> --%>
-<%-- 			    	<li id="item19"><img src="postPics/<%=po.getPost_item19()%>"style="width:130px; height: 130px;"> --%>
-<%-- 				    	<input type="hidden" value="<%=po.getPost_item19()%>"></li> --%>
-<%-- 				    	<% }%> --%>
 		    </ul>
 		</div>	
 		<pre>
@@ -303,10 +272,5 @@
 <footer>
 	<jsp:include page="footer.jsp" />
 </footer>
-<script>
-$(function(){
-	
-});
-</script>
 </body>
 </html>

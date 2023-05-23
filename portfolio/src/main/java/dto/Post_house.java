@@ -31,7 +31,7 @@ public class Post_house {
 	public String bookmark_time;
 	public int post_read;
 	
-	public String post_postition;
+	public String post_position;
 	public String post_item;
 	
 	
@@ -199,11 +199,12 @@ public class Post_house {
 	public void setPost_read(int post_read) {
 		this.post_read = post_read;
 	}
-	public String getPost_postition() {
-		return post_postition;
+	
+	public String getPost_position() {
+		return post_position;
 	}
-	public void setPost_postition(String post_postition) {
-		this.post_postition = post_postition;
+	public void setPost_position(String post_position) {
+		this.post_position = post_position;
 	}
 	public String getPost_item() {
 		return post_item;

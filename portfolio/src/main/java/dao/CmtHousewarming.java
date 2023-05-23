@@ -114,7 +114,7 @@ public class CmtHousewarming {
 				}
 				po.setPost_writetime(rs.getString("post_writetime"));
 				po.setPost_read(rs.getInt("post_read"));
-				po.setPost_postition(rs.getString("post_position"));
+				po.setPost_position(rs.getString("post_position"));
 				System.out.println(rs.getString("post_position"));
 				
 //				String post_position = rs.getString("post_position");
