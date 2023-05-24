@@ -13,7 +13,26 @@
 
 <style>
 #pic{width:500px; height:1200px; margin: 0 auto;}
-#draggable {	width: 150px;	height: 150px;	padding: 0.5em;}
+#draggable {	width: 150px;	height: 150px;	padding: 0.5em; }
+
+/*아이콘 박스*/
+#icons{margin : 3% 0 0 3%;}
+.draggable{z-index: 99;}
+
+/*큰박서*/
+.postPics{width: 100%; height:780px; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
+.postPics .pics{margin: 0 auto; object-fit:cover; float: left;     margin: 20px 0 0 2%;}
+#previewImg{width: 100%; height: 100%; object-fit:cover;}
+
+/*작업 후 넘어가기*/
+.postItem{    width: 140px;    float: left;    margin : 20px 3% 0 3%;}
+
+/*맨 오른쪽*/
+.uploaditem{width: 230px;    float: left;    margin-top: 20px;}
+.uploaditem li {width: 100%;  height: 190px; margin-top: 12px;}
+.uploaditem li h5{text-align: center;}
+.uploaditem li .register{    text-align: center;    margin-top: 15px;    font-weight: 900;}
+.uploaditem li .register:hover{cursor:pointer;}
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -37,78 +56,66 @@
 	$(function() {
 		$(".draggable").draggable({ containment: "#previewImg" });
 		
-		$("input[type='submit']").click(function(){
-	
-			var top = $("#icon1").css("top");
-			var left = $("#icon1").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon1']").attr("value",position);
+		/*아이콘 더블클릭했을 때 상품고르기*/
+		$(".draggable").dblclick(function(){
+			alert("더블클릭에 이벤트 걸 것!!!");
+		});
+		$(".uploaditem li:nth-child(1) .register").click(function(){
+			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
 			
-			var top = $("#icon2").css("top");
-			var left = $("#icon2").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon2']").attr("value",position);
+			/*위치 변경*/
+			var src = $("#previewImg").attr("src");
+			$(".draggable").css("top",0);
+			$(".draggable").css("left",0);
+			$("#previewImg").attr("src","");
+			$(".postItem li:nth-child(1) img").attr("src",src);
+		});
+		$(".uploaditem li:nth-child(2) .register").click(function(){
+			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
 			
-			var top = $("#icon3").css("top");
-			var left = $("#icon3").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon3']").attr("value",position);
+			/*위치 변경*/
+			var src = $("#previewImg").attr("src");
+			$(".draggable").css("top",0);
+			$(".draggable").css("left",0);
+			$("#previewImg").attr("src","");
+			$(".postItem li:nth-child(2) img").attr("src",src);
+		});
+		$(".uploaditem li:nth-child(3) .register").click(function(){
+			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
 			
-			var top = $("#icon4").css("top");
-			var left = $("#icon4").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon4']").attr("value",position);
+			/*위치 변경*/
+			var src = $("#previewImg").attr("src");
+			$(".draggable").css("top",0);
+			$(".draggable").css("left",0);
+			$("#previewImg").attr("src","");
+			$(".postItem li:nth-child(3) img").attr("src",src);
+		});
+		$(".uploaditem li:nth-child(4) .register").click(function(){
+			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
 			
-			var top = $("#icon5").css("top");
-			var left = $("#icon5").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon5']").attr("value",position);
-			
-			var top = $("#icon6").css("top");
-			var left = $("#icon6").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon6']").attr("value",position);
-			
-			var top = $("#icon7").css("top");
-			var left = $("#icon7").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon7']").attr("value",position);
-			
-			var top = $("#icon8").css("top");
-			var left = $("#icon8").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon8']").attr("value",position);
-			
-			var top = $("#icon9").css("top");
-			var left = $("#icon9").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon9']").attr("value",position);
-			
-			var top = $("#icon10").css("top");
-			var left = $("#icon10").css("left");
-			var position = top +","+left+",";
-			$("input:hidden[name='icon10']").attr("value",position);
-			
-// 			var check= $("input:hidden[name='icon3']").attr("value");
-//  			alert(check);
+			/*위치 변경*/
+			var src = $("#previewImg").attr("src");
+			$(".draggable").css("top",0);
+			$(".draggable").css("left",0);
+			$("#previewImg").attr("src","");
+			$(".postItem li:nth-child(4) img").attr("src",src);
 		});
 	});
 </script>
 <body>
 
-<form action="insert_write.jsp" method="post" enctype="multipart/form-data">
 	<div id="wrap">
 		<table id="writing">
 			<thead><tr><td ><h4> 글 작성 </h4></td></tr></thead>
-				<tbody>
-					<tr>
-						<td  id="title"><input type="text" name="post_title" placeholder="글제목"></td>
-					</tr>
-					<tr>
-						<td id="preview">
-							<img id="previewImg">
+			<tbody>
+				<tr>
+					<td  id="title"><input type="text" name="post_title" placeholder="글제목"></td>
+				</tr>
+				<tr>
+					<td class="postPics">
+						<div id="icons">
 							<img src="img/community/png/green-button.png" class="draggable" id="icon1">
-								<input type="hidden" name="icon1">
+								<input type="hidden" name="icon1" >
 							<img src="img/community/png/green-button.png" class="draggable" id="icon2">
 								<input type="hidden" name="icon2">
 							<img src="img/community/png/green-button.png" class="draggable" id="icon3">
@@ -126,27 +133,92 @@
 							<img src="img/community/png/green-button.png" class="draggable" id="icon9">
 								<input type="hidden" name="icon9">	
 							<img src="img/community/png/green-button.png" class="draggable" id="icon10">
-								<input type="hidden" name="icon10">		
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<h5>가장 메인이 되는 사진을 올려주세요. 이 사진은 썸네일로 사용 될 예정입니다</h5> 
-							<input type="file" onchange="readImage(this);" name="post_pics">
-							<input type="file" name="post_pic1"> 
-							<input type="file" name="post_pic2"> 
-							<input type="file" name="post_pic3">
-						</td>
-					</tr>
+								<input type="hidden" name="icon10">	
+						</div>
+						<div class="pics">
+							<!-- 썸네일 -->
+							<div id="preview">
+							 	<img id="previewImg" style="width:630px; height: 780px;">
+							</div>
+						 </div>
+						 <div class="postItem">
+						 	<!-- 큰 사진에 대한 상품 사진 넣는 공간 -->
+						 	<ul class="insertedpicture">
+						 		<li><img style="width:140px; height: 190px;"> </li>
+						 		<li><img style="width:140px; height: 190px;"> </li>
+						 		<li><img style="width:140px; height: 190px;"> </li>
+						 		<li><img style="width:140px; height: 193px;"> </li>
+						 	</ul>
+						 </div> 
+						 <div class="uploaditem">
+						 	<!-- 큰 사진에 대한 상품 사진 넣는 공간 -->
+						 	<ul>
+						 		<li>
+						 			<h5>사진을 등록해주세요</h5>
+						 			<h5>*썸네일로 등록*</h5><br>
+						 			<input type="file" onchange="readImage(this);" name="post_pics"> 
+						 			<div class="register">등록완료</div></li>
+						 		<li>
+						 			<h5>사진을 등록해주세요</h5><br>
+						 			<input type="file" onchange="readImage(this);" name="post_pic1">
+						 			<div class="register">등록완료</div></li>
+						 		<li>
+						 			<h5>사진을 등록해주세요</h5><br>
+						 			<input type="file" onchange="readImage(this);" name="post_pic1"> 
+						 			<div class="register">등록완료</div></li>
+						 		<li>
+						 			<h5>사진을 등록해주세요</h5><br>
+						 			<input type="file" onchange="readImage(this);" name="post_pic1">
+						 			<div class="register">등록완료</div> </li>
+						 	</ul>
+						 </div> 
+					</td>
+				</tr>
+			</tbody>
+<!-- 					<tr> -->
+<!-- 						<td id="preview"> -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon1"> -->
+<!-- 								<input type="hidden" name="icon1" > -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon2"> -->
+<!-- 								<input type="hidden" name="icon2"> -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon3"> -->
+<!-- 								<input type="hidden" name="icon3"> -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon4"> -->
+<!-- 								<input type="hidden" name="icon4"> -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon5"> -->
+<!-- 								<input type="hidden" name="icon5">	 -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon6"> -->
+<!-- 								<input type="hidden" name="icon6">	 -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon7"> -->
+<!-- 								<input type="hidden" name="icon7">	 -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon8"> -->
+<!-- 								<input type="hidden" name="icon8">	 -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon9"> -->
+<!-- 								<input type="hidden" name="icon9">	 -->
+<!-- 							<img src="img/community/png/green-button.png" class="draggable" id="icon10"> -->
+<!-- 								<input type="hidden" name="icon10">		 -->
+<!-- 							<img id="previewImg"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
+			
+				<tfoot>
+<!-- 					<tr> -->
+<!-- 						<td> -->
+<!-- 							<h5>가장 메인이 되는 사진을 올려주세요. 이 사진은 썸네일로 사용 될 예정입니다</h5>  -->
+<!-- 							<input type="file" onchange="readImage(this);" name="post_pics"> -->
+<!-- 							<input type="file" name="post_pic1">  -->
+<!-- 							<input type="file" name="post_pic2">  -->
+<!-- 							<input type="file" name="post_pic3"> -->
+<!-- 						</td> -->
+<!-- 					</tr> -->
 					<tr>
 						<td id="text">
 							<textarea name="post_txt" id="textarea" placeholder="글내용을 입력해주세요"></textarea>
 						</td>
 					</tr>
-				</tbody>
+				</tfoot>
 <!-- 				<tfoot>	<tr><td colspan="2" > <input type="submit" value="작성완료"> </td></tr>	</tfoot> -->
 		</table>
 	</div>
-</form>
 </body>
 </html>

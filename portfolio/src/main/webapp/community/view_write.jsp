@@ -51,6 +51,26 @@ $(function(){
         $('#startdate_date').append('<option value="'+dd+'">' + dd+ '일</option>');  
         $('#enddate_date').append('<option value="'+dd+'">' + dd+ '일</option>');   
     }
+	$("input[type='submit']").click(function(){
+		
+		for(var i = 1 ; i<=10 ; i++){
+			 var iconid = "#icon"+i;
+			 var iconvalue = "input:hidden[name='icon"+i+"']";
+			 var top = $(iconid).css("top");
+			 var left = $(iconid).css("left");
+			 var position = top +","+left+",";
+			 $(iconvalue).attr("value",position);
+			 $(iconvalue).val(position);
+// 	 		var sss = $(iconvalue).attr("value");
+// 	 		alert("iconvalue"+sss);
+		}
+		
+// 		var top = $("#icon1").css("top");
+// 		var left = $("#icon1").css("left");
+// 		var position = top +","+left+",";
+// 		$("input:hidden[name='icon1']").attr("value",position);
+		
+	});
 });
 </script>
 
@@ -239,31 +259,6 @@ $(function(){
 			</tbody>		
 		</table>
 		<jsp:include page="draggable.jsp"></jsp:include>
-<!-- 		<table id="writing"> -->
-<!-- 			<thead><tr><td><h4> 글 작성 </h4></td></tr></thead> -->
-<!-- 				<tbody> -->
-<!-- 					<tr> -->
-<!-- 						<td id="title"><input type="text" name="post_title" placeholder="글제목"></td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td><div id="preview"> -->
-<!-- 								<img id="previewImg"> -->
-<!-- 							</div></td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td><h5>가장 메인이 되는 사진을 올려주세요. 이 사진은 썸네일로 사용 될 예정입니다</h5> <input -->
-<!-- 							type="file" onchange="readImage(this);" name="post_pics"> -->
-<!-- 							<input type="file" name="post_pic1"> <input type="file" -->
-<!-- 							name="post_pic2"> <input type="file" name="post_pic3"> -->
-<!-- 						</td> -->
-<!-- 					</tr> -->
-<!-- 					<tr> -->
-<!-- 						<td id="text"><textarea name="post_txt" id="textarea" -->
-<!-- 								placeholder="글내용을 입력해주세요"></textarea></td> -->
-<!-- 					</tr> -->
-<!-- 				</tbody> -->
-<!-- 				<tfoot>	<tr><td> <input type="submit" value="작성완료"> </td></tr>	</tfoot> -->
-<!-- 		</table> -->
 		<div style="text-align: center;"><input type="submit" value="작성완료"> </div>
 	</div>
 </form>
