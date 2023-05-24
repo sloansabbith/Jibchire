@@ -124,12 +124,16 @@
 		String icon1 = request.getParameter("icon1");
 		String icon2 = request.getParameter("icon2");
 		String icon3 = request.getParameter("icon3");
-		for(int i=1 ; i<=3 ; i++){
-			String name = "icon"+i;
-			// 합쳐서 넣기
-		}
-		post.setPost_position(icon1+"/"+icon2+"/"+icon3);
+		String icon4 = request.getParameter("icon4");
+		String icon5 = request.getParameter("icon5");
+		String icon6 = request.getParameter("icon6");
+		String icon7 = request.getParameter("icon7");
+		String icon8 = request.getParameter("icon8");
+		String icon9 = request.getParameter("icon9");
+		String icon10 = request.getParameter("icon10");
 		
+		post.setPost_position(icon1+icon2+icon3+icon4+icon5+icon6+icon7+icon8+icon9+icon10);
+		out.println("<script>alert("+post.getPost_position()+");</script>");
 		post.setPost_pics(thumbnail+sum);
 		// 썸네일로 만든 파일명을 가장 앞칸에 둬서 select을 해오더라도 가장 앞에서 가져올 수 있도록 한다
 		com.insert_board(post);

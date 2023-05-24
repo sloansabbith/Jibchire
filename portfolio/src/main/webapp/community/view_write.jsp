@@ -264,6 +264,7 @@ $(function(){
 <!-- 				</tbody> -->
 <!-- 				<tfoot>	<tr><td> <input type="submit" value="작성완료"> </td></tr>	</tfoot> -->
 <!-- 		</table> -->
+		<div style="text-align: center;"><input type="submit" value="작성완료"> </div>
 	</div>
 </form>
 

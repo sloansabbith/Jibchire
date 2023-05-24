@@ -41,19 +41,55 @@
 	
 			var top = $("#icon1").css("top");
 			var left = $("#icon1").css("left");
-			var position = top +","+left;
+			var position = top +","+left+",";
 			$("input:hidden[name='icon1']").attr("value",position);
 			
 			var top = $("#icon2").css("top");
 			var left = $("#icon2").css("left");
-			var position = top +","+left;
+			var position = top +","+left+",";
 			$("input:hidden[name='icon2']").attr("value",position);
 			
 			var top = $("#icon3").css("top");
 			var left = $("#icon3").css("left");
-			var position = top +","+left;
+			var position = top +","+left+",";
 			$("input:hidden[name='icon3']").attr("value",position);
-			var check= $("input:hidden[name='icon3']").attr("value");
+			
+			var top = $("#icon4").css("top");
+			var left = $("#icon4").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon4']").attr("value",position);
+			
+			var top = $("#icon5").css("top");
+			var left = $("#icon5").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon5']").attr("value",position);
+			
+			var top = $("#icon6").css("top");
+			var left = $("#icon6").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon6']").attr("value",position);
+			
+			var top = $("#icon7").css("top");
+			var left = $("#icon7").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon7']").attr("value",position);
+			
+			var top = $("#icon8").css("top");
+			var left = $("#icon8").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon8']").attr("value",position);
+			
+			var top = $("#icon9").css("top");
+			var left = $("#icon9").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon9']").attr("value",position);
+			
+			var top = $("#icon10").css("top");
+			var left = $("#icon10").css("left");
+			var position = top +","+left+",";
+			$("input:hidden[name='icon10']").attr("value",position);
+			
+// 			var check= $("input:hidden[name='icon3']").attr("value");
 //  			alert(check);
 		});
 	});
@@ -77,8 +113,21 @@
 								<input type="hidden" name="icon2">
 							<img src="img/community/png/green-button.png" class="draggable" id="icon3">
 								<input type="hidden" name="icon3">
+							<img src="img/community/png/green-button.png" class="draggable" id="icon4">
+								<input type="hidden" name="icon4">
+							<img src="img/community/png/green-button.png" class="draggable" id="icon5">
+								<input type="hidden" name="icon5">	
+							<img src="img/community/png/green-button.png" class="draggable" id="icon6">
+								<input type="hidden" name="icon6">	
+							<img src="img/community/png/green-button.png" class="draggable" id="icon7">
+								<input type="hidden" name="icon7">	
+							<img src="img/community/png/green-button.png" class="draggable" id="icon8">
+								<input type="hidden" name="icon8">	
+							<img src="img/community/png/green-button.png" class="draggable" id="icon9">
+								<input type="hidden" name="icon9">	
+							<img src="img/community/png/green-button.png" class="draggable" id="icon10">
+								<input type="hidden" name="icon10">		
 						</td>
-
 					</tr>
 					<tr>
 						<td colspan="2">
@@ -95,7 +144,7 @@
 						</td>
 					</tr>
 				</tbody>
-				<tfoot>	<tr><td colspan="2" > <input type="submit" value="작성완료"> </td></tr>	</tfoot>
+<!-- 				<tfoot>	<tr><td colspan="2" > <input type="submit" value="작성완료"> </td></tr>	</tfoot> -->
 		</table>
 	</div>
 </form>
