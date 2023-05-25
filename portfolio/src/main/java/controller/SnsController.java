@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.MyPageWriteAction;
+import action.PublicApi;
 import action.SnsDeleteAction;
 import action.SnsDeleteCommentAction;
 import action.SnsFollowAction;
@@ -192,6 +193,13 @@ public class SnsController extends javax.servlet.http.HttpServlet
 		}else if(command.equals("/sns/snsUpdateComment.sns")){  //읽기화면에서 댓글 수정
 			System.out.println("댓글 update 컨트롤러 실행");
 			action = new SnsUpdateCommentAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/publicapi.sns")){  //읽기화면에서 댓글 수정
+			action = new PublicApi();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

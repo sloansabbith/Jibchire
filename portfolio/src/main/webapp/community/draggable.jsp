@@ -62,7 +62,17 @@
 		});
 		$(".uploaditem li:nth-child(1) .register").click(function(){
 			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
-			
+			for(var i = 1 ; i<=10 ; i++){
+				 var iconid = "#icon"+i;
+			     var itemid = ""; //여기에 아이템 아이디 넣기 
+				 var iconvalue = "input:hidden[name='icon"+i+"']";
+				 var top = $(iconid).css("top");
+				 var left = $(iconid).css("left");
+				 var position = top +","+left+",";
+				 $(iconvalue).attr("value",position);
+				 $(iconvalue).val(position);
+			}
+
 			/*위치 변경*/
 			var src = $("#previewImg").attr("src");
 			$(".draggable").css("top",0);
