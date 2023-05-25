@@ -158,9 +158,9 @@ UPDATE `interior`.`post_house` SET `post_position` =
 								<img src="img/community/png/green-button.png" class="draggable" id="<%=position[j]%>" style="position:relative; left:<%=position[j+1]%>; top:<%=position[j+2]%>;">
 						<%		}
 								for(int j =0 ; j<position.length ; j=j+3){ //포지션은 x,y이니까 2칸씩 점프
-									String distinctitem = "item_div"+position[j];
+									String item_div = "item_div"+position[j];
 						%>
-								<div class="iteminfo" id="<%=distinctitem%>" style="position:relative; left:<%=position[j+1]%>; top:<%=position[j+2]%>;"> </div>
+								<div class="iteminfo" id="<%=item_div%>" style="position:relative; left:<%=position[j+1]%>; top:<%=position[j+2]%>;"> </div>
 						<%		}
 								
 						%>

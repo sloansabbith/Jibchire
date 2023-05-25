@@ -17,8 +17,8 @@
 
 /*아이콘 박스*/
 #icons{margin : 3% 0 0 3%;}
-.draggable{z-index: 99;}
-
+.draggable{z-index: 3;}
+.iteminfo{width : 300px; height: 110px;  position: relative; background-color: white; display: none; z-index: 4; opacity: 0.9;}
 /*큰박서*/
 .postPics{width: 100%; height:780px; position: relative;  overflow: hidden;  margin: 20px auto 0 auto;}
 .postPics .pics{margin: 0 auto; object-fit:cover; float: left;     margin: 20px 0 0 2%;}
@@ -59,6 +59,20 @@
 		/*아이콘 더블클릭했을 때 상품고르기*/
 		$(".draggable").dblclick(function(){
 			alert("더블클릭에 이벤트 걸 것!!!");
+			var icon = $(this).attr("id");
+			for(var i = 1 ; i<=10 ; i++){
+				var iconid = "icon"+i; 
+				if(iconid==icon){
+					var id = "#"+iconid;
+					var top = $(id).css("top");
+					var left = $(id).css("left");
+					alert("top="+top+"left="+left);
+					$(".iteminfo").css("top".top);
+					$(".iteminfo").css("left".left);
+					$(".iteminfo").show();
+				}
+			}
+			$(".iteminfo").show;
 		});
 		$(".uploaditem li:nth-child(1) .register").click(function(){
 			/* inputtype hidden이든 뭐든 데이터 저장저장~~~*/
@@ -124,6 +138,10 @@
 				<tr>
 					<td class="postPics">
 						<div id="icons">
+							<div class="iteminfo">
+								<input type="text">
+								<h6>검색</h6>
+							</div>
 							<img src="img/community/png/green-button.png" class="draggable" id="icon1">
 								<input type="hidden" name="icon1" >
 							<img src="img/community/png/green-button.png" class="draggable" id="icon2">
