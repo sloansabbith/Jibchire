@@ -6,9 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import action.Action;
 import action.MyPageWriteAction;
-import action.PublicApi;
+import action.PublicApiRent;
+import action.PublicApiRepairStore;
 import action.SnsDeleteAction;
 import action.SnsDeleteCommentAction;
 import action.SnsFollowAction;
@@ -198,10 +200,17 @@ public class SnsController extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/sns/publicapi.sns")){  //읽기화면에서 댓글 수정
-			action = new PublicApi();
+		}else if(command.equals("/sns/publicapirent.sns")){  //읽기화면에서 댓글 수정
+			action = new PublicApiRent();
 			try{
 				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/publicapirepairstore.sns")){  //읽기화면에서 댓글 수정
+			action = new PublicApiRepairStore();
+			try{
+				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

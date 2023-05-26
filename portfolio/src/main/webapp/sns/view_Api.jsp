@@ -7,9 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7c3c7195a7bc32c881f7cd628d1975e&libraries=services"></script>
 </head>
 <style>
-#wrap{width:900px; margin:0 auto;}
+#wrap{width:1080px; margin:0 auto;}
+/*위의 제목*/
+#info{width: 100%; height: 50px; background-color: beige;}
+#infotitle{width:1080px; margin:0 auto; text-align: center;}
+
+/*제목 및 검색창*/
+#publicApi>ul{margin-top:10px;}
+#publicApi input[type='text']{width: 200px; height: 30pt; padding-left: 0.5em; border: #FFF; border-radius: 15px;
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);}
 </style>
 <body>
 <!-- header -->
@@ -30,28 +40,61 @@
 	}
 %>
 </header>
+<!-- <section id ="info"> -->
+<!-- 	<div id = "infotitle"> -->
+<!-- 		<img src="img/logo/seoul.jpg" style="height: 50px"> -->
+<!-- 		<span> 서울시 인증 정보 검색 </span> -->
+<!-- 	</div> -->
+<!-- </section> -->
 <div id="wrap">
-	<section id ="rent">
+	<section id ="publicApi">
 		<ul>
-			<li><input type="text" id="text"></li>
-			<li id="search">검색</li>
+			<li>공구대여소 찾기</li>
+			<li><input type="text" id="renttext" placeholder="주소나 상호명을 검색해주세요"></li>
+			<li id="searchrent">검색</li>
 		</ul>
-		<div class="result" style="width: 100%"></div>
+		<div id="rentMap" style="width: 100%;">
+			<ul class="resultset"></ul>
+			<div id="rentmap"></div>
+		</div>
+		<ul>
+			<li>시공업체 찾기 </li>
+			<li><input type="text" id="repairtext" placeholder="주소나 상호명을 검색해주세요"></li>
+			<li id="searchrepair">검색</li>
+		</ul>
+		<div id="repairMap" style="width: 100%;">
+			<ul class="repairset"></ul>
+			<div id="repairmap"></div>
+		</div>
 	</section>
 <script>
 $(function(){
-	$("#search").click(function(){
-		var text = $("#text").val();
-// 		alert(text);
+	
+	/* 공구대여소 찾기 */
+	$("#searchrent").click(function(){
+		var renttext = $("#renttext").val();
 		$.ajax({
- 			url : "publicapi.sns?text="+text,  
+ 			url : "publicapirent.sns?text="+renttext,  
  			dataType : "html",
  			success : function(check){
- 				$(".result").html(check);
-//  				alert(check);
+ 				$("#rentMap").html(check);
  			}
  		}); 
 	});
+	/* 인증업체 찾기 */
+	$("#searchrepair").click(function(){
+		var repairtext = $("#repairtext").val();
+		$.ajax({
+ 			url : "publicapirepairstore.sns?text="+repairtext,  
+ 			dataType : "html",
+ 			success : function(check){
+ 				$("#repairMap").html(check);
+ 			}
+ 		}); 
+	});
+	
+	
+	
 });
 </script>
 <%

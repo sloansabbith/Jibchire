@@ -36,7 +36,7 @@ import svc.MyPageWriteService;
 import svc.SnsWriteService;
 
 
-public class PublicApi implements Action {
+public class PublicApiRent implements Action {
 
 	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception, IOException, ParseException {
 		
@@ -55,7 +55,7 @@ public class PublicApi implements Action {
 		URL url = new URL(urlBuilder.toString());
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
-		conn.setRequestProperty("Content-type", "application/xml");
+		conn.setRequestProperty("Content-type", "application/json");
 		System.out.println("Response code: " + conn.getResponseCode()); /* 연결 자체에 대한 확인이 필요하므로 추가합니다.*/
 		BufferedReader rd;
 
@@ -73,7 +73,7 @@ public class PublicApi implements Action {
 	
 		rd.close();
 		conn.disconnect();
-		System.out.println(sb.toString());
+//		System.out.println(sb.toString());
 		
 		/*JSON으로 가져온 데이터 추출하기*/
 		JSONParser jsonParser = new JSONParser();
@@ -100,7 +100,7 @@ public class PublicApi implements Action {
 //
 //		}
 
-		forward.setPath("../sns/view_ajax.jsp");
+		forward.setPath("../sns/view_rentstore.jsp");
 		return forward;
 	}
 }
