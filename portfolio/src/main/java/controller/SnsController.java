@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.CommunityMainAction;
 import action.MyPageWriteAction;
 import action.PublicApiRent;
 import action.PublicApiRepairStore;
@@ -200,17 +201,24 @@ public class SnsController extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/sns/publicapirent.sns")){  //읽기화면에서 댓글 수정
+		}else if(command.equals("/sns/publicapirent.sns")){  //공공api대여소 데이터 가져오기 
 			action = new PublicApiRent();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/sns/publicapirepairstore.sns")){  //읽기화면에서 댓글 수정
+		}else if(command.equals("/sns/publicapirepairstore.sns")){  //공공api 시공업체 데이터 가져오기 
 			action = new PublicApiRepairStore();
 			try{
 				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/communitymain.sns")){  //커뮤니티 메인에 데이터 가져오기 
+			action = new CommunityMainAction();
+			try{
+				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}

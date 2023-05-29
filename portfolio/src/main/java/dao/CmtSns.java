@@ -1111,5 +1111,100 @@ public class CmtSns {
 		return updateCount;
 
 	}
+	public Post_house selectMainComty(){  // 로그인 후 sns 글 수정
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Post_house po = null;
+		try{
+			String sql="select * from post_house"
+					+ "left outer join post_bookmark on post_house.post_id = post_bookmark.post_id"
+					+ "where post_writetime BETWEEN DATE_ADD(NOW(), INTERVAL -1 WEEK ) AND NOW()"
+					+ "order by post_read desc"
+					+ "limit 0,1"
+					+ ";";
+			pstmt = con.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+
+			if(rs.next()) {
+				po.setPost_id(rs.getInt("post_id"));
+				po.setCust_id(rs.getString("cust_id"));
+				po.setPost_title(rs.getString("post_title"));
+				po.setPost_txt(rs.getString("post_txt"));
+				po.setPost_txt2(rs.getString("post_txt2"));
+				po.setPost_house(rs.getString("post_house"));
+				
+				po.setPost_rooms(rs.getInt("post_rooms"));
+				po.setPost_m2(rs.getInt("post_m2"));
+				po.setPost_fam(rs.getInt("post_fam"));
+				po.setPost_houseold(rs.getInt("post_houseold"));
+				po.setPost_budget(rs.getInt("post_budget"));
+				
+				po.setPost_family(rs.getString("post_family"));
+				po.setPost_direc(rs.getString("post_direc"));
+				po.setPost_region(rs.getString("post_region"));
+				po.setPost_pet(rs.getString("post_pet"));
+				po.setPost_startdate(rs.getString("post_startdate"));
+				po.setPost_enddate(rs.getString("post_enddate"));
+				po.setPost_color(rs.getString("post_color"));
+				String feed_pics = rs.getString("post_pics");
+				String [] filename = feed_pics.split(",");
+				for(int i = 0; i<filename.length;i++) {
+					if(i==0) {
+						po.setPost_pics(filename[0]);
+					}else if(i==1) {
+						po.setPost_pic2(filename[1]);
+					}else if(i==2) {
+						po.setPost_pic3(filename[2]);
+					}else if(i==3) {
+						po.setPost_pic4(filename[3]);
+					}
+				}
+				//아이템 등록 
+				po.setPost_item(rs.getString("post_item1"));
+				String post_item1 = rs.getString("post_item1");
+				String [] postitem1 = post_item1.split(",");
+				System.out.println("select_one 에서 postitem1.length => "+postitem1.length);
+				for(int i = 0; i<postitem1.length;i++) {
+					if(i==0) {
+						po.setPost_item10(postitem1[0]);
+					}else if(i==1) {
+						po.setPost_item11(postitem1[1]);
+					}else if(i==2) {
+						po.setPost_item12(postitem1[2]);
+					}else if(i==3) {
+						po.setPost_item13(postitem1[3]);
+					}else if(i==4) {
+						po.setPost_item14(postitem1[4]);
+					}else if(i==5) {
+						po.setPost_item15(postitem1[5]);
+					}else if(i==6) {
+						po.setPost_item16(postitem1[6]);
+					}else if(i==7) {
+						po.setPost_item17(postitem1[7]);
+					}else if(i==8) {
+						po.setPost_item18(postitem1[8]);
+					}else if(i==9) {
+						po.setPost_item19(postitem1[9]);
+					}
+				}
+				po.setPost_writetime(rs.getString("post_writetime"));
+				po.setPost_read(rs.getInt("post_read"));
+				po.setPost_position(rs.getString("post_position"));
+				System.out.println(rs.getString("post_position"));
+				
+//				String post_position = rs.getString("post_position");
+//				String [] position1 = post_position.split(",");
+//				po.setPost_position10(position1[0]);
+//				po.setPost_position11(position1[1]);
+//				System.out.println(post_position+"좌표 : "+position1[0]+"  ,  "+position1[1]);
+			}
+		}catch(Exception ex){
+			System.out.println(ex+"selectUpdateHeartArticle메소드에서 오류");
+		}finally{
+			close(rs);
+			close(pstmt);
+		}
+		return po;
+	}
 
 }
