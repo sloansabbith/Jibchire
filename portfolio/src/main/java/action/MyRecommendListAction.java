@@ -7,6 +7,7 @@ import dto.ActionForward;
 import dto.Cust_houseinfo;
 import dto.Feed;
 import dto.PageInfo;
+import dto.Post_house;
 import svc.MyRecommendListService;
 import svc.SnsListService;
 
@@ -15,7 +16,6 @@ import svc.SnsListService;
 	 
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 
-		ArrayList<Feed> articleList=new ArrayList<Feed>();
 		String cust_id= request.getParameter("cust_id");
 		/*필요 기능에 따라 메소드 호출
 		 * 1. cust_houseinfo에 입력되어 있는 값을 가져와야 함
@@ -28,16 +28,18 @@ import svc.SnsListService;
 		 * 		iv) 
 		 * 5. 
 		 * */
-		MyRecommendListService myRecommendListService = new MyRecommendListService(); 
-		Cust_houseinfo houseinfo = myRecommendListService.getcustinfo(cust_id);
-		myRecommendListService.gethouseinfo(houseinfo);
+		MyRecommendListService mysrv = new MyRecommendListService(); 
+		Cust_houseinfo houseinfo = mysrv.getcustinfo(cust_id);
+		ArrayList<Post_house> houselist = mysrv.gethouseinfo(houseinfo);
+		ArrayList<Post_house> familylist = mysrv.getfamilyinfo(houseinfo);
 		
 		/*snsList.jsp 에서 이 값들을 사용하기 위해서 setAttribute로 객체를 세팅*/
-		request.setAttribute("articleList", articleList);
+		request.setAttribute("houselist", houselist);
+		request.setAttribute("familylist", familylist);
 		
 		/*path를 세팅하기 위해 ActionForward class의 객체 생성*/
 		ActionForward forward= new ActionForward();
-   		forward.setPath("snsList.jsp"); //ActionForward.java 클래스에 setpath메소드에 setting.
+   		forward.setPath("myRecommend.jsp"); //ActionForward.java 클래스에 setpath메소드에 setting.
    		return forward;
    		
 	 }

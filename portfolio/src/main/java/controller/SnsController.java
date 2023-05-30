@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.CommunityMainAction;
+import action.PublicApiMyInfoAction;
 import action.MyPageWriteAction;
+import action.MyRecommendListAction;
 import action.PublicApiRent;
 import action.PublicApiRepairStore;
 import action.SnsDeleteAction;
@@ -215,8 +217,22 @@ public class SnsController extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/sns/publicapiinfo.sns")){  // 내가 로그인 한 상태면 공공api에 디폴트 값으로 내 주소 가져올 수 있도록 
+			action = new PublicApiMyInfoAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}else if(command.equals("/sns/communitymain.sns")){  //커뮤니티 메인에 데이터 가져오기 
 			action = new CommunityMainAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/sns/myRecommendList.sns")){  //커뮤니티 메인에 데이터 가져오기 
+			action = new MyRecommendListAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

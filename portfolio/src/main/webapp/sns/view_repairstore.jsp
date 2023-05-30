@@ -10,13 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 <style>
-.result{width: 1080px;height:400px;  margin: 0 auto;}
-#repairstore{width: 45%;height: 350px; float: left; overflow: auto;}
-#repairmap{width:50%;height:350px; float: right;}
+.result{width: 1080px;height:600px;  margin: 0 auto;}
+#repairstore{width: 50%;height: inherit; float: left; overflow: auto;}
+#repairmapkakao{width:50%;height:inherit; float: right;}
 
-.repairset{ border: 1px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
- 			transition: all 0.3s cubic-bezier(.25,.8,.25,1); border-radius: 10px; margin-top:10px;}
-.repairset:hover{ box-shadow: 0 14px 18px rgba(29, 31, 25, 0.23), 0 10px 10px rgba(29, 31, 25, 0.23);}
+.repairset{ width: 95%; border: 1px solid white; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+ 			transition: all 0.3s cubic-bezier(.25,.8,.25,1); border-radius: 10px;     margin: 10px;    background-color: #F2F2B8;}
+.repairset:hover{ box-shadow: 0 7px 7px rgba(29, 31, 25, 0.23), 0 5px 5px rgba(29, 31, 25, 0.23);}
 .repairset li{display: block; margin: 10px;}
 </style>
 <body>
@@ -57,6 +57,10 @@
 // 	    out.println("<br>");
 	    if(object.get("ENT_ADDR").toString().contains(text)){
 			String result_id = "box"+i;
+			String phone = " (제공하지 않음)";
+			if(object.get("ENT_TEL_NO")==null || object.get("ENT_TEL_NO").equals(null)){
+				phone = (String) object.get("ENT_TEL_NO");
+			}
 %>
 			<ul class="repairset" id="<%=result_id%>">
 <%-- 				<li><%=object.get("ENT_NO")%></li> --%>
@@ -64,7 +68,7 @@
 <%-- 				<li><%=object.get("ENT_BUSI_NO")%></li> --%>
 <%-- 				<li><%=object.get("OPEN_DT")%></li> --%>
 <%-- 				<li><%=object.get("ENT_OWNER_NM")%></li> --%>
-				<li>연락처 :<span><%=object.get("ENT_TEL_NO")%></span></li>
+				<li>연락처 :<span><%=phone%></span></li>
 <%-- 				<li><%=object.get("BIZ_ITEM")%></li> --%>
 				<li>보유면허 : <span><%=object.get("HOLD_LCNS")%></span></li>
 				<li>주요시공분야 : <span><%=object.get("MAIN_CNSTRCT_FLD_NM")%></span></li>
@@ -78,11 +82,25 @@
 %>
 	 </section>
 	<!-- 지도크기 -->
-	<div id="repairmap"></div>
+	<div id="repairmapkakao"></div>
 </div>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7c3c7195a7bc32c881f7cd628d1975e&libraries=services"></script>
 <script>
 $(function(){
+	/*디폴트 값 보이기*/
+	var ful_id = $(".repairset").attr("id");
+	var ful_li1 = "#"+ful_id+" > li:nth-child(1) > span";
+	var ful_li2 = "#"+ful_id+" > li:nth-child(5) > span";
+	var fcentername = $(ful_li1).text();
+	var fcenteraddress = $(ful_li2).text();
+	$.ajax({
+		url : "view_repairmap.jsp?content1="+fcentername+"&address1="+fcenteraddress,  
+		dataType : "html",
+		success : function(check){
+			$("#repairmapkakao").html(check);
+		}
+	}); 	
+	
 	var repaircontent = null; 
 	var repairaddress = null;
 	/*하나의 값 선택했을 때 오른쪽에 지도 보이기*/
@@ -101,7 +119,7 @@ $(function(){
  			dataType : "html",
  			success : function(check){
 //  				alert(check);
- 				$("#repairmap").html(check);
+ 				$("#repairmapkakao").html(check);
 //  				alert(check);
  			}
  		}); 

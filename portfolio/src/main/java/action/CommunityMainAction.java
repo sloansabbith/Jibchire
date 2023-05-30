@@ -66,7 +66,8 @@ import svc.SnsListService;
 		
 		/*path를 세팅하기 위해 ActionForward class의 객체 생성*/
 		ActionForward forward= new ActionForward();
-   		forward.setPath("community.jsp"); //ActionForward.java 클래스에 setpath메소드에 setting.
+   		forward.setPath("../community/community.jsp"); //ActionForward.java 클래스에 setpath메소드에 setting.
+   		System.out.println(forward.getPath());
    		return forward;
    		
 	 }

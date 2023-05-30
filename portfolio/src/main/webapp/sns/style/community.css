@@ -9,7 +9,7 @@ body nav ul li{	display: inline-block; }
 section [class$=pic]{border-radius: 5px;}
 img[src$=png]:hover{transform: scale(1.1);}
 
-#backwrap{width: 1280px; height: 100%; margin:0 auto;}
+#backwrap{width: 1280px;margin:0 auto;}
 
 
 /*스크롤 하면 나올 네비 픽스*/
