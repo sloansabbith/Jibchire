@@ -1161,7 +1161,7 @@ public class CmtSns {
 			pstmt.setInt(1, feed_id); 
 			rs= pstmt.executeQuery();
 			while(rs.next()){
-				System.out.println("댓글select하는중");
+//				System.out.println("댓글select하는중");
 				comment = new Feed_comment();
 				comment.setFeed_id(rs.getInt("feed_id"));
 				comment.setCmt_id(rs.getInt("cmt_id"));
@@ -1188,7 +1188,7 @@ public class CmtSns {
 		int num =0;
 		String sql="";
 		int insertCount=0;
-		System.out.println("댓글insert하는중");
+//		System.out.println("댓글insert하는중");
 		try{
 			sql="insert into feed_comment (cmt_id,feed_id,cust_id,root_cmt,parent_cmt,cmt_txt, cmt_time) values(default,?,?,?,?,?,now())";
 			pstmt = con.prepareStatement(sql);

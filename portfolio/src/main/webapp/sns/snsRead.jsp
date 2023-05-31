@@ -91,7 +91,7 @@
 							</div>
 						</div>
 						<!-- 댓글 -->
-						<div class="comment" id="<%=articleList.get(i).getFeed_id()%>">
+						<div class="comment" id="comment<%=articleList.get(i).getFeed_id()%>">
 							<div class="emptycomment"></div>
 <%-- 							<% --%>
 <!-- // 								int feedid = articleList.get(i).getFeed_id(); -->
@@ -237,13 +237,14 @@
 			}
 		});
 		
+		$(".inputcomment").hide(); //댓글 입력창 숨기기
 		$(".comment").hide(); //댓글창 숨기기
 		/* 댓글 아이콘 눌렀을 때 댓글 창 보이기 */
 		$(".buttoncomment").click(function(){
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_id = $(this).attr("value");   //로그인 한 사람이 팔로잉하는 아이디
-			var dd = "div#"+feed_id;
-			
+			var dd = "div#comment"+feed_id;
+// 			alert(dd);
 			$.ajax({
 	            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
 	            dataType : "html",
@@ -252,12 +253,14 @@
 	                $(dd).html(check);
       	     	}
 			});
+			$(".inputcomment").show();
 			$(dd).show(200,'swing');
 			var src1 = $(this).attr("src");
 			//alert(src1);
 			if(src1=="img/sns/chat-1-fill.png"){
 				$(this).attr("src","img/sns/chat-1-line.png");
 				$(dd).hide(200,'swing');
+				$(".inputcomment").hide();
 			}else{
 				$(this).attr("src","img/sns/chat-1-fill.png");
 			} 
@@ -280,7 +283,7 @@
 			var cmt_txt = $(input_txt).val();
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
-			var dd = "div#"+feed_id;
+			var dd = "div#comment"+feed_id;
 			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
