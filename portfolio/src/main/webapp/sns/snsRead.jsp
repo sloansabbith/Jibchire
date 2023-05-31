@@ -281,13 +281,11 @@
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
 			var dd = "div#"+feed_id;
-			
 			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
 				dataType : "html",
 				success : function(check){
-					
 					/*댓글창 바로 보이기*/
 					$.ajax({
 			            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
@@ -301,7 +299,7 @@
 			
 			$(dd).show(200,'swing');
 		});		
-		
+			
 		
 		/*로그인 한 사람이 쓴 글일때 보이기 점3개 메뉴 보이기*/
 		var writer_id = $("h2").attr("value");

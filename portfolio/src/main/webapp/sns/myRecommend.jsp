@@ -18,6 +18,7 @@
 <%
 	ArrayList<Post_house> alist = (ArrayList<Post_house>) request.getAttribute("houselist");
 	ArrayList<Post_house> flist = (ArrayList<Post_house>) request.getAttribute("familylist");
+	ArrayList<Post_house> clist = (ArrayList<Post_house>) request.getAttribute("custfamilylist");
 %>	  
 <body>
 <!-- header -->
@@ -48,7 +49,7 @@
     			for(int i=0; i<alist.size(); i++){   //한 줄에 세 칸을 넣을	
     			%>
 	    		<li>
-	    			<a href = "select_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
+	    			<a href = "../community/select_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
 		    			<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
 	    				<div class="thumbnail"> <img src="postPics/sm_%=alist.get(i).getPost_pics() %>"></div> -->
 		    			<div class="thumbnail"> <img src="../community/postPics/sm_<%=alist.get(i).getPost_pics()%>" onerror="this.src='../community/postPics/<%=alist.get(i).getPost_pics()%>'" ></div>
@@ -93,7 +94,7 @@
     			for(int i=0; i<flist.size(); i++){   //한 줄에 세 칸을 넣을	
     			%>
 	    		<li>
-	    			<a href = "select_read.jsp?post_id=<%=flist.get(i).getPost_id() %>">
+	    			<a href = "../community/select_read.jsp?post_id=<%=flist.get(i).getPost_id() %>">
 		    			<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
 	    				<div class="thumbnail"> <img src="postPics/sm_%=flist.get(i).getPost_pics() %>"></div> -->
 		    			<div class="thumbnail"> <img src="../community/postPics/sm_<%=flist.get(i).getPost_pics()%>" onerror="this.src='../community/postPics/<%=flist.get(i).getPost_pics()%>'" ></div>
@@ -127,7 +128,50 @@
 		<%
 		}
 		%>
-					
+	<%
+	if(clist != null){
+	%>
+	     <div class="list">
+	     	<h2> iii)성별 가족형태</h2>
+	    	<ul>
+	    		<%  
+    			for(int i=0; i<clist.size(); i++){   //한 줄에 세 칸을 넣을	
+    			%>
+	    		<li>
+	    			<a href = "../community/select_read.jsp?post_id=<%=clist.get(i).getPost_id() %>">
+		    			<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
+	    				<div class="thumbnail"> <img src="postPics/sm_%=clist.get(i).getPost_pics() %>"></div> -->
+		    			<div class="thumbnail"> <img src="../community/postPics/sm_<%=clist.get(i).getPost_pics()%>" onerror="this.src='../community/postPics/<%=clist.get(i).getPost_pics()%>'" ></div>
+		    			<div class="title"><%=clist.get(i).getPost_title() %>  </div>
+	    			</a>
+	    				<!-- 북마크 버튼 -->
+	    				<% 
+							String bookmark= clist.get(i).getBookmark_time();
+							if(bookmark==null){
+								%><img src="img/community/png/bookmark-line.png" class="bookmark" value="<%=clist.get(i).getPost_id()%>"><%
+							}else{
+								%><img src="img/community/png/bookmark-2-fill.png" class="bookmark" value="<%=clist.get(i).getPost_id()%>"><%
+							}
+						%>
+		    			<!-- <img src="img/community/png/book-mark-fill.png" class="bookmark" value=""> -->
+		    			<div class="writer"><%=clist.get(i).getCust_id() %> </div>
+	    			<div class="view">조회수<%=clist.get(i).getPost_read() %></div>
+	    		</li>
+    			<%		
+    			
+    			}
+	    		%>
+	    	</ul>
+	    </div>
+		<%
+		}
+		else
+		{
+		%>
+		<section class="emptyArea">주거형태 집평수 방개수가 정확히 일치하는 글이 없습니다.</section>
+		<%
+		}
+		%>		
 </div>    
 <script type="text/javascript">
 $(function(){
@@ -196,55 +240,6 @@ $(function(){
 	});
 	$("img").mouseleave(function(){
 		$(this).css("scale","1.0");
-	});
-	$(".optionList1 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList1").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList2 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList2").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList3 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList3").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList4 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList4").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList5 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList5").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList6 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList6").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList7 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList7").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
 	});
 	
 });
