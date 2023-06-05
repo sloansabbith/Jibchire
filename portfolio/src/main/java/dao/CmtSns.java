@@ -873,8 +873,8 @@ public class CmtSns {
 
 		try{
 			sql="insert into cust_houseinfo (cust_id,cust_pic,cust_introduce,cust_house,cust_room,cust_m2,cust_fam,"
-					+ "cust_family, cust_direc,cust_household,cust_pet,cust_region,cust_style,cust_color)"
-					+"values(?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+					+ "cust_family, cust_direc,cust_houseold,cust_pet,cust_region)"
+					+"values(?,?,?,?,?,?,?,?,?,?,?,?);";
 			System.out.println("insertHouseInfo 잘 되어가나요?");
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, house.getCust_id());
@@ -889,8 +889,6 @@ public class CmtSns {
 			pstmt.setInt(10, house.getCust_houseold());
 			pstmt.setString(11, house.getCust_pet());
 			pstmt.setString(12, house.getCust_region());
-			pstmt.setString(13, house.getCust_style());
-			pstmt.setString(14, house.getCust_color());
 
 			insertCount=pstmt.executeUpdate(); //수행하면 insertCount=1
 

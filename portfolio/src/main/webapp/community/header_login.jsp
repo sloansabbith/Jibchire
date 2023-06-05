@@ -521,7 +521,7 @@
 	<div class="nav">
 		<nav>
 			<div id="cumu">	
-				<div class="index1"><li><a href="select_board.jsp?cust_id=<%=id%>">집들이</a></li></div>
+				<div class="index1"><li><a href="../community/select_board.jsp?cust_id=<%=id%>">집들이</a></li></div>
 				<div class="index2"><li><a href="../sns/snsListAction.sns?cust_id=<%=id%>">일상공유</a></li></div>
 				<div class="index2"><li><a href="../sns/myRecommendList.sns?cust_id=<%=id%>">나와 비슷한</a></li></div>
 				<div class="index2"><li><a href="../sns/publicapiinfo.sns?cust_id=<%=id%>">대여소 찾기</a></li></div>

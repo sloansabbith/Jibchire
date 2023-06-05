@@ -95,43 +95,41 @@
 			    </a>
 		    </section>
 		    <section>
-		    	<article id="mid">
-		    		<div id="midtitle">
-		    			공간 분위기 더 확인하기 <%=articleList.size()%>
-		    		</div>
-		    		<div class="wrap">
-						<div class="tabs">
-							<input type="radio" id="radio-1"  name="tabs" checked />
-							<label class="tab" for="radio-1">
-								<img src="../community/img/community/png/fullscreen-fill.png"> 모든분위기</label>
-							<input type="radio" id="radio-2" name="tabs"/>
-							<label class="tab" for="radio-2">
-								<img src="../community/img/community/png/stop-line.png">미니멀&심플</label>
-							<input type="radio" id="radio-3"  name="tabs"/>
-							<label class="tab" for="radio-3">
-								<img src="../community/img/community/png/plant-line.png">내추럴</label>
-							<input type="radio" id="radio-4" name="tabs" />
-							<label class="tab" for="radio-4">
-								<img src="../community/img/community/png/global-line.png">북유럽</label>
-							<input type="radio" id="radio-5"  name="tabs"/>
-							<label class="tab" for="radio-5">
-								<img src="../community/img/community/png/seedling-line.png">빈티지</label>
-							<input type="radio" id="radio-6" name="tabs" />
-							<label class="tab" for="radio-6">
-								<img src="../community/img/community/png/rainbow-line.png">유니크</label>
-							<input type="radio" id="radio-7" name="tabs" />
-							<label class="tab" for="radio-7">
-								<img src="../community/img/community/png/sun-line.png">프렌치</label>
-							<input type="radio" id="radio-8" name="tabs" />
-							<label class="tab" for="radio-8">
-								<img src="../community/img/community/png/mist-fill.png">믹스매치</label>
-							<input type="radio" id="radio-9" name="tabs" />
-							<label class="tab" for="radio-9">
-								<img src="../community/img/community/png/ancient-pavilion-line.png">한옥</label>
-							<span class="glider"></span>
-						</div>
-					</div>  
-		        </article>	
+	    		<div id="midtitle">
+	    			이번주의 가장 인기있는 피드
+	    		</div>
+<!-- 		    		<div class="wrap"> -->
+<!-- 						<div class="tabs"> -->
+<!-- 							<input type="radio" id="radio-1"  name="tabs" checked /> -->
+<!-- 							<label class="tab" for="radio-1"> -->
+<!-- 								<img src="../community/img/community/png/fullscreen-fill.png"> 모든분위기</label> -->
+<!-- 							<input type="radio" id="radio-2" name="tabs"/> -->
+<!-- 							<label class="tab" for="radio-2"> -->
+<!-- 								<img src="../community/img/community/png/stop-line.png">미니멀&심플</label> -->
+<!-- 							<input type="radio" id="radio-3"  name="tabs"/> -->
+<!-- 							<label class="tab" for="radio-3"> -->
+<!-- 								<img src="../community/img/community/png/plant-line.png">내추럴</label> -->
+<!-- 							<input type="radio" id="radio-4" name="tabs" /> -->
+<!-- 							<label class="tab" for="radio-4"> -->
+<!-- 								<img src="../community/img/community/png/global-line.png">북유럽</label> -->
+<!-- 							<input type="radio" id="radio-5"  name="tabs"/> -->
+<!-- 							<label class="tab" for="radio-5"> -->
+<!-- 								<img src="../community/img/community/png/seedling-line.png">빈티지</label> -->
+<!-- 							<input type="radio" id="radio-6" name="tabs" /> -->
+<!-- 							<label class="tab" for="radio-6"> -->
+<!-- 								<img src="../community/img/community/png/rainbow-line.png">유니크</label> -->
+<!-- 							<input type="radio" id="radio-7" name="tabs" /> -->
+<!-- 							<label class="tab" for="radio-7"> -->
+<!-- 								<img src="../community/img/community/png/sun-line.png">프렌치</label> -->
+<!-- 							<input type="radio" id="radio-8" name="tabs" /> -->
+<!-- 							<label class="tab" for="radio-8"> -->
+<!-- 								<img src="../community/img/community/png/mist-fill.png">믹스매치</label> -->
+<!-- 							<input type="radio" id="radio-9" name="tabs" /> -->
+<!-- 							<label class="tab" for="radio-9"> -->
+<!-- 								<img src="../community/img/community/png/ancient-pavilion-line.png">한옥</label> -->
+<!-- 							<span class="glider"></span> -->
+<!-- 						</div> -->
+<!-- 					</div>   -->
 		    </section>
 		    <div id="snsthunbnail">				
 				<ul>
@@ -140,7 +138,7 @@
 							if(i==0){
 							%>
 							<!-- 1열1행 -->
-							<li>
+							<li style="font-family: 'NanumSquare';">
 								<a href="snsReadAction.sns?feed_id=<%=articleList.get(i).getFeed_id()%>&cust_id=<%=id%>&feed_writer=<%=articleList.get(i).getCust_id()%>">	
 								  	<!-- 타이틀. 회원사진과 아이디 -->
 								  	<div class='snstitle'>

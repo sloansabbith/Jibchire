@@ -36,7 +36,6 @@ a.control_prev:hover, a.control_next:hover {
   opacity: 1;  transition: all 0.2s ease;}
 
 /* 중간 분류메뉴 */
-section #mid{height: 150px;}
 section #midtitle{font-size: 22pt; padding: 20px;}
 .tabs {  display: flex;  position: relative;
   box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
