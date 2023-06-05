@@ -111,7 +111,7 @@
 <!-- // 								} -->
 <%-- 							%> --%>
 						</div>
-						<ul class="inputcomment">
+						<ul class="inputcomment" >
 							<% if(!(id==null)){%>
 							<li><%=id%></li>
 							<%	
