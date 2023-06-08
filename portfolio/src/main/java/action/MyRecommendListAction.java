@@ -25,7 +25,7 @@ import svc.SnsListService;
 		 * 4. jsp에서 ~~님의 취향과 동일한 ~~글입니다 & 글 3개 썸네일 * 3세트 ?
 		 * 		i) 주거형태 집평수 방개수
 		 * 		ii) 가족인원수 가족형태 
-		 * 		iii) 성별 가족형태
+		 * 		iii) 집의 방향, 집 연식 
 		 * 		iv) 
 		 * 5. 
 		 * */
@@ -34,12 +34,12 @@ import svc.SnsListService;
 		//Cust_info info = mysrv.getcustinfo(cust_id);
 		ArrayList<Post_house> houselist = mysrv.gethouseinfo(houseinfo);
 		ArrayList<Post_house> familylist = mysrv.getfamilyinfo(houseinfo);
-		ArrayList<Post_house> custfamilylist = mysrv.getcustfamilyinfo(houseinfo.getCust_family(),houseinfo.getCust_sex());
+		ArrayList<Post_house> direclist = mysrv.getdirecoldinfo(houseinfo.getCust_direc(),houseinfo.getCust_houseold());
 		
 		/*snsList.jsp 에서 이 값들을 사용하기 위해서 setAttribute로 객체를 세팅*/
 		request.setAttribute("houselist", houselist);
 		request.setAttribute("familylist", familylist);
-		request.setAttribute("custfamilylist", custfamilylist);
+		request.setAttribute("direclist", direclist);
 		
 		/*path를 세팅하기 위해 ActionForward class의 객체 생성*/
 		ActionForward forward= new ActionForward();

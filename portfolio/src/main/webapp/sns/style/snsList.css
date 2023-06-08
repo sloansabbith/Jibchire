@@ -3,7 +3,7 @@
 a { text-decoration : none; }
 
 /*전체구조*/
-#wrap{width:1280px; margin:0 auto;}
+#wrap{width:1280px; margin:0 auto 15px auto;}
 #title{text-align: center;     margin-top: 30px;    height: 30px;}
 #snsthunbnail ul{width : 1280px; margin : 10px auto; }
 #snsthunbnail li{display: inline-block; width: 370px; height: 500px;  border: 1px solid white; margin: 25px; overflow: hidden; 

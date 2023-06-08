@@ -18,7 +18,7 @@
 <%
 	ArrayList<Post_house> alist = (ArrayList<Post_house>) request.getAttribute("houselist");
 	ArrayList<Post_house> flist = (ArrayList<Post_house>) request.getAttribute("familylist");
-	ArrayList<Post_house> clist = (ArrayList<Post_house>) request.getAttribute("custfamilylist");
+	ArrayList<Post_house> clist = (ArrayList<Post_house>) request.getAttribute("direclist");
 %>	  
 <body>
 <!-- header -->
@@ -40,10 +40,10 @@
 </header>
 <div id="wrap">
    	<%
-	if(alist != null){
+	if(!(alist.size() == 0) || !(alist == null)){
 	%>
 	     <div class="list">
-<%-- 	     	<h2> <%=alist.get(0).getCust_id()%>님과 동일하게 주거형태:'<%=alist.get(0).getPost_family()%>',  집평수: '<%=alist.get(0).getPost_m2()%>', 방개수: '<%=alist.get(0).getPost_rooms()%>' 인 공간 </h2> --%>
+	     	<h2> <%=id%>님과 동일하게 주거형태:'<%=alist.get(0).getPost_family()%>',  집평수: '<%=alist.get(0).getPost_m2()%>', 방개수: '<%=alist.get(0).getPost_rooms()%>' 인 공간 </h2>
 	    	<ul>
 	    		<%  
     			for(int i=0; i<alist.size(); i++){   //한 줄에 세 칸을 넣을	
@@ -85,10 +85,10 @@
 		%>
 		
 	<%
-	if(flist != null){
+	if(!(flist.size() == 0) || !(flist == null)){
 	%>
 	     <div class="list">
-	     	<h2> ii) 가족인원수 가족형태  </h2>
+	     	<h2> <%=id%>님과 동일하게 가족인원수 : <%=flist.get(0).getPost_fam()%>,  가족형태 : <%=flist.get(0).getPost_family() %> 인 공간 </h2>
 	    	<ul>
 	    		<%  
     			for(int i=0; i<flist.size(); i++){   //한 줄에 세 칸을 넣을	
@@ -129,10 +129,10 @@
 		}
 		%>
 	<%
-	if(clist != null){
+	if(!(clist.size() == 0) || !(clist == null)){
 	%>
 	     <div class="list">
-	     	<h2> iii)성별 가족형태</h2>
+	     	<h2> <%=id%>님과 동일하게 집 방향 : <%=clist.get(0).getPost_direc() %>, 집 연식 : <%=clist.get(0).getPost_houseold() %>인 공간</h2>
 	    	<ul>
 	    		<%  
     			for(int i=0; i<clist.size(); i++){   //한 줄에 세 칸을 넣을	

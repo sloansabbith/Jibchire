@@ -6,7 +6,7 @@ body{ font-family: 'NanumSquare'; }
 #wrap{width: 1255px; margin: 0 auto; } 
 
 /*게시판 첫번째 메뉴 및 select 스타일*/
-#wrap{width: 1280px; margin:0 auto;}
+#wrap{width: 1280px; margin:0 auto 15px auto;}
 #menu ul{margin-left: 10px;}
 #menu{height:40px; padding:10px; margin-top:40px; border:2px solid gray; border-radius: 10px; box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);	}
 select{border: 2px solid #fff; height: 40px;}

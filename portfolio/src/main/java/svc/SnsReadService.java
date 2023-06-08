@@ -19,13 +19,13 @@ public class SnsReadService {
 		consns.setConnection(con);
 		
 		/*조회수 높이기*/
-		int updateCount = consns.updateReadCount(feed_id); 
-		if(updateCount > 0){
-			commit(con);
-		}
-		else{
-			rollback(con);
-		}
+//		int updateCount = consns.updateReadCount(feed_id); 
+//		if(updateCount > 0){
+//			commit(con);
+//		}
+//		else{
+//			rollback(con);
+//		}
 		ArrayList<Feed> articleList = consns.selectArticle(feed_id,feed_writer);
 		close(con);
 		return articleList;
@@ -41,13 +41,13 @@ public class SnsReadService {
 		ArrayList<Feed> articleList = null;
 		
 		/*조회수 높이기*/
-		int updateCount = consns.updateReadCount(feed_id); 
-		if(updateCount > 0){
-			commit(con);
-		}
-		else{
-			rollback(con);
-		}
+//		int updateCount = consns.updateReadCount(feed_id); 
+//		if(updateCount > 0){
+//			commit(con);
+//		}
+//		else{
+//			rollback(con);
+//		}
 		articleList = consns.selectHeartArticle(feed_id,cust_id,feed_writer);
 		close(con);
 		return articleList;

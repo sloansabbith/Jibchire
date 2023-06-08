@@ -31,7 +31,7 @@ public class CmtSns {
 		if(cmtsns == null){
 			cmtsns = new CmtSns();
 		}
-		return cmtsns;
+		return cmtsns; 
 	}
 
 	public void setConnection(Connection con){
@@ -137,8 +137,8 @@ public class CmtSns {
 		//PreparedStatement를 사용하면 sql문에서 변수값 대신 ? 를 사용할 수 있다 그리고 setString()이나 setInt로 비워둔 부분에 데이터를 넣어줌
 		//물음표가 여러개면 여러개 쓰고 key값에 들어가는 숫자는 물음표의 순번
 		ResultSet rs = null;
-		String board_list_sql="select * from Feed "
-				+" left outer join cust_houseinfo on Feed.cust_id=cust_houseinfo.cust_id "
+		String board_list_sql="select * from feed "
+				+" left outer join cust_houseinfo on feed.cust_id=cust_houseinfo.cust_id "
 				+ "order by feed_date desc limit ?,8";
 		ArrayList<Feed> articleList = new ArrayList<Feed>();
 		Feed feed = null;
@@ -1084,7 +1084,7 @@ public class CmtSns {
 		}
 		return alist;
 	}
-	public ArrayList<Post_house> getcustfamilyinfo(String famliy, String sex) {//성별 가족형태
+	public ArrayList<Post_house> getdirecoldinfo(String direc, int houseold) {//집방향, 집연식
 		ArrayList<Post_house> alist = new ArrayList<Post_house>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -1093,11 +1093,11 @@ public class CmtSns {
 			pstmt = con.prepareStatement("select * from post_house "
 					+ " left outer join post_bookmark on post_house.post_id = post_bookmark.post_id "
 					+ " left outer join cust_info on post_house.cust_id = cust_info.cust_id "
-					+ " where post_family=? and cust_sex=? "
+					+ " where post_house.post_direc=? and post_house.post_houseold=? "
 					+ " and post_writetime BETWEEN DATE_ADD(NOW(), INTERVAL -1 MONTH ) AND NOW() "
 					+ " order by post_house.post_read desc limit 0,3;");
-			pstmt.setString(1, famliy);
-			pstmt.setString(2, sex);	  //성별넣어야하는
+			pstmt.setString(1, direc);
+			pstmt.setInt(2, houseold);	
 			rs= pstmt.executeQuery();
 
 			while(rs.next()){

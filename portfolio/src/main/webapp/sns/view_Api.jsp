@@ -12,7 +12,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e7c3c7195a7bc32c881f7cd628d1975e&libraries=services"></script>
 </head>
 <style>
-#wrap{width:1080px; margin:0 auto;}
+#wrap{width:1080px; margin:0 auto 15px auto;}
 
 /*선택창*/
 section[id^=sec] h1{ font-size: 43px; color:#454a44;   }

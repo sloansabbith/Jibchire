@@ -32,8 +32,8 @@
 		Statement stmt = null;
 
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true","root","1111");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://54.180.121.108:3306/interior?serverTimezone=UTC&characterEncoding=UTF-8&useUnicode=true","guest","1111");
 			if(conn == null)
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			stmt = conn.createStatement();

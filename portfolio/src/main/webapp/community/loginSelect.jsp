@@ -22,8 +22,8 @@
 		Statement stmt = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior", "root", "1111");
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://54.180.121.108:3306/interior", "guest", "1111");
 			if(conn == null) {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			}
@@ -40,7 +40,7 @@
 				//로그인 되었을 때 alert 하도록 수정
 				out.println("<script> alert('로그인 되었습니다')"); 
 				session.setAttribute("ID",id); 
-				out.println("document.location.href = 'snsIndexList.sns' </script>");
+				out.println("document.location.href ='snsIndexList.sns' </script>");
 			}else {
 		%>
 			<script type="text/javascript">

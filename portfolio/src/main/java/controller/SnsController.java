@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
 import action.CommunityMainAction;
-import action.IconResultAction;
 import action.PublicApiMyInfoAction;
 import action.MyPageWriteAction;
 import action.MyRecommendListAction;
@@ -234,13 +233,6 @@ public class SnsController extends javax.servlet.http.HttpServlet
 			}
 		}else if(command.equals("/sns/myRecommendList.sns")){  //커뮤니티 메인에 데이터 가져오기 
 			action = new MyRecommendListAction();
-			try{
-				forward=action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/community/iconselect.sns")){  //커뮤니티 메인에 데이터 가져오기 
-			action = new IconResultAction(); 
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

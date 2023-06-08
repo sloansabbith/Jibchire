@@ -24,14 +24,16 @@ public class CmtHousewarming {
 	
 	public CmtHousewarming() { //라이브러리 접근하기
 		try {
-			Class.forName("com.mysql.jdbc.Driver");   			 // 드라이버 작업할거야? 라이브러리 불러오겠음 ! 라이브러리 불러오는 건 이 프로젝트 전체에 한 번만 부르면 된다
+			//Class.forName("com.mysql.jdbc.Driver");   			 // 드라이버 작업할거야? 라이브러리 불러오겠음 ! 라이브러리 불러오는 건 이 프로젝트 전체에 한 번만 부르면 된다
+			Class.forName("com.mysql.cj.jdbc.Driver"); 
 		}catch(Exception e){
 			System.out.println(e+"라이브러리 연결실패");
 		}	
-	}
+	} 
 	public void conn() {  // 커넥하는 동작
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?useUnicode=true&characterEncoding=utf8","root","1111"); 
+			//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?useUnicode=true&characterEncoding=utf8","root","1111"); 
+			conn = DriverManager.getConnection("jdbc:mysql://54.180.121.108:3306/interior?useUnicode=true&characterEncoding=utf8","guest","1111");
 		}catch(Exception e){
 			System.out.println(e+"커넥션 연결실패");		
 		}

@@ -48,12 +48,12 @@ public class MyRecommendListService {
 		return familylist;
 	}
 	
-	public ArrayList<Post_house> getcustfamilyinfo(String famliy, String sex) { // iii)성별 가족형태
+	public ArrayList<Post_house> getdirecoldinfo(String direc, int houseold) { // iii)성별 가족형태
 		Connection con = getConnection();
 		CmtSns sns = CmtSns.getInstance();
 		sns.setConnection(con);  
-		ArrayList<Post_house> custfamilylist = sns.getcustfamilyinfo(famliy,sex);
-		return custfamilylist;
+		ArrayList<Post_house> direclist = sns.getdirecoldinfo(direc,houseold);
+		return direclist;
 	}
 	
 
