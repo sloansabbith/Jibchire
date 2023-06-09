@@ -25,7 +25,9 @@
 	int maxPage=pageInfo.getMaxPage();
 	int startPage=pageInfo.getStartPage();
 	int endPage=pageInfo.getEndPage();
+	String selectedcolor = (String) request.getAttribute("color");
 %>	  
+	<input type="hidden" name="selectedcolor" value="<%=selectedcolor%>">
 <body>
  	<!-- header -->
  	<header>
@@ -45,7 +47,7 @@
 	%>
 	</header>
     <div id="wrap">
-    <div class="subtitle">이번주 가장 북마크가 많이 눌린 집들이</div>
+    <%-- <div class="subtitle">이번주 가장 북마크가 많이 눌린 집들이</div>
    	<%
 	if(alist != null && listCount > 0){
 	%>
@@ -55,7 +57,7 @@
     			for(int i=0; i<3; i++){   //한 줄에 세 칸을 넣을	
     			%>
 	    		<li>
-	    			<a href = "view_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
+	    			<a href = "select_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
 	    				<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
 	    				<div class="thumbnail"> <img src="postPics/sm_%=alist.get(i).getPost_pics() %>"></div> -->
 		    			<div class="thumbnail"> <img src="postPics/<%=alist.get(i).getPost_pics() %>"></div>
@@ -90,62 +92,29 @@
 			<%
 			}
 			%>
-					
+					 --%>
 	   
-	       	<%
+   	<%
 	if(alist != null && listCount > 0){
 	%>
 	    <!-- 참고) section style 분류 탭 : jsp:include page="tap_style.jsp" -->    	
     	<!-- 메뉴 분류 탭 주거형태 방 개수, 집 평수, 가족인원수, 집 연식-->
-		<div class="subtitle">최근 집들이</div>
+    	
+    	
+    	
+<!-- 		<div class="subtitle">최근 집들이</div> -->
 			<!-- section style 분류 탭-->
-			<section>
-		    	<article id="mid">
-		    		<div class="wrap">
-						<div class="tabs">
-							<input type="radio" id="radio-1"  name="tabs" checked />
-							<label class="tab" for="radio-1">
-								<img src="img/community/png/fullscreen-fill.png"> black </label>
-							<input type="radio" id="radio-2" name="tabs"/>
-							<label class="tab" for="radio-2">
-								<img src="img/community/png/stop-line.png"> white</label>
-							<input type="radio" id="radio-3"  name="tabs"/>
-							<label class="tab" for="radio-3">
-								<img src="img/community/png/plant-line.png">beige</label>
-							<input type="radio" id="radio-4" name="tabs" />
-							<label class="tab" for="radio-4">
-								<img src="img/community/png/global-line.png">yellow</label>
-							<input type="radio" id="radio-5"  name="tabs"/>
-							<label class="tab" for="radio-5">
-								<img src="img/community/png/seedling-line.png">brown</label>
-							<input type="radio" id="radio-6" name="tabs" />
-							<label class="tab" for="radio-6">
-								<img src="img/community/png/rainbow-line.png">red</label>
-							<input type="radio" id="radio-7" name="tabs" />
-							<label class="tab" for="radio-7">
-								<img src="img/community/png/sun-line.png">green</label>
-							<input type="radio" id="radio-8" name="tabs" />
-							<label class="tab" for="radio-8">
-								<img src="img/community/png/mist-fill.png">blue</label>
-							<input type="radio" id="radio-9" name="tabs" />
-							<label class="tab" for="radio-9">
-								<img src="img/community/png/ancient-pavilion-line.png">purple</label>
-							<span class="glider"></span>
-						</div>
-					</div>  
-		        </article>	
-		    </section>
-	    
+		
 	    <div id="list">
 	    	<ul>
 	    		<%  
     			for(int i=0; i<alist.size(); i++){   //한 줄에 세 칸을 넣을	
     			%>
 	    		<li>
-	    			<a href = "view_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
+	    			<a href = "select_read.jsp?post_id=<%=alist.get(i).getPost_id() %>">
 		    			<!-- data 직접 집어넣어서 따로 썸네일 만들지 않고있음, postPics/sm_ 라는 루트가 다름
 	    				<div class="thumbnail"> <img src="postPics/sm_%=alist.get(i).getPost_pics() %>"></div> -->
-		    			<div class="thumbnail"> <img src="postPics/<%=alist.get(i).getPost_pics() %>"></div>
+		    			<div class="thumbnail"> <img src="postPics/<%=alist.get(i).getPost_pics() %>" ></div>
 		    			<div class="title"><%=alist.get(i).getPost_title() %>  </div>
 	    			</a>
 	    				<!-- 북마크 버튼 -->
@@ -172,21 +141,21 @@
 			<%if(nowPage<=1){ %>
 				[이전]&nbsp;&nbsp;
 			<%}else{ %>
-				<a href="snsListAction.sns?page=<%=nowPage-1 %>">[이전]</a>&nbsp;
+				<a href="select_board.jsp?page=<%=nowPage-1 %>&cust_id=<%=id%>">[이전]</a>&nbsp;
 			<%} %>
 	
 			<%for(int a=startPage;a<=endPage;a++){
 					if(a==nowPage){%>
 						[<%=a%>]&nbsp;&nbsp;
 					<%}else{ %>
-					<a href="snsListAction.sns?page=<%=a%>">[<%=a%>]
+					<a href="select_board.jsp?page=<%=a%>&cust_id=<%=id%>">[<%=a%>]
 					</a>&nbsp;
 					<%} %>
 			<%} %>
 			<%if(nowPage>=maxPage){ %>
 				[다음]
 			<%}else{ %>
-				<a href="snsListAction.sns?page=<%=nowPage+1 %>">[다음]</a>
+				<a href="select_board.jsp?page=<%=nowPage+1 %>&cust_id=<%=id%>">[다음]</a>
 			<%} %>
 			</section>
 			<%
@@ -229,38 +198,7 @@ $(function(){
 		}
 	});
 	
-	/*select 메뉴*/
-	const label = document.querySelectorAll('.label');
-
-	label.forEach(function(lb){
-	    lb.addEventListener('click', e => {
-	        let optionList = lb.nextElementSibling;
-	        let optionItems = optionList.querySelectorAll('.optionItem');
-	        clickLabel(lb, optionItems);
-	    })
-	});
-	const clickLabel = (lb, optionItems) => {
-	    if(lb.parentNode.classList.contains('active')) {
-	        lb.parentNode.classList.remove('active');
-	        optionItems.forEach((opt) => {
-	            opt.removeEventListener('click', () => {
-	                handleSelect(lb, opt)
-	            })
-	        })
-	    } else {
-	        lb.parentNode.classList.add('active');
-	        optionItems.forEach((opt) => {
-	            opt.addEventListener('click', () => {
-	                handleSelect(lb, opt)
-	            })
-	        })
-	    }
-	}
-	const handleSelect = (label, item) => {
-	    label.innerHTML = item.textContent;
-	    label.parentNode.classList.remove('active');
-	}
-
+	/* 이미지 hover 했을 때 커지기 */
 	$("img").mouseenter(function(){
 		$(this).css("scale","1.05");
 		$(this).css("cursor","pointer");
@@ -268,55 +206,35 @@ $(function(){
 	$("img").mouseleave(function(){
 		$(this).css("scale","1.0");
 	});
-	$(".optionList1 .optionItem").click(function(){
+	
+	/* 색상별로 글 분류하기 */
+	$("input[type=radio]").click(function(){
 		var record = $(this).attr("value");
-		var field = $(".optionList1").attr("value");
+		//alert(record);
 		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
+		location.href= "select_board_list.jsp?menuword="+record+"&cust_id="+cust_id;
 	});
-	$(".optionList2 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList2").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList3 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList3").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList4 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList4").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList5 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList5").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList6 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList6").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
-	$(".optionList7 .optionItem").click(function(){
-		var record = $(this).attr("value");
-		var field = $(".optionList7").attr("value");
-		var cust_id= $("input:hidden[name=cust_id]").val();
-		alert(field);
-		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
-	});
+	
+	/*선택한 색상 radio checked*/
+	var selectedcolor = $("input:hidden[name=selectedcolor]").val();
+	for(var i=1; i<=9; i++){
+		var id = "#radio-"+i;
+		var color = $(id).val();
+		if(selectedcolor==color){
+			$(id).prop("checked",true);
+		}
+	}
+	
+
+//	select 리스트 따로 있었을 때
+// 	$(".optionList5 .optionItem").click(function(){
+// 		var record = $(this).attr("value");
+// 		var field = $(".optionList5").attr("value");
+// 		var cust_id= $("input:hidden[name=cust_id]").val();
+// 		alert(field);
+// 		location.href= "select_board_list.jsp?field="+field+"&menuword="+record+"&cust_id="+cust_id;
+// 	});
+	
 	
 });
 </script>

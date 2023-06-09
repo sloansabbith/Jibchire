@@ -208,10 +208,9 @@
 <script type="text/javascript">
 $(function(){
 	/* 북마크 버튼 눌렀을 때 바로 DB작업하기*/
-	$(".bookmark").click(function(){  
-		//버튼 div의 value값으로 feed_id를 넣어놨음
-		var post_id= $(this).attr("value");
-		//alert(post_id);
+	$(".bookmark").click(function(){ 
+		
+		var post_id= $(this).attr("value"); //버튼 div의 value값으로 feed_id를 넣어놨음
 		var cust_id= $("input:hidden[name=cust_id]").val();
 		if(cust_id==undefined){
 			alert("북마크를 이용하시려면 로그인을 실행해주세요");
@@ -219,13 +218,11 @@ $(function(){
 			$.ajax({
 				url : "insert_bookmark.jsp?post_id="+post_id+"&cust_id="+cust_id,  
 				dataType : "html",
-				//data : "post",
+				data : "post",
 				success : function(check){
-					//alert("북마크 완료");
 				}
 			});
 			var src1 = $(this).attr("src");
-			//alert(src1);
 			if(src1=="img/community/png/bookmark-line.png"){
 				$(this).attr("src","img/community/png/bookmark-2-fill.png");
 			}else{

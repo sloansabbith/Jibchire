@@ -78,11 +78,10 @@ public class PublicApiRent implements Action {
 		/*JSON으로 가져온 데이터 추출하기*/
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(sb.toString()); //1. JSON데이터를 넣어 JSON Object 로 만들어 준다		
-		//System.out.println("jsonObject 잘 들어갔니==> "+jsonObject);
 		
 		JSONObject jobject = (JSONObject)jsonObject.get("VwRepairToolRent"); // 2. VwRepairToolRent 안에 row라는 key값에 정보가 존재하기 때문에 큰 틀에서 한번 더 객체화해준다 
 		JSONArray array = (JSONArray)jobject.get("row"); // 3. 배열 추출
-		System.out.println("배열크기 43=> "+array.size());
+//		System.out.println("배열크기 43=> "+array.size());
 		
 		request.setAttribute("array", array);
 //		for(int i=0; i<array.size(); i++){

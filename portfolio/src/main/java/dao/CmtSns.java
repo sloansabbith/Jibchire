@@ -585,7 +585,7 @@ public class CmtSns {
 		PreparedStatement pstmt = null;  
 		ResultSet rs = null;
 		int page = search.getPage();
-		String select_search ="select * from Feed "
+		String select_search ="select * from feed "
 				+ " left outer join cust_houseinfo on feed.cust_id = cust_houseinfo.cust_id "
 				+ " where feed_hashtag like '%"+search.getSearchword()+"%' "
 //				+ " or feed_txt like '%"+search.getSearchword()+"%' "

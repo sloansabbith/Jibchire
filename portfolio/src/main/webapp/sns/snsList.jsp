@@ -189,8 +189,9 @@
 											%><img src="img/sns/heart-fill.png" class="buttonlike" value="<%=articleList.get(i).getFeed_id()%>"><%
 										}
 									%>
-									<div class="read"><%=articleList.get(i).getFeed_hashtag()%>
-										<br><%=articleList.get(i).getFeed_txt() %>
+									<div class="read">
+											<%=articleList.get(i).getFeed_hashtag()%><br>
+											<%=articleList.get(i).getFeed_txt() %>
 									</div>
 								</div>
 							</li>

@@ -552,8 +552,9 @@ public class CmtHousewarming {
 			stmt = conn.createStatement();
 			int startrow=(page-1)*9; 
 			//1페이지는 0~7번(8개), 2페이지는 8~15번(8개), 3페이지는 16~23번(8개)
-			String select = "select * from post_house left outer join post_bookmark on post_house.post_id= post_bookmark.post_id"
-			+" where post_bookmark.cust_id='"+cust_id+"' order by post_writetime  desc limit "+startrow+",9";
+			String select = "select * from post_house "
+					+ " left outer join post_bookmark on post_house.post_id= post_bookmark.post_id"
+					+" where post_bookmark.cust_id='"+cust_id+"' order by post_writetime  desc limit "+startrow+",9";
 			ResultSet rs = stmt.executeQuery(select);  
 			while(rs.next()) {
 				Post_house po = new Post_house();

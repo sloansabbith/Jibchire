@@ -415,7 +415,6 @@
 
 		<div class="header">
 			<div class="cumu"><li><a href ="../sns/communitymain.sns"> 커뮤니티 </a></li></div>
-<!-- 			<div class="store"><li><a href ="shopping.jsp"> 스토어 </a></li></div> -->
 			<div class="gosu"><li><a href ="../bachi/bachi_main.jsp"> 바치 </a></li></div>
 			<li><a href="snsIndexList.sns"><div class="logo"> </div></a></li>
 

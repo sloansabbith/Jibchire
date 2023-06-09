@@ -278,14 +278,14 @@
 			$("input:text[name=feed_comment]").attr("placeholder","50자까지 가능합니다");
 		}
 		
-		/*댓글 submit후 바로 보이기*/
+		/*댓글 insert후 바로 보이기*/
 		$(".commentsubmit").click(function(){
 			var feed_id = $(this).attr("id"); 
 			var input_txt = "input:text[id="+feed_id+"]";
 			var cmt_txt = $(input_txt).val();
 			var cust_id = $("input:hidden[name=cust_id]").val();
 			var feed_writer =$("span").html(); 
-			var dd = "div#comment"+feed_id;
+			var cmt_box = "div#comment"+feed_id;
 			/*댓글 DB에 입력하기 */
 			$.ajax({
 				url : "snsInsertComment.sns?cust_id="+cust_id+"&feed_id="+feed_id+"&cmt_txt="+cmt_txt+"&feed_writer="+feed_writer,  
@@ -296,13 +296,12 @@
 			            url : "snsSelectComment.sns?feed_id="+feed_id+"&cust_id="+cust_id,  
 			            dataType : "html",
 			            success : function(check){
-			                $(dd).html(check);
+			                $(cmt_box).html(check);
 		      	     	}
 					});
 				}
 			});
-			
-			$(dd).show(200,'swing');
+// 			$(cmt_box).show(200,'swing');
 		});		
 			
 		

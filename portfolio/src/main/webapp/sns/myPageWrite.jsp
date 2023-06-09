@@ -33,7 +33,7 @@
 		<table id="writing">
 			<thead><tr><td colspan="2"><h4> 내 정보 입력하기 </h4></td></tr></thead>
 			<tbody>
-				<tr><td rowspan="3"><div id="preview"><img id="previewImg" ></div> </td>
+				<tr><td rowspan="3"><div id="preview"><img id="previewImg"></div> </td>
 				<td><input type="text" value="<%=id%>" name="cust_id" readonly="readonly"> </td></tr>
 				<tr><td> <input type="text" placeholder="내 계정 소개" name="cust_introduce"> </td></tr>
 				<tr><td>회원아이디 이미지 등록 <input type="file" onchange="readImage(this);" name="post_pic" id="post_pic">  </td></tr>
@@ -100,95 +100,56 @@
 					<input type="radio" name="cust_direc" value="dontknow">잘모르겠음 
 					</td>
 				</tr>
-<!-- 				<tr><td> 스타일 </td> -->
-<!-- 					<td> <input type="checkbox" name="cust_style" value="미니멀/심플">미니멀/심플 -->
-<!-- 						<input type="checkbox" name="cust_style" value="내추럴">내추럴 -->
-<!-- 						<input type="checkbox" name="cust_style" value="북유럽">북유럽 -->
-<!-- 						<input type="checkbox" name="cust_style" value="빈티지">빈티지 -->
-<!-- 						<input type="checkbox" name="cust_style" value="유니크">유니크 -->
-<!-- 						<input type="checkbox" name="cust_style" value="프렌치/플로럴">프렌치/플로럴 -->
-<!-- 						<input type="checkbox" name="cust_style" value="믹스매치">믹스매치 -->
-<!-- 						<input type="checkbox" name="cust_style" value="한옥">한옥 -->
-<!-- 						<input type="checkbox" name="cust_style" value="오피스겸용">오피스겸용 -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-<!-- 				<tr><td> 색상 톤 </td> -->
-<!-- 					<td> 체크박스 자체에 스타일을 주기 위해서 각각의 라벨추가 -->
-<!-- 						<input type="checkbox" name="cust_color" id="cb1" value="black">  -->
-<!-- 						 	<label for="cb1"></label> -->
-<!-- 						<input type="checkbox" name="cust_color" id="cb2" value="white">  -->
-<!-- 						 	<label for="cb2"></label> -->
-<!-- 				 		<input type="checkbox" name="cust_color" id="cb3" value="red">  -->
-<!-- 						 	<label for="cb3"></label> -->
-<!-- 				 		<input type="checkbox" name="cust_color" id="cb4" value="orange">  -->
-<!-- 						 	<label for="cb4"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb5" value="yellow">  -->
-<!-- 						 	<label for="cb5"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb6" value="green">  -->
-<!-- 						 	<label for="cb6"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb7" value="blue">  -->
-<!-- 						 	<label for="cb7"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb8" value="purple">  -->
-<!-- 						 	<label for="cb8"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb9" value="brown">  -->
-<!-- 						 	<label for="cb9"></label> -->
-<!-- 					 	<input type="checkbox" name="cust_color" id="cb10" value="pink">  -->
-<!-- 						 	<label for="cb10"></label> -->
-<!-- 					</td> -->
-<!-- 				</tr> -->
-			<tr><td> 가족 인원 </td>
-				<td><select id="fam" name="cust_fam">
-						<option value="1">1명 </option>
-						<option value="2">2명 </option>
-						<option value="3">3명 </option>
-						<option value="4">4명 </option>
-						<option value="5">5명이상 </option>
+				<tr><td> 가족 인원 </td>
+					<td><select id="fam" name="cust_fam">
+							<option value="1">1명 </option>
+							<option value="2">2명 </option>
+							<option value="3">3명 </option>
+							<option value="4">4명 </option>
+							<option value="5">5명이상 </option>
+						</select>
+					</td>
+				</tr>
+				<tr><td> 가족형태 </td>
+					<td> <input type="checkbox" name="cust_family" value="1인가구">1인가구
+						<input type="checkbox" name="cust_family" value="신혼부부">신혼부부
+						<input type="checkbox" name="cust_family" value="부모님과 함께사는">부모님과 함께
+						<input type="checkbox" name="cust_family" value="룸메이트">룸메이트
+						<input type="checkbox" name="cust_family" value="자녀와 함께">어린 자녀와 함께
+					</td>
+				</tr>
+				<tr><td> 반려동물 유무 </td>
+					<td> <input type="radio" id="pet1" name="cust_pet" value="y">  
+							<label for="pet1">있음</label> 
+						<input type="radio" id="pet2" name="cust_pet"  value="n">  
+							<label for="pet2">없음</label> 
+					</td>
+				</tr>
+				<tr><td> 지역 </td>
+					<td><select id="region" name="cust_region">
+						<option value="서울특별시">서울특별시</option>
+						<option value="부산광역시">부산광역시</option>
+						<option value="대구광역시">대구광역시</option>
+						<option value="인천광역시">인천광역시</option>
+						<option value="광주광역시">광주광역시</option>
+						<option value="대전광역시">대전광역시</option>
+						<option value="울산광역시">울산광역시</option>
+						<option value="세종특별자치시">세종특별자치시</option>
+						<option value="경기도">경기도</option>
+						<option value="강원도">강원도</option>
+						<option value="충청북도">충청북도</option>
+						<option value="충청남도">충청남도</option>
+						<option value="전라북도">전라북도</option>
+						<option value="전라남도">전라남도</option>
+						<option value="경상북도">경상북도</option>
+						<option value="경상남도">경상남도</option>
+						<option value="제주특별자치도">제주특별자치도</option>
 					</select>
-				</td>
-			</tr>
-			<tr><td> 가족형태 </td>
-				<td> <input type="checkbox" name="cust_family" value="1인가구">1인가구
-					<input type="checkbox" name="cust_family" value="신혼부부">신혼부부
-					<input type="checkbox" name="cust_family" value="부모님과 함께사는">부모님과 함께
-					<input type="checkbox" name="cust_family" value="룸메이트">룸메이트
-					<input type="checkbox" name="cust_family" value="자녀와 함께">어린 자녀와 함께
-				</td>
-			</tr>
-			<tr><td> 반려동물 유무 </td>
-				<td> <input type="radio" id="pet1" name="cust_pet" value="y">  
-						<label for="pet1">있음</label> 
-					<input type="radio" id="pet2" name="cust_pet"  value="n">  
-						<label for="pet2">없음</label> 
-				</td>
-			</tr>
-			<tr><td> 지역 </td>
-				<td><select id="region" name="cust_region">
-					<option value="서울특별시">서울특별시</option>
-					<option value="부산광역시">부산광역시</option>
-					<option value="대구광역시">대구광역시</option>
-					<option value="인천광역시">인천광역시</option>
-					<option value="광주광역시">광주광역시</option>
-					<option value="대전광역시">대전광역시</option>
-					<option value="울산광역시">울산광역시</option>
-					<option value="세종특별자치시">세종특별자치시</option>
-					<option value="경기도">경기도</option>
-					<option value="강원도">강원도</option>
-					<option value="충청북도">충청북도</option>
-					<option value="충청남도">충청남도</option>
-					<option value="전라북도">전라북도</option>
-					<option value="전라남도">전라남도</option>
-					<option value="경상북도">경상북도</option>
-					<option value="경상남도">경상남도</option>
-					<option value="제주특별자치도">제주특별자치도</option>
-				</select>
-				</td>
-			</tr>
-
+					</td>
+				</tr>
 			</tbody>
-			<tfoot><tr><td colspan="2"><input type="submit" value="작성완료"></td></tr> </tfoot>
+			<tfoot><tr><td colspan="2" style="text-align: center;"><input type="submit" value="작성완료"></td></tr> </tfoot>
 		</table>
-
-
 	</div>
 	</form>
 	<script>
