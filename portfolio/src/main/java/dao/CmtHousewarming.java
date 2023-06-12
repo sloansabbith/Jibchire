@@ -33,7 +33,7 @@ public class CmtHousewarming {
 	public void conn() {  // 커넥하는 동작
 		try {
 			//conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/interior?useUnicode=true&characterEncoding=utf8","root","1111"); 
-			conn = DriverManager.getConnection("jdbc:mysql://54.180.121.108:3306/interior?useUnicode=true&characterEncoding=utf8","guest","1111");
+			conn = DriverManager.getConnection("jdbc:mysql://13.125.234.126:3306/interior?useUnicode=true&characterEncoding=utf8","guest","1111");
 		}catch(Exception e){
 			System.out.println(e+"커넥션 연결실패");		
 		}

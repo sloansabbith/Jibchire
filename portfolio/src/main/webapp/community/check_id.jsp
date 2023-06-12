@@ -17,7 +17,7 @@
 		Statement stmt = null;
 		try{
 			Class.forName("com.mysql.cj.jdbc.Driver");    
-			conn = DriverManager.getConnection("jdbc:mysql://54.180.121.108:3306/interior","guest","1111"); 
+			conn = DriverManager.getConnection("jdbc:mysql://13.125.234.126:3306/interior","guest","1111"); 
 			if(conn==null)
 				throw new Exception("데이터베이스에 접근할 수 없습니다.");
 			stmt = conn.createStatement();	

@@ -19,6 +19,6 @@
 		password="1111"
 		driverClassName="com.mysql.cj.jdbc.Driver"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-		url="jdbc:mysql://54.180.121.108:3306/interior?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useUnicode=true"
+		url="jdbc:mysql://13.125.234.126:3306/interior?serverTimezone=UTC&amp;characterEncoding=UTF-8&amp;useUnicode=true"
 		maxActive="500"/>
 </Context>
